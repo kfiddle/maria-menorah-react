@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import EntryForm from "./components/entry/EntryForm";
 import MainNavigation from "./components/mainNavigation/MainNavigation";
+import EventsList from "./components/events/EventsList";
+import EntryForm from "./components/entry/EntryForm";
 
 import "./App.css";
 
@@ -15,36 +16,18 @@ function App() {
     setEntryFormRendered(false);
   };
 
-
-  
-
   return (
     <div className="App">
       <MainNavigation entryFormClicked={openModalHandler} />
-      {entryFormRendered && <EntryForm />};
-      
+      {entryFormRendered && <EntryForm closeModal={closeModalHandler} />};
+      <EventsList />
+
 
     </div>
   );
 }
 
 export default App;
-
-// function App() {
-
-
-//   return (
-//     <CartProvider>
-//       {cartRendered && <Cart closeModal={closeModalHandler} />}
-//       <Header openCart={openModalHandler} />
-//       <main>
-//         <Meals />
-//       </main>
-//     </CartProvider>
-//   );
-// }
-
-
 
 // const submitPurpose = () => {
 //   const purposeTitleToSend = "boozeAndCigarettes";

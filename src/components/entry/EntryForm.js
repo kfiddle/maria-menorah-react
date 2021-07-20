@@ -64,6 +64,29 @@ const EntryForm = (props) => {
                 <input type="date" id={classes.dateInput} />
               </div>
 
+              <div className={classes.purposeDiv}>
+                <ul>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                  <li>a purpose</li>
+                </ul>
+              </div>
+
               <div className={classes.actions}>
                 <button className="btn">Submit Event</button>
               </div>
