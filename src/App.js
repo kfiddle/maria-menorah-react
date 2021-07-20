@@ -1,4 +1,5 @@
 import "./App.css";
+import EntryForm from "./components/entry/EntryForm";
 import MainNavigation from "./components/mainNavigation/MainNavigation";
 
 function App() {
@@ -21,8 +22,9 @@ function App() {
   return (
     <div className="App">
       <MainNavigation />
+      <EntryForm />
       
-      
+
     </div>
   );
 }
