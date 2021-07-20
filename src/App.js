@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import MainNavigation from "./components/mainNavigation/MainNavigation";
 import EventsList from "./components/events/EventsList";
@@ -8,6 +8,21 @@ import "./App.css";
 
 function App() {
   const [entryFormRendered, setEntryFormRendered] = useState(false);
+  const [eventsList, setEventsList] = useState([]);
+
+  let incomingEventsList = [];
+
+  useEffect(() => {
+    const getListOfEvents = async () => {
+      let eventsFromBackend = await fetch(
+        "https://bref-chaise-13325.herokuapp.com/get-events"
+      );
+      incomingEventsList = await eventsFromBackend.json();
+      setEventsList(incomingEventsList);
+    }
+
+    getListOfEvents();
+  }, [eventsList]);
 
   const openModalHandler = () => {
     setEntryFormRendered(true);
@@ -20,9 +35,7 @@ function App() {
     <div className="App">
       <MainNavigation entryFormClicked={openModalHandler} />
       {entryFormRendered && <EntryForm closeModal={closeModalHandler} />};
-      <EventsList />
-
-
+      <EventsList list={eventsList} />
     </div>
   );
 }
