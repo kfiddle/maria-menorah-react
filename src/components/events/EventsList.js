@@ -10,7 +10,7 @@ const EventsList = (props) => {
   ));
 
   return (
-    <div>
+    <div className={styles.outerContainer}>
       <div>{eventsToDisplay}</div>
     </div>
   );

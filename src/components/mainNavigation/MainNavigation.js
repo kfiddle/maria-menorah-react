@@ -1,5 +1,5 @@
 
-
+import { NavLink } from 'react-router-dom';
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = (props) => {
@@ -12,10 +12,10 @@ const MainNavigation = (props) => {
             Entry
           </li>
 
-          <li className={classes.navItem}>Events</li>
-          <li className={classes.navItem} onClick={()=> props.navClicked('foundations')}>Foundations</li>
-          <li className={classes.navItem}>Purposes</li>
-
+          <li className={classes.navItem}><NavLink to={'/events'}>Events</NavLink></li>
+          <li className={classes.navItem}><NavLink to={'/foundations'}>Foundations</NavLink></li>
+          <li className={classes.navItem}><NavLink to={'/purposes'}>Purposes</NavLink></li>
+        
      
         </ul>
       </nav>
