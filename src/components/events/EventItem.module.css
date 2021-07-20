@@ -16,7 +16,7 @@
 }
 
 .item:hover {
-  background:aqua;
+  background: aqua;
 }
 
 button {
@@ -31,4 +31,20 @@ button {
 
 button:hover {
   background: rgb(240, 46, 104);
+}
+
+.foundationsDiv {
+  display: flex;
+}
+
+.foundationName {
+  width: 30%;
+  font-weight: 700;
+  color:blue;
+  text-align: right;
+}
+.foundationPennies {
+  width: 30%;
+  font-weight: 700;
+  color:green;
 }

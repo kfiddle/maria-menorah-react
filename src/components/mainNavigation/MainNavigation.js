@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+
 
 import classes from "./MainNavigation.module.css";
 
@@ -8,24 +8,15 @@ const MainNavigation = (props) => {
       <div className={classes.logo}>Maria's Database</div>
       <nav className={classes.nav}>
         <ul>
-          <li className={classes.entryClicker} onClick={props.entryFormClicked}>
+          <li className={classes.navItem} onClick={props.entryFormClicked}>
             Entry
           </li>
-          <li>
-            <NavLink to={"/add-quote"} activeClassName={classes.active}>
-              Events
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/add-quote"} activeClassName={classes.active}>
-              Foundations
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={"/add-quote"} activeClassName={classes.active}>
-              Purposes
-            </NavLink>
-          </li>
+
+          <li className={classes.navItem}>Events</li>
+          <li className={classes.navItem}>Foundations</li>
+          <li className={classes.navItem}>Purposes</li>
+
+     
         </ul>
       </nav>
     </header>
