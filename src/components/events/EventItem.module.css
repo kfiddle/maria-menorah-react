@@ -11,11 +11,12 @@
 }
 
 .item div {
-    width: 15%;
+  width: 15%;
+  text-align: left;
 }
 
-.titleDiv {
-    text-align: left;
+.item:hover {
+  background:aqua;
 }
 
 button {
@@ -29,5 +30,5 @@ button {
 }
 
 button:hover {
-    background: rgb(122, 170, 134);
+  background: rgb(240, 46, 104);
 }

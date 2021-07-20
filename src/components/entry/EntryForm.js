@@ -1,8 +1,9 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import Card from "../UI/Card";
 import classes from "./EntryForm.module.css";
+import PurposesList from "./PurposesList";
 
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.closeModal} />;
@@ -19,16 +20,27 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const EntryForm = (props) => {
+  const [purposesList, setPurposesList] = useState([]);
   const authorInputRef = useRef();
   const textInputRef = useRef();
+
+  useEffect(() => {
+    const getListOfPurposes = async () => {
+      let purposesFromBackend = await fetch(
+        "https://bref-chaise-13325.herokuapp.com/get-purposes"
+      );
+      let incomingPurposesList = await purposesFromBackend.json();
+      setPurposesList(incomingPurposesList);
+    };
+
+    getListOfPurposes();
+  }, [purposesList]);
 
   function submitFormHandler(event) {
     event.preventDefault();
 
     const enteredAuthor = authorInputRef.current.value;
     const enteredText = textInputRef.current.value;
-
-    // optional: Could validate here
 
     props.onAddQuote({ author: enteredAuthor, text: enteredText });
   }
@@ -64,31 +76,14 @@ const EntryForm = (props) => {
                 <input type="date" id={classes.dateInput} />
               </div>
 
-              <div className={classes.purposeDiv}>
-                <ul>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                  <li>a purpose</li>
-                </ul>
+              <div className={classes.purposesAndFoundationsDiv}>
+                <div className={classes.purposeDiv}>
+                  <PurposesList list={purposesList} />
+                </div>
               </div>
 
-              <div className={classes.actions}>
-                <button className="btn">Submit Event</button>
+              <div className={classes.buttonDiv}>
+                <button className={classes.button}>Submit Event</button>
               </div>
             </form>
           </Card>

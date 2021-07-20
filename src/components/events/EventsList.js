@@ -5,9 +5,7 @@ import EventItem from "./EventItem";
 import styles from "./EventsList.module.css";
 
 const EventsList = (props) => {
-  useEffect(() => {
-    console.log(props.list);
-  }, [props.list]);
+ 
 
   const eventsToDisplay = props.list.map((event) => (
     <EventItem event={event} key={event.id} />
