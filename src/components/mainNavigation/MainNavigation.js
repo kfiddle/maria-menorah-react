@@ -8,7 +8,7 @@ const MainNavigation = (props) => {
       <div className={classes.logo}>Maria's Database</div>
       <nav className={classes.nav}>
         <ul>
-          <li className={classes.navItem} onClick={()=> props.navClicked('entry')}>
+          <li className={classes.navItem} onClick={props.entryClicked}>
             Entry
           </li>
 

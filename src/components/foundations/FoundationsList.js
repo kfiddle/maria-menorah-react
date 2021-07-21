@@ -9,7 +9,7 @@ const FoundationsList = (props) => {
     <FoundationItem foundation={foundation} key={foundation.id} />
   ));
 
-  return <div>{foundationsToDisplay}</div>;
+  return <div className={styles.outerContainer}>{foundationsToDisplay}</div>;
 };
 
 export default FoundationsList;
