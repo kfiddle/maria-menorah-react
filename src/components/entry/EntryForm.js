@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 import Card from "../UI/Card";
 import classes from "./EntryForm.module.css";
+import PossibleFoundationsList from "./PossibleFoundationsList";
 import PurposesList from "./PurposesList";
 
 const Backdrop = (props) => {
@@ -21,6 +22,8 @@ const portalElement = document.getElementById("overlays");
 
 const EntryForm = (props) => {
   const [purposesList, setPurposesList] = useState([]);
+  const [possibleFoundationsList, setPossibleFoundationsList] = useState([]);
+
   const authorInputRef = useRef();
   const textInputRef = useRef();
 
@@ -35,6 +38,18 @@ const EntryForm = (props) => {
 
     getListOfPurposes();
   }, [purposesList]);
+
+  const clickedPurpose = (purpose) => {
+    fetch("https://bref-chaise-13325.herokuapp.com/get-matching-foundations", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(purpose),
+    })
+      .then((data) => data.json())
+      .then((answerList) => setPossibleFoundationsList(answerList));
+  };
 
   function submitFormHandler(event) {
     event.preventDefault();
@@ -78,7 +93,20 @@ const EntryForm = (props) => {
 
               <div className={classes.purposesAndFoundationsDiv}>
                 <div className={classes.purposeDiv}>
-                  <PurposesList list={purposesList} />
+                  <PurposesList
+                    list={purposesList}
+                    clickedPurpose={clickedPurpose}
+                  />
+                </div>
+
+                <div>
+                  <PossibleFoundationsList list={possibleFoundationsList}/>
+
+                  {/* <ul>
+                    <li>soon to be a foundation and inputs</li>
+                    <li>soon to be a foundation and inputs</li>
+                    <li>soon to be a foundation and inputs</li>
+                  </ul> */}
                 </div>
               </div>
 

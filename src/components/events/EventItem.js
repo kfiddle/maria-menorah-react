@@ -39,7 +39,7 @@ const EventItem = (props) => {
         <div className={styles.dateDiv}>{date}</div>
         <div className={styles.purposeDiv}>{purpose.title}</div>
         <div className={styles.costDiv}>{`${eventDollars}.${eventCents}`}</div>
-        <button className={styles.button}>Delete</button>
+        <button className={styles.button}>Edit</button>
       </div>
       {foundationsClicked && <div>{transactionsToDisplay}</div>}
     </Fragment>

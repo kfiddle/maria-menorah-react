@@ -37,6 +37,10 @@ button:hover {
   display: flex;
 }
 
+.costDiv {
+  color: rgb(209, 36, 36);
+}
+
 .foundationName {
   width: 30%;
   font-weight: 700;

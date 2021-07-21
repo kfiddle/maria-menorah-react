@@ -14,7 +14,7 @@ const MainNavigation = (props) => {
 
           <li className={classes.navItem}><NavLink to={'/events'}>Events</NavLink></li>
           <li className={classes.navItem}><NavLink to={'/foundations'}>Foundations</NavLink></li>
-          <li className={classes.navItem}><NavLink to={'/purposes'}>Purposes</NavLink></li>
+          <li className={classes.navItem}><NavLink to={'/purposes'}>Master Budget</NavLink></li>
         
      
         </ul>

@@ -116,8 +116,9 @@
   margin: 1rem 0 1rem 5rem;
 }
 
-.purposesAndFoundations {
-  width: 80%;
+.purposesAndFoundationsDiv {
+  display: flex;
+  width: 90%;
 }
 
 .purposeDiv {
