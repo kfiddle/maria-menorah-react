@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import useMoney from "../../hooks/useMoney";
 
 import styles from "./EventItem.module.css";
 
@@ -25,9 +26,7 @@ const EventItem = (props) => {
     );
   });
 
-  const eventDollars = ~~(totalCostInCents / 100);
-  const eventCents =
-    totalCostInCents % 100 === 0 ? "00" : totalCostInCents % 100;
+  const money = useMoney(totalCostInCents);
 
   const clickedForFoundations = () => {
     setFoundationsClicked((previous) => !previous);
@@ -38,7 +37,9 @@ const EventItem = (props) => {
         <div className={styles.titleDiv}>{title}</div>
         <div className={styles.dateDiv}>{date}</div>
         <div className={styles.purposeDiv}>{purpose.title}</div>
-        <div className={styles.costDiv}>{`${eventDollars}.${eventCents}`}</div>
+        <div
+          className={styles.costDiv}
+        >{`${money.dollars}.${money.cents}`}</div>
         <button className={styles.button}>Edit</button>
       </div>
       {foundationsClicked && <div>{transactionsToDisplay}</div>}

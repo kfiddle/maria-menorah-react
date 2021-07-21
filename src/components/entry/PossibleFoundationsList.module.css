@@ -2,8 +2,19 @@
   display: flex;
   font-weight: 700;
   color: blue;
+  width: 100%;
 }
 
-.listItem div {
-    width: 50%;
+
+.name {
+    width: 70%;
+}
+
+.moneyDiv {
+    margin: 0 1rem;
+}
+
+input {
+    align-self: flex-end;
+    width: 20%;
 }
