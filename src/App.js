@@ -1,43 +1,45 @@
 import { useState, useEffect, Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 import MainNavigation from "./components/mainNavigation/MainNavigation";
 import EventsList from "./components/events/EventsList";
 import EntryForm from "./components/entry/EntryForm";
 
 import "./App.css";
+import Layout from "./components/UI/Layout";
 import AllEvents from "./pages/AllEvents";
-import AllFoundations from './pages/AllFoundations';
-import AllPurposes from './pages/AllPurposes';
-
+import AllFoundations from "./pages/AllFoundations";
+import AllPurposes from "./pages/AllPurposes";
 
 function App() {
   const [entryFormRendered, setEntryFormRendered] = useState(false);
   const openModalHandler = () => {
-    setEntryFormRendered(true)
+    setEntryFormRendered(true);
   };
 
   const closeModalHandler = () => {
-    setEntryFormRendered(false)
-  }
+    setEntryFormRendered(false);
+  };
 
   return (
-    <div className="app">
-      <MainNavigation navClicked={openModalHandler} />
-      {entryFormRendered && <EntryForm closeModal={closeModalHandler} />};
-
+    <Layout>
+      {/* {entryFormRendered && <EntryForm closeModal={closeModalHandler} />}; */}
       <Switch>
+        <Route path={"/"} exact>
+          <Redirect to={"/events"} />
+        </Route>
+
         <Route path={"/events"}>
           <AllEvents />
         </Route>
-        <Route path={'/foundations'}>
+        <Route path={"/foundations"}>
           <AllFoundations />
         </Route>
-        <Route path={'/purposes'}>
+        <Route path={"/purposes"}>
           <AllPurposes />
         </Route>
       </Switch>
-    </div>
+    </Layout>
   );
 }
 
