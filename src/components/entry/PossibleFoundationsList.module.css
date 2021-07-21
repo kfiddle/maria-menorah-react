@@ -1,0 +1,9 @@
+.listItem {
+  display: flex;
+  font-weight: 700;
+  color: blue;
+}
+
+.listItem div {
+    width: 50%;
+}

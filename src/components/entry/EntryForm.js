@@ -101,12 +101,6 @@ const EntryForm = (props) => {
 
                 <div>
                   <PossibleFoundationsList list={possibleFoundationsList}/>
-
-                  {/* <ul>
-                    <li>soon to be a foundation and inputs</li>
-                    <li>soon to be a foundation and inputs</li>
-                    <li>soon to be a foundation and inputs</li>
-                  </ul> */}
                 </div>
               </div>
 
