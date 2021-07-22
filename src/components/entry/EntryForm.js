@@ -23,9 +23,16 @@ const portalElement = document.getElementById("overlays");
 const EntryForm = (props) => {
   const [purposesList, setPurposesList] = useState([]);
   const [possibleFoundationsList, setPossibleFoundationsList] = useState([]);
+  const [enteredPurpose, setEnteredPurpose] = useState(null);
+  const [submitClicked, setSubmitClicked] = useState(false);
 
-  const authorInputRef = useRef();
-  const textInputRef = useRef();
+  const [transactionList, setTransactionList] = useState([]);
+
+  const titleRef = useRef();
+  const dateRef = useRef();
+  const companyRef = useRef();
+  const enteredDollars = useRef();
+  const enteredCents = useRef();
 
   useEffect(() => {
     const getListOfPurposes = async () => {
@@ -40,6 +47,8 @@ const EntryForm = (props) => {
   }, [purposesList]);
 
   const clickedPurpose = (purpose) => {
+    setEnteredPurpose(purpose);
+
     fetch("https://bref-chaise-13325.herokuapp.com/get-matching-foundations", {
       method: "POST",
       headers: {
@@ -48,16 +57,47 @@ const EntryForm = (props) => {
       body: JSON.stringify(purpose),
     })
       .then((data) => data.json())
-      .then((answerList) => setPossibleFoundationsList(answerList));
+      .then((answerList) =>
+        setPossibleFoundationsList(
+          answerList.map((foundation) => {
+            return { ...foundation, amountToDebit: 0 };
+          })
+        )
+      );
   };
 
-  function submitFormHandler(event) {
+  const acceptTransaction = (transactionObject) => {
+    console.log(transactionObject);
+    const newList = transactionList;
+    newList.push(transactionObject);
+    setTransactionList(newList);
+  };
+
+  function submitEvent(event) {
     event.preventDefault();
+    setSubmitClicked(true);
 
-    const enteredAuthor = authorInputRef.current.value;
-    const enteredText = textInputRef.current.value;
+    const dataToSubmit = {
+      title: titleRef.current.value,
+      date: dateRef.current.value,
+      totalCostInCents:
+        +(enteredDollars.current.value * 100) + +enteredCents.current.value,
 
-    props.onAddQuote({ author: enteredAuthor, text: enteredText });
+      purpose: enteredPurpose,
+      transactions: transactionList,
+    };
+
+    setTimeout(() => {
+      console.log(dataToSubmit);
+
+      fetch("http://localhost:8080/add-event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSubmit),
+      }).then((response) => console.log(response));
+    }, 200);
   }
 
   return (
@@ -70,25 +110,29 @@ const EntryForm = (props) => {
       {ReactDOM.createPortal(
         <ModalOverlay>
           <Card>
-            <form className={classes.form} onSubmit={submitFormHandler}>
+            <form className={classes.form}>
               <div className={classes.control}>
                 <label htmlFor="title">Event</label>
-                <input type="text" id="author" ref={authorInputRef} />
+                <input type="text" id="title" ref={titleRef} />
               </div>
 
               <div className={classes.control}>
                 <label htmlFor="company">Company</label>
-                <input type="text" id="author" ref={authorInputRef} />
+                <input type="text" ref={companyRef} />
               </div>
               <div className={`${classes.control} ${classes.moneyDiv}`}>
                 <label htmlFor="text">Dollars</label>
-                <input type="number" id={classes.dollars} />
+                <input
+                  type="number"
+                  id={classes.dollars}
+                  ref={enteredDollars}
+                />
                 <label htmlFor="text">Cents</label>
-                <input type="number" />
+                <input type="number" ref={enteredCents} />
               </div>
 
               <div className={classes.control}>
-                <input type="date" id={classes.dateInput} />
+                <input type="date" id={classes.dateInput} ref={dateRef} />
               </div>
 
               <div className={classes.purposesAndFoundationsDiv}>
@@ -100,12 +144,18 @@ const EntryForm = (props) => {
                 </div>
 
                 <div>
-                  <PossibleFoundationsList list={possibleFoundationsList}/>
+                  <PossibleFoundationsList
+                    list={possibleFoundationsList}
+                    submitClicked={submitClicked}
+                    acceptTransaction={acceptTransaction}
+                  />
                 </div>
               </div>
 
               <div className={classes.buttonDiv}>
-                <button className={classes.button}>Submit Event</button>
+                <button className={classes.button} onClick={submitEvent}>
+                  Submit Event
+                </button>
               </div>
             </form>
           </Card>

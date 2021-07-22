@@ -7,13 +7,19 @@ const EventItem = (props) => {
   const [foundationsClicked, setFoundationsClicked] = useState(false);
   const { title, date, purpose, totalCostInCents, transactions } = props.event;
 
-  const transactionsToDisplay = transactions.map((transaction) => {
-    const transactionDollars = ~~(transaction.totalPennies / 100);
-    const transactionCents =
-      transaction.totalPennies % 100 === 0
-        ? "00"
-        : transaction.totalPennies % 100;
+  const adjustedTransactions = transactions.map((transaction) => {
+    const cost = {
+      dollars: ~~(transaction.totalPennies / 100),
+      cents:
+        transaction.totalPennies % 100 === 0
+          ? "00"
+          : transaction.totalPennies % 100,
+    };
 
+    return { ...transaction, cost };
+  });
+
+  const transactionsToDisplay = adjustedTransactions.map((transaction) => {
     return (
       <div className={styles.foundationsDiv}>
         <div className={styles.foundationName}>
@@ -21,7 +27,7 @@ const EventItem = (props) => {
         </div>
         <div
           className={styles.foundationPennies}
-        >{`${transactionDollars}.${transactionCents}`}</div>
+        >{`${transaction.cost.dollars}.${transaction.cost.cents}`}</div>
       </div>
     );
   });

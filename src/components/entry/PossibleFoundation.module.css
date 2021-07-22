@@ -1,16 +1,15 @@
 .listItem {
-  display: flex;
-  font-weight: 700;
-  color: rgb(51, 51, 112);
-  width: 100%;
-}
+    display: flex;
+    font-weight: 700;
+    color: rgb(51, 51, 112);
+    width: 100%;
+  }
+  
+  .listItem:hover {
+      color:rgb(150, 59, 74);
+  }
 
-.listItem:hover {
-    color:rgb(150, 59, 74);
-}
-
-
-.name {
+  .name {
     width: 70%;
 }
 

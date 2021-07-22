@@ -43,10 +43,12 @@ button:hover {
 
 .foundationName {
   width: 30%;
+  padding-right: 2rem;
   font-weight: 700;
   color:blue;
   text-align: right;
 }
+
 .foundationPennies {
   width: 30%;
   font-weight: 700;
