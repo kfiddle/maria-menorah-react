@@ -12,7 +12,7 @@ function App() {
 
 
   return (
-    <Layout>
+    <Layout >
       <Switch>
         <Route path={"/"} exact>
           <Redirect to={"/events"} />

@@ -7,19 +7,23 @@ const Layout = (props) => {
   const [entryFormRendered, setEntryFormRendered] = useState(false);
 
   const openModalHandler = () => {
-      setEntryFormRendered(true);
-  }
+    setEntryFormRendered(true);
+  };
+
+  
 
   const closeModalHandler = () => {
-      setEntryFormRendered(false);
-  }
-
+    setEntryFormRendered(false);
+   
+  };
 
   return (
     <Fragment>
       <MainNavigation entryClicked={openModalHandler} />
       {entryFormRendered && <EntryForm closeModal={closeModalHandler} />};
-      <main className={classes.main}>{props.children}</main>
+      <main className={classes.main}>
+        {props.children}
+      </main>
     </Fragment>
   );
 };

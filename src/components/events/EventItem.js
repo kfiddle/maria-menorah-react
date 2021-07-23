@@ -39,11 +39,16 @@ const EventItem = (props) => {
     setFoundationsClicked((previous) => !previous);
   };
 
-  const editEvent = () => {
-    setEditingClicked(true);
-  };
+  // const editEventClicked = () => {
+  //   setEditingClicked(previous => !previous);
+  // };
 
-  if (!editingClicked) {
+  // if (!editingClicked) {
+
+  const deleteClicked = () => {
+    props.deleteClicked(props.event);
+  }
+
     return (
       <Fragment>
         <div className={styles.item} onClick={clickedForFoundations}>
@@ -53,29 +58,33 @@ const EventItem = (props) => {
           <div
             className={styles.costDiv}
           >{`${money.dollars}.${money.cents}`}</div>
-          <button onClick={editEvent} className={styles.button}>
-            Edit
+          {/* <button onClick={editEventClicked} className={styles.button}> */}
+          <button onClick={deleteClicked} className={styles.button}>
+            Delete
           </button>
         </div>
         {foundationsClicked && <div>{transactionsToDisplay}</div>}
       </Fragment>
     );
-  } else {
-    return ( <Fragment>
-      <div className={styles.item} onClick={clickedForFoundations}>
-        <div className={styles.titleDiv}></div>
-        <input className={styles.dateDiv} placeholder={date}></input>
-        <input className={styles.purposeDiv} placeholder={title}></input>
-        <div
-          className={styles.costDiv}
-        >{`${money.dollars}.${money.cents}`}</div>
-        <button onClick={editEvent} className={styles.button}>
-          Edit
-        </button>
-      </div>
-      {foundationsClicked && <div>{transactionsToDisplay}</div>}
-    </Fragment>)
-  }
-};
+  } 
+  
+  // else {
+  //   return ( <Fragment>
+  //     <div className={styles.item} onClick={clickedForFoundations}>
+  //       <input className={styles.titleDiv} placeholder={title} ></input>
+  //       <input className={styles.dateDiv} placeholder={date}></input>
+  //       <input className={styles.purposeDiv} placeholder={purpose.title} ></input>
+  //       <input
+  //         className={styles.costDiv}
+  //         placeholder={`${money.dollars}.${money.cents}`}
+  //       ></input>
+  //       <button onClick={editEventClicked} className={styles.button}>
+  //         Edit
+  //       </button>
+  //     </div>
+  //     {foundationsClicked && <div>{transactionsToDisplay}</div>}
+  //   </Fragment>)
+  // }
+
 
 export default EventItem;

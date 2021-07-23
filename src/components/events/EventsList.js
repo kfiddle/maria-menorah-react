@@ -5,8 +5,12 @@ import EventItem from "./EventItem";
 import styles from "./EventsList.module.css";
 
 const EventsList = (props) => {
+  const deleteClicked = (event) => {
+    props.deleteClicked(event);
+  };
+
   const eventsToDisplay = props.list.map((event) => (
-    <EventItem event={event} key={event.id} />
+    <EventItem event={event} key={event.id} deleteClicked={deleteClicked} />
   ));
 
   return (
