@@ -20,7 +20,18 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const DeleteForm = (props) => {
-  const { title, date } = props.eventToDelete;
+  const { id, title, date } = props.eventToDelete;
+
+  const sendDeleteRequest = async () => {
+
+    fetch("http://localhost:8080/delete-event", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(props.eventToDelete),
+    }).catch((error) => console.log(error));
+  };
 
   return (
     <div className={classes.outerContainer}>
@@ -36,7 +47,12 @@ const DeleteForm = (props) => {
               <div
                 className={classes.question}
               >{`Are you sure you want to delete ${title} on ${date}?`}</div>
-              <button className={classes.confirmButton}>Confirm</button>
+              <button
+                className={classes.confirmButton}
+                onClick={sendDeleteRequest}
+              >
+                Confirm
+              </button>
             </div>
           </Card>
         </ModalOverlay>,
