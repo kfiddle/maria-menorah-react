@@ -21,16 +21,22 @@ const portalElement = document.getElementById("overlays");
 
 const DeleteForm = (props) => {
   const { id, title, date } = props.eventToDelete;
+  const [successfulDelete, setSuccessfulDelete] = useState(false);
 
   const sendDeleteRequest = async () => {
-
     fetch("https://bref-chaise-13325.herokuapp.com/delete-event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(props.eventToDelete),
-    }).catch((error) => console.log(error));
+    })
+      .then((response) => {
+        if (response.ok) {
+          setSuccessfulDelete(true);
+        }
+      })
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -44,9 +50,11 @@ const DeleteForm = (props) => {
         <ModalOverlay>
           <Card>
             <div className={classes.innerContainer}>
-              <div
-                className={classes.question}
-              >{`Are you sure you want to delete ${title} on ${date}?`}</div>
+              <div className={classes.question}>
+                {!successfulDelete
+                  ? `Are you sure you want to delete ${title} on ${date}?`
+                  : "It is DONE"}
+              </div>
               <button
                 className={classes.confirmButton}
                 onClick={sendDeleteRequest}
