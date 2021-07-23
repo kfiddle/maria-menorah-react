@@ -5,6 +5,7 @@ import styles from "./EventItem.module.css";
 
 const EventItem = (props) => {
   const [foundationsClicked, setFoundationsClicked] = useState(false);
+  const [editingClicked, setEditingClicked] = useState(false);
   const { title, date, purpose, totalCostInCents, transactions } = props.event;
 
   const adjustedTransactions = transactions.map((transaction) => {
@@ -37,20 +38,44 @@ const EventItem = (props) => {
   const clickedForFoundations = () => {
     setFoundationsClicked((previous) => !previous);
   };
-  return (
-    <Fragment>
+
+  const editEvent = () => {
+    setEditingClicked(true);
+  };
+
+  if (!editingClicked) {
+    return (
+      <Fragment>
+        <div className={styles.item} onClick={clickedForFoundations}>
+          <div className={styles.titleDiv}>{title}</div>
+          <div className={styles.dateDiv}>{date}</div>
+          <div className={styles.purposeDiv}>{purpose.title}</div>
+          <div
+            className={styles.costDiv}
+          >{`${money.dollars}.${money.cents}`}</div>
+          <button onClick={editEvent} className={styles.button}>
+            Edit
+          </button>
+        </div>
+        {foundationsClicked && <div>{transactionsToDisplay}</div>}
+      </Fragment>
+    );
+  } else {
+    return ( <Fragment>
       <div className={styles.item} onClick={clickedForFoundations}>
-        <div className={styles.titleDiv}>{title}</div>
-        <div className={styles.dateDiv}>{date}</div>
-        <div className={styles.purposeDiv}>{purpose.title}</div>
+        <div className={styles.titleDiv}></div>
+        <input className={styles.dateDiv} placeholder={date}></input>
+        <input className={styles.purposeDiv} placeholder={title}></input>
         <div
           className={styles.costDiv}
         >{`${money.dollars}.${money.cents}`}</div>
-        <button className={styles.button}>Edit</button>
+        <button onClick={editEvent} className={styles.button}>
+          Edit
+        </button>
       </div>
       {foundationsClicked && <div>{transactionsToDisplay}</div>}
-    </Fragment>
-  );
+    </Fragment>)
+  }
 };
 
 export default EventItem;
