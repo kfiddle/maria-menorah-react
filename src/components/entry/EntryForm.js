@@ -91,7 +91,7 @@ const EntryForm = (props) => {
     };
 
     const postingFunction = setTimeout(() => {
-      fetch("http://localhost:8080/add-event", {
+      fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
