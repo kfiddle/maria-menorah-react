@@ -24,6 +24,8 @@ const EntryForm = (props) => {
   const [purposesList, setPurposesList] = useState([]);
   const [possibleFoundationsList, setPossibleFoundationsList] = useState([]);
   const [enteredPurpose, setEnteredPurpose] = useState(null);
+  const [purposeClicked, setPurposeClicked] = useState(false);
+
   const [submitClicked, setSubmitClicked] = useState(false);
 
   const [transactionList, setTransactionList] = useState([]);
@@ -47,6 +49,7 @@ const EntryForm = (props) => {
   }, [purposesList]);
 
   const clickedPurpose = (purpose) => {
+    setPurposeClicked(true);
     setEnteredPurpose(purpose);
 
     fetch("https://bref-chaise-13325.herokuapp.com/get-matching-foundations", {
@@ -87,17 +90,25 @@ const EntryForm = (props) => {
       transactions: transactionList,
     };
 
-    setTimeout(() => {
-      console.log(dataToSubmit);
-
+    const postingFunction = setTimeout(() => {
       fetch("http://localhost:8080/add-event", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(dataToSubmit),
-      }).then((response) => console.log(response));
+      }).then((response) => {
+        if (response.ok) {
+          console.log("got it!");
+          titleRef.current.value = "";
+          enteredDollars.current.value = "";
+          enteredCents.current.value = "";
+          dateRef.current.value = "";
+          setPurposeClicked(false);
+        }
+      });
     }, 200);
+
   }
 
   return (
@@ -144,11 +155,11 @@ const EntryForm = (props) => {
                 </div>
 
                 <div>
-                  <PossibleFoundationsList
+                  {purposeClicked && <PossibleFoundationsList
                     list={possibleFoundationsList}
                     submitClicked={submitClicked}
                     acceptTransaction={acceptTransaction}
-                  />
+                  />}
                 </div>
               </div>
 

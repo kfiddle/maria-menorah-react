@@ -21,7 +21,7 @@ const EventItem = (props) => {
 
   const transactionsToDisplay = adjustedTransactions.map((transaction) => {
     return (
-      <div className={styles.foundationsDiv}>
+      <div key={transaction.id} className={styles.foundationsDiv}>
         <div className={styles.foundationName}>
           {transaction.foundation.name}
         </div>

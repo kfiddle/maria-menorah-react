@@ -14,6 +14,11 @@
   width: 40%;
 }
 
+.leftOverDiv {
+  width: 20%;
+  color: rgb(50, 167, 50);
+}
+
 .moneyDiv {
   text-align: left;
 }
