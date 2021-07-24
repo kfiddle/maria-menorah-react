@@ -1,18 +1,24 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
-const useGetData =  (whichData) => {
-  useEffect(async () => {
-    let listToReturn = [];
-    let fetchUrl = "";
-    if (whichData === "purposes") {
-      fetchUrl = "https://bref-chaise-13325.herokuapp.com/get-purposes";
-    }
+const useGetData = async (whichData) => {
+  const [dataList, setDataList] = useState("");
 
-    let listFromBackend = await fetch(fetchUrl);
-    listToReturn = await listFromBackend.json();
+  // useEffect(async () => {
+  let listToReturn = [];
+  let fetchUrl = "";
+  if (whichData === "events") {
+    // fetchUrl = "https://bref-chaise-13325.herokuapp.com/get-events";
+    fetchUrl = "http://localhost:8080/get-events";
+  }
 
-    return listToReturn;
-  }, [whichData]);
+  let listFromBackend = await fetch(fetchUrl);
+  listToReturn = await listFromBackend.json();
+
+  console.log(listToReturn);
+  setDataList(listToReturn);
+  // }, []);
+
+  return listToReturn;
 };
 
 export default useGetData;

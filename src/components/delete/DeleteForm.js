@@ -1,7 +1,8 @@
-import { useRef, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import Card from "../UI/Card";
+import usePushData from "../../hooks/usePushData";
 
 import classes from "./DeleteForm.module.css";
 
@@ -22,21 +23,16 @@ const portalElement = document.getElementById("overlays");
 const DeleteForm = (props) => {
   const { id, title, date } = props.eventToDelete;
   const [successfulDelete, setSuccessfulDelete] = useState(false);
+  const [deleteButtonClicked, setDeleteButtonClicked] = useState(false);
 
-  const sendDeleteRequest = async () => {
-    fetch("https://bref-chaise-13325.herokuapp.com/delete-event", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(props.eventToDelete),
-    })
-      .then((response) => {
-        if (response.ok) {
-          setSuccessfulDelete(true);
-        }
-      })
-      .catch((error) => console.log(error));
+  const sendDeleteRequest = usePushData(
+    props.eventToDelete,
+    deleteButtonClicked,
+    setSuccessfulDelete
+  );
+
+  const DeleteClicker = () => {
+    setDeleteButtonClicked(true);
   };
 
   return (
@@ -55,10 +51,7 @@ const DeleteForm = (props) => {
                   ? `Are you sure you want to delete ${title} on ${date}?`
                   : "It is DONE"}
               </div>
-              <button
-                className={classes.confirmButton}
-                onClick={sendDeleteRequest}
-              >
+              <button className={classes.confirmButton} onClick={DeleteClicker}>
                 Confirm
               </button>
             </div>

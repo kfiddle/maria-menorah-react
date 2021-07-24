@@ -6,6 +6,8 @@ import classes from "./EntryForm.module.css";
 import PossibleFoundationsList from "./PossibleFoundationsList";
 import PurposesList from "./PurposesList";
 
+import useUrl from "../../hooks/useUrl";
+
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.closeModal} />;
 };
@@ -29,6 +31,7 @@ const EntryForm = (props) => {
   const [submitClicked, setSubmitClicked] = useState(false);
 
   const [transactionList, setTransactionList] = useState([]);
+  const appropriateUrl = useUrl();
 
   const titleRef = useRef();
   const dateRef = useRef();
@@ -38,9 +41,7 @@ const EntryForm = (props) => {
 
   useEffect(() => {
     const getListOfPurposes = async () => {
-      let purposesFromBackend = await fetch(
-        "https://bref-chaise-13325.herokuapp.com/get-purposes"
-      );
+      let purposesFromBackend = await fetch(appropriateUrl + "/get-purposes");
       let incomingPurposesList = await purposesFromBackend.json();
       setPurposesList(incomingPurposesList);
     };
@@ -52,7 +53,7 @@ const EntryForm = (props) => {
     setPurposeClicked(true);
     setEnteredPurpose(purpose);
 
-    fetch("https://bref-chaise-13325.herokuapp.com/get-matching-foundations", {
+    fetch(appropriateUrl + "/get-matching-foundations", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -91,9 +92,7 @@ const EntryForm = (props) => {
     };
 
     const postingFunction = setTimeout(() => {
-      // fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
-        fetch("http://localhost:8080/add-event", {
-
+      fetch(appropriateUrl + "/add-event", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -110,7 +109,6 @@ const EntryForm = (props) => {
         }
       });
     }, 200);
-
   }
 
   return (
@@ -157,11 +155,13 @@ const EntryForm = (props) => {
                 </div>
 
                 <div>
-                  {purposeClicked && <PossibleFoundationsList
-                    list={possibleFoundationsList}
-                    submitClicked={submitClicked}
-                    acceptTransaction={acceptTransaction}
-                  />}
+                  {purposeClicked && (
+                    <PossibleFoundationsList
+                      list={possibleFoundationsList}
+                      submitClicked={submitClicked}
+                      acceptTransaction={acceptTransaction}
+                    />
+                  )}
                 </div>
               </div>
 

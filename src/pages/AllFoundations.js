@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 
 import FoundationsList from "../components/foundations/FoundationsList";
+import useUrl from "../hooks/useUrl";
 
 const AllFoundations = () => {
   const [foundationsList, setFoundationsList] = useState([]);
 
+  const appropriateUrl = useUrl();
   useEffect(() => {
     const getListOfFoundations = async () => {
       let foundationsFromBackend = await fetch(
-        "https://bref-chaise-13325.herokuapp.com/get-foundations"
-        // "http://localhost:8080/get-foundations"
+        appropriateUrl + "/get-foundations"
       );
       let incomingFoundationsList = await foundationsFromBackend.json();
-      console.log(incomingFoundationsList);
       setFoundationsList(incomingFoundationsList);
     };
 
