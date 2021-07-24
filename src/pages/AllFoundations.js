@@ -12,6 +12,7 @@ const AllFoundations = () => {
         // "http://localhost:8080/get-foundations"
       );
       let incomingFoundationsList = await foundationsFromBackend.json();
+      console.log(incomingFoundationsList);
       setFoundationsList(incomingFoundationsList);
     };
 

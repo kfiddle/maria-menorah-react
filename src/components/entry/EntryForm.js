@@ -91,7 +91,9 @@ const EntryForm = (props) => {
     };
 
     const postingFunction = setTimeout(() => {
-      fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
+      // fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
+        fetch("http://localhost:8080/add-event", {
+
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -128,7 +130,7 @@ const EntryForm = (props) => {
               </div>
 
               <div className={classes.control}>
-                <label htmlFor="company">Company</label>
+                <label htmlFor="company">Payees</label>
                 <input type="text" ref={companyRef} />
               </div>
               <div className={`${classes.control} ${classes.moneyDiv}`}>
