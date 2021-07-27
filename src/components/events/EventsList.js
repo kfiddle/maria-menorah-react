@@ -5,12 +5,19 @@ import EventItem from "./EventItem";
 import styles from "./EventsList.module.css";
 
 const EventsList = (props) => {
+  let listOfSplits = [];
+
+  props.list.forEach((event) => {
+    const splitEvent = event.split(",");
+    listOfSplits.push(splitEvent);
+  });
+
   const deleteClicked = (event) => {
     props.deleteClicked(event);
   };
 
-  const eventsToDisplay = props.list.map((event) => (
-    <EventItem event={event} key={event.id} deleteClicked={deleteClicked} />
+  const eventsToDisplay = listOfSplits.map((event) => (
+    <EventItem event={event} key={event[4]} deleteClicked={deleteClicked} />
   ));
 
   return (

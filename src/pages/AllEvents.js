@@ -2,14 +2,15 @@ import { useState, useEffect, Fragment } from "react";
 
 import EventsList from "../components/events/EventsList";
 import DeleteForm from "../components/delete/DeleteForm";
-import useUrl from "../hooks/useUrl";
+import useGetData from "../hooks/useGetData";
 
 const AllEvents = (props) => {
   const [eventsList, setEventsList] = useState([]);
   const [deleteFormRendered, setDeleteFormRendered] = useState(false);
   const [eventToDelete, setEventToDelete] = useState(null);
+  const [pageLoaded, setPageLoaded] = useState(false);
 
-  const appropriateFetchUrl = useUrl();
+  useGetData("/get-stringable-events", setEventsList, pageLoaded, setPageLoaded);
 
   const deleteClicked = (event) => {
     setDeleteFormRendered(true);
@@ -21,16 +22,15 @@ const AllEvents = (props) => {
   };
 
   useEffect(() => {
-    const getListOfEvents = async () => {
-      let eventsFromBackend = await fetch(appropriateFetchUrl + "/get-events");
-      let incomingEventsList = await eventsFromBackend.json();
-      setEventsList(incomingEventsList);
-    };
+    setPageLoaded(true);
+  }, []);
 
-    getListOfEvents();
-  }, [eventsList]);
+
 
   return (
+
+    // <div>{eventsList}</div>
+    
     <Fragment>
       <EventsList list={eventsList} deleteClicked={deleteClicked} />;
       {deleteFormRendered && (

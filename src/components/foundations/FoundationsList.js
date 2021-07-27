@@ -17,7 +17,6 @@ const FoundationsList = (props) => {
   ));
 
   return <div className={styles.outerContainer}>{displayableList}</div>;
-  // return <div className={styles.outerContainer}>hellrrrrp</div>;
 };
 
 export default FoundationsList;
