@@ -61,6 +61,7 @@ const EntryForm = (props) => {
       body: JSON.stringify(purpose),
     })
       .then((data) => data.json())
+
       .then((answerList) =>
         setPossibleFoundationsList(
           answerList.map((foundation) => {
