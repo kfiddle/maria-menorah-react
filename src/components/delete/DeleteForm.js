@@ -24,7 +24,8 @@ const DeleteForm = (props) => {
 
   const sendDeleteRequest = async () => {
 
-    fetch("https://bref-chaise-13325.herokuapp.com/delete-event", {
+    // fetch("https://bref-chaise-13325.herokuapp.com/delete-event", {
+      fetch("http://localhost:8080/delete-event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

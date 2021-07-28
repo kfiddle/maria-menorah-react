@@ -11,14 +11,17 @@ const AllFoundations = () => {
         // "https://bref-chaise-13325.herokuapp.com/get-foundations"
         "http://localhost:8080/get-foundations"
       );
+      // const body = await foundationsFromBackend.text();
+      // console.log(body);
       let incomingFoundationsList = await foundationsFromBackend.json();
       setFoundationsList(incomingFoundationsList);
     };
 
     getListOfFoundations();
-  }, [foundationsList]);
+  }, []);
 
   return <FoundationsList list={foundationsList} />;
+  // return <div>{foundationsList}</div>
 };
 
 export default AllFoundations;

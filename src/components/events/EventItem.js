@@ -11,30 +11,30 @@ const EventItem = (props) => {
 
  
 
-  const adjustedTransactions = transactions.map((transaction) => {
-    const cost = {
-      dollars: ~~(transaction.totalPennies / 100),
-      cents:
-        transaction.totalPennies % 100 === 0
-          ? "00"
-          : transaction.totalPennies % 100,
-    };
+  // const adjustedTransactions = transactions.map((transaction) => {
+  //   const cost = {
+  //     dollars: ~~(transaction.totalPennies / 100),
+  //     cents:
+  //       transaction.totalPennies % 100 === 0
+  //         ? "00"
+  //         : transaction.totalPennies % 100,
+  //   };
 
-    return { ...transaction, cost };
-  });
+  //   return { ...transaction, cost };
+  // });
 
-  const transactionsToDisplay = adjustedTransactions.map((transaction) => {
-    return (
-      <div key={transaction.id} className={styles.foundationsDiv}>
-        <div className={styles.foundationName}>
-          {transaction.foundationId}
-        </div>
-        <div
-          className={styles.foundationPennies}
-        >{`${transaction.cost.dollars}.${transaction.cost.cents}`}</div>
-      </div>
-    );
-  });
+  // const transactionsToDisplay = adjustedTransactions.map((transaction) => {
+  //   return (
+  //     <div key={transaction.id} className={styles.foundationsDiv}>
+  //       <div className={styles.foundationName}>
+  //         {transaction.foundationId}
+  //       </div>
+  //       <div
+  //         className={styles.foundationPennies}
+  //       >{`${transaction.cost.dollars}.${transaction.cost.cents}`}</div>
+  //     </div>
+  //   );
+  // });
 
   const money = useMoney(totalCostInCents);
 
