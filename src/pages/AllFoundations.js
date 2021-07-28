@@ -2,27 +2,23 @@ import { useState, useEffect } from "react";
 
 import FoundationsList from "../components/foundations/FoundationsList";
 
-import useGetData from "../hooks/useGetData";
-
 const AllFoundations = () => {
   const [foundationsList, setFoundationsList] = useState([]);
-  const [pageLoaded, setPageLoaded] = useState(false);
 
-  useGetData(
-    "/get-stringable-foundations",
-    setFoundationsList,
-    pageLoaded,
-    setPageLoaded
-  );
+  useEffect(() => {
+    const getListOfFoundations = async () => {
+      let foundationsFromBackend = await fetch(
+        // "https://bref-chaise-13325.herokuapp.com/get-foundations"
+        "http://localhost:8080/get-foundations"
+      );
+      let incomingFoundationsList = await foundationsFromBackend.json();
+      setFoundationsList(incomingFoundationsList);
+    };
 
-  useEffect(async () => {
-    setPageLoaded(true)
-    
-  }, []);
-
+    getListOfFoundations();
+  }, [foundationsList]);
 
   return <FoundationsList list={foundationsList} />;
-  // return <div>{foundationsList}</div>;
 };
 
 export default AllFoundations;

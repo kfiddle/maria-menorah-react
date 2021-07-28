@@ -12,7 +12,7 @@ const PossibleFoundation = (props) => {
 
   useEffect(() => {
     if (props.submitClicked) {
-        props.sendUpTransactionObject({foundation: props.foundation, totalPennies: +enteredAmount.current.value * 100})
+        props.sendUpTransactionObject({foundationId: props.foundation.id, totalPennies: +enteredAmount.current.value * 100})
     }
 
   }, [props.submitClicked])

@@ -1,64 +1,59 @@
 import { Fragment, useState } from "react";
 import useMoney from "../../hooks/useMoney";
+import TransactionsToDisplay from './transactionsToDisplay/TransactionsToDisplay';
 
 import styles from "./EventItem.module.css";
 
 const EventItem = (props) => {
   const [foundationsClicked, setFoundationsClicked] = useState(false);
   const [editingClicked, setEditingClicked] = useState(false);
-  // const { title, date, purpose, totalCostInCents, transactions } = props.event;
+  const { title, date, purpose, totalCostInCents, transactions } = props.event;
 
-  const title = props.event[0];
-  const date = props.event[1];
-  const purpose = props.event[2];
-  const totalCostInCents = props.event[3];
+ 
 
+  const adjustedTransactions = transactions.map((transaction) => {
+    const cost = {
+      dollars: ~~(transaction.totalPennies / 100),
+      cents:
+        transaction.totalPennies % 100 === 0
+          ? "00"
+          : transaction.totalPennies % 100,
+    };
 
-  // const adjustedTransactions = transactions.map((transaction) => {
-  //   const cost = {
-  //     dollars: ~~(transaction.totalPennies / 100),
-  //     cents:
-  //       transaction.totalPennies % 100 === 0
-  //         ? "00"
-  //         : transaction.totalPennies % 100,
-  //   };
+    return { ...transaction, cost };
+  });
 
-  //   return { ...transaction, cost };
-  // });
-
-  // const transactionsToDisplay = adjustedTransactions.map((transaction) => {
-  //   return (
-  //     <div key={transaction.id} className={styles.foundationsDiv}>
-  //       <div className={styles.foundationName}>
-  //         {transaction.foundation.name}
-  //       </div>
-  //       <div
-  //         className={styles.foundationPennies}
-  //       >{`${transaction.cost.dollars}.${transaction.cost.cents}`}</div>
-  //     </div>
-  //   );
-  // });
+  const transactionsToDisplay = adjustedTransactions.map((transaction) => {
+    return (
+      <div key={transaction.id} className={styles.foundationsDiv}>
+        <div className={styles.foundationName}>
+          {transaction.foundationId}
+        </div>
+        <div
+          className={styles.foundationPennies}
+        >{`${transaction.cost.dollars}.${transaction.cost.cents}`}</div>
+      </div>
+    );
+  });
 
   const money = useMoney(totalCostInCents);
 
-  // const clickedForFoundations = () => {
-  //   setFoundationsClicked((previous) => !previous);
-  // };
+  const clickedForFoundations = () => {
+    setFoundationsClicked((previous) => !previous);
+  };
 
-  // const editEventClicked = () => {
-  //   setEditingClicked(previous => !previous);
-  // };
+  const editEventClicked = () => {
+    setEditingClicked((previous) => !previous);
+  };
 
-  // if (!editingClicked) {
-
-  const deleteClicked = () => {
-    props.deleteClicked(props.event);
-  }
+  if (!editingClicked) {
+    const deleteClicked = () => {
+      props.deleteClicked(props.event);
+    };
 
     return (
       <Fragment>
-        {/* <div className={styles.item} onClick={clickedForFoundations}> */}
-        <div className={styles.item}>
+        <div className={styles.item} onClick={clickedForFoundations}>
           <div className={styles.titleDiv}>{title}</div>
           <div className={styles.dateDiv}>{date}</div>
           <div className={styles.purposeDiv}>{purpose.title}</div>
@@ -70,11 +65,11 @@ const EventItem = (props) => {
             Delete
           </button>
         </div>
-        {/* {foundationsClicked && <div>{transactionsToDisplay}</div>} */}
+        {foundationsClicked && <TransactionsToDisplay transactions={transactions}/>}
       </Fragment>
     );
-  } 
-  
+  }
+
   // else {
   //   return ( <Fragment>
   //     <div className={styles.item} onClick={clickedForFoundations}>
@@ -91,7 +86,6 @@ const EventItem = (props) => {
   //     </div>
   //     {foundationsClicked && <div>{transactionsToDisplay}</div>}
   //   </Fragment>)
-  // }
-
+};
 
 export default EventItem;

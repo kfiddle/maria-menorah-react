@@ -10,15 +10,20 @@ const Layout = (props) => {
     setEntryFormRendered(true);
   };
 
+  
+
   const closeModalHandler = () => {
     setEntryFormRendered(false);
+   
   };
 
   return (
     <Fragment>
       <MainNavigation entryClicked={openModalHandler} />
       {entryFormRendered && <EntryForm closeModal={closeModalHandler} />};
-      <main className={classes.main}>{props.children}</main>
+      <main className={classes.main}>
+        {props.children}
+      </main>
     </Fragment>
   );
 };

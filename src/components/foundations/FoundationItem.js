@@ -2,15 +2,10 @@ import useMoney from "../../hooks/useMoney";
 import classes from "./FoundationItem.module.css";
 
 const FoundationItem = (props) => {
-  
-  const name = props.foundation[0];
-  const leftOverPennies = props.foundation[1];
-  const contributionInPennies = props.foundation[2];
-
+  const { name, leftOverPennies, contributionInPennies } = props.foundation;
 
   const money = useMoney(contributionInPennies);
   const leftover = useMoney(leftOverPennies);
-  
 
   return (
     <div className={classes.foundationItemDiv}>
@@ -19,7 +14,6 @@ const FoundationItem = (props) => {
       <div
         className={classes.moneyDiv}
       >{`${money.dollars}.${money.cents}`}</div>
-     
       
     </div>
   );
