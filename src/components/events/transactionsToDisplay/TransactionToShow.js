@@ -6,28 +6,27 @@ import useMoney from "../../../hooks/useMoney";
 
 const TransactionToShow = (props) => {
   const [foundationName, setFoundationName] = useState("");
-  const { totalPennies, foundation } = props.transaction;
+  const { id, totalPennies, foundation } = props.transaction;
 
   const cost = useMoney(totalPennies);
 
   useEffect(() => {
-    console.log(props.transaction);
+    console.log(id);
+    const getFoundationFromId = async () => {
+      fetch("http://localhost:8080/get-transaction-from-id", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(id),
+      })
+      .then((data) => data.json())
+      .then((answer) => console.log(answer))
+      // .then((finalAnswer) => setFoundationName(finalAnswer.name))
+      // .catch((error) => console.log(error));
+    };
 
-    // const getFoundationFromId = async () => {
-    //   fetch("http://localhost:8080/get-foundation-from-id", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(foundationId),
-    //   })
-    //     .then((data) => data.json())
-    //     // .then((answer) => console.log(answer))
-    //     .then((finalAnswer) => setFoundationName(finalAnswer.name))
-    //     .catch((error) => console.log(error));
-    // };
-
-    // getFoundationFromId();
+    getFoundationFromId();
   }, []);
 
   return (
