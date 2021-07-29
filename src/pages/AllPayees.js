@@ -1,7 +1,25 @@
-const AllPayees = props => {
+import { useState, useEffect } from "react";
 
+import PayeesList from "../components/payees/PayeesList";
 
-    return <div>Hello, I will have lots of payees</div>
+const AllPayees = () => {
+  const [payeesList, setPayeesList] = useState([]);
+
+  useEffect(() => {
+    const getListOfPayees = async () => {
+      let payeesFromBackend = await fetch(
+        // "https://bref-chaise-13325.herokuapp.com/get-foundations"
+        "http://localhost:8080/get-payees"
+      );
+    
+      let incomingPayeesList = await payeesFromBackend.json();
+      setPayeesList(incomingPayeesList);
+    };
+
+    getListOfPayees();
+  }, []);
+
+  return <PayeesList list={payeesList} />;
 
 };
 
