@@ -12,12 +12,24 @@ const PayeeItem = (props) => {
     ? classes.clickedItem
     : classes.payeeItemDiv;
 
+  const fetchEvents = async () => {
+    fetch("http://localhost:8080/get-events-from-payee", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(props.payee),
+    })
+      .then((response) => response.json())
+      .then((answer) => console.log(answer));
+  };
+
   const clickedPossible = () => {
     if (props.which === "possible") {
       setClicked((previous) => !previous);
       !clicked ? props.clicked(props.payee) : props.unclick(props.payee);
     } else {
-        console.log(props.payee)
+      fetchEvents();
     }
   };
 
