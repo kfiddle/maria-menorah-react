@@ -29,6 +29,7 @@ const EntryForm = (props) => {
 
   const [payeeDropdownClicked, setPayeeDropdownClicked] = useState(false);
   const [payeesList, setPayeesList] = useState([]);
+  const [clickedPayeeList, setClickedPayeeList] = useState([]);
 
   const [submitClicked, setSubmitClicked] = useState(false);
 
@@ -95,6 +96,8 @@ const EntryForm = (props) => {
       transactions: transactionList,
     };
 
+    console.log(clickedPayeeList);
+
     const postingFunction = setTimeout(() => {
       // fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
       fetch("http://localhost:8080/add-event", {
@@ -131,6 +134,19 @@ const EntryForm = (props) => {
     getPayees();
   };
 
+  const clickedPayee = (payee) => {
+    const tempPayeeList = clickedPayeeList;
+    tempPayeeList.push(payee);
+    setClickedPayeeList(tempPayeeList);
+  };
+
+  const unclickedPayee = (payee) => {
+    const tempPayeeList = clickedPayeeList.filter(
+      (pyee) => pyee.id !== payee.id
+    );
+    setClickedPayeeList(tempPayeeList);
+  };
+
   return (
     <div className={classes.outerContainer}>
       {ReactDOM.createPortal(
@@ -148,10 +164,19 @@ const EntryForm = (props) => {
               </div>
 
               <div className={classes.control}>
-                <div onClick={openPayeeDropdown} className={classes.payeesDiv}>
-                  <h3>Payees?</h3>
+                <div className={classes.payeesDiv}>
+                  <h3 onClick={openPayeeDropdown}>Payees?</h3>
 
-                  {payeeDropdownClicked && <div className={classes.payeeListDiv}><PayeesList list={payeesList} /></div> }
+                  {payeeDropdownClicked && (
+                    <div className={classes.payeeListDiv}>
+                      <PayeesList
+                        list={payeesList}
+                        clicked={clickedPayee}
+                        unclick={unclickedPayee}
+                        which={"possible"}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
 

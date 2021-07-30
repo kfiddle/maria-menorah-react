@@ -97,7 +97,7 @@
 
 .payeesDiv {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 100%;
   background: #99bdbd;
   border-radius: 5px;
@@ -107,6 +107,10 @@
   background: teal;
 }
 
+.payeesDiv h3 {
+  margin-left: 5rem;
+}
+
 .payeesDiv h3:hover {
   color: goldenrod;
 }
@@ -114,6 +118,9 @@
 .payeeListDiv {
   position: fixed;
   width: 60%;
+  margin-left: 20rem;
+  max-height: 20rem;
+  overflow: auto;
 }
 
 .moneyAndDate {
