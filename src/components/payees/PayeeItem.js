@@ -13,8 +13,12 @@ const PayeeItem = (props) => {
     : classes.payeeItemDiv;
 
   const clickedPossible = () => {
-    setClicked((previous) => !previous);
-    !clicked ? props.clicked(props.payee) : props.unclick(props.payee);
+    if (props.which === "possible") {
+      setClicked((previous) => !previous);
+      !clicked ? props.clicked(props.payee) : props.unclick(props.payee);
+    } else {
+        console.log(props.payee)
+    }
   };
 
   return (

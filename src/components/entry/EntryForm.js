@@ -94,6 +94,7 @@ const EntryForm = (props) => {
 
       purpose: enteredPurpose,
       transactions: transactionList,
+      payees: clickedPayeeList
     };
 
     console.log(clickedPayeeList);
