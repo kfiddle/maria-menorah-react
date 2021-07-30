@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 
-import useMoney from "../../hooks/useMoney";
+import useMoney from "../../../hooks/useMoney";
 
 import styles from "./PossibleFoundation.module.css";
 

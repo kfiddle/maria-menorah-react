@@ -3,8 +3,9 @@ import ReactDOM from "react-dom";
 
 import Card from "../UI/Card";
 import classes from "./EntryForm.module.css";
-import PossibleFoundationsList from "./PossibleFoundationsList";
+import PossibleFoundationsList from "./possibleFoundations/PossibleFoundationsList";
 import PurposesList from "./PurposesList";
+import PayeesList from "../payees/PayeesList";
 
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.closeModal} />;
@@ -26,13 +27,15 @@ const EntryForm = (props) => {
   const [enteredPurpose, setEnteredPurpose] = useState(null);
   const [purposeClicked, setPurposeClicked] = useState(false);
 
+  const [payeeDropdownClicked, setPayeeDropdownClicked] = useState(false);
+  const [payeesList, setPayeesList] = useState([]);
+
   const [submitClicked, setSubmitClicked] = useState(false);
 
   const [transactionList, setTransactionList] = useState([]);
 
   const titleRef = useRef();
   const dateRef = useRef();
-  const companyRef = useRef();
   const enteredDollars = useRef();
   const enteredCents = useRef();
 
@@ -113,6 +116,21 @@ const EntryForm = (props) => {
     }, 200);
   }
 
+  const getPayees = async () => {
+    let payeesFromBackend = await fetch(
+      // "https://bref-chaise-13325.herokuapp.com/get-foundations"
+      "http://localhost:8080/get-payees"
+    );
+
+    let incomingPayeesList = await payeesFromBackend.json();
+    setPayeesList(incomingPayeesList);
+  };
+
+  const openPayeeDropdown = () => {
+    setPayeeDropdownClicked((previous) => !previous);
+    getPayees();
+  };
+
   return (
     <div className={classes.outerContainer}>
       {ReactDOM.createPortal(
@@ -130,10 +148,11 @@ const EntryForm = (props) => {
               </div>
 
               <div className={classes.control}>
-                {/* <label htmlFor="payees">Payees</label>
-                <input type="text" ref={companyRef} /> */}
+                <div onClick={openPayeeDropdown} className={classes.payeesDiv}>
+                  <h3>Payees?</h3>
 
-                <div className={classes.payeesDiv}><h3>Payees?</h3></div>
+                  {payeeDropdownClicked && <div className={classes.payeeListDiv}><PayeesList list={payeesList} /></div> }
+                </div>
               </div>
 
               <div className={classes.moneyAndDate}>

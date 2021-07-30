@@ -111,6 +111,11 @@
   color: goldenrod;
 }
 
+.payeeListDiv {
+  position: fixed;
+  width: 60%;
+}
+
 .moneyAndDate {
   display: flex;
   justify-content: space-around;
