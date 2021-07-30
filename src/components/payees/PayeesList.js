@@ -1,13 +1,10 @@
-import { useEffect } from "react";
 
 import PayeeItem from "./PayeeItem";
 
 import styles from "./PayeesList.module.css";
 
 const PayeesList = (props) => {
-  useEffect(() => {
-    console.log(props.list);
-  }, []);
+ 
 
   const payeesToDisplay = props.list.map((payee) => (
     <PayeeItem payee={payee} key={payee.id} />

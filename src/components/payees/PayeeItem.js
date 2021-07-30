@@ -9,14 +9,10 @@ const PayeeItem = (props) => {
   //   const money = useMoney(contributionInPennies);
   //   const leftover = useMoney(leftOverPennies);
 
-  useEffect(() => {
-    console.log(props.payee);
-  }, []);
-
   return (
     <div className={classes.payeeItemDiv}>
-      <div className={classes.nameDiv}>{firstName}</div>
-      <div className={classes.leftOverDiv}>{lastName}</div>
+      <div className={classes.nameDiv}>{`${firstName} ${lastName}`}</div>
+      <div className={classes.leftOverDiv}>nothing yet</div>
       {/* <div
         className={classes.moneyDiv}
       >{`${money.dollars}.${money.cents}`}</div> */}

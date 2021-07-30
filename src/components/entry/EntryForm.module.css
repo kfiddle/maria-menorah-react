@@ -17,7 +17,7 @@
   position: fixed;
   top: 10vh;
   left: 5%;
-  width: 60%;
+  width: 75%;
   background-color: white;
   padding: 1rem;
   border-radius: 14px;
@@ -95,6 +95,28 @@
   margin: 1rem auto;
 }
 
+.payeesDiv {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: #99bdbd;
+  border-radius: 5px;
+}
+
+.payeesDiv:hover {
+  background: teal;
+}
+
+.payeesDiv h3:hover {
+  color: goldenrod;
+}
+
+.moneyAndDate {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
 .moneyDiv {
   display: flex;
 }
@@ -112,7 +134,7 @@
 }
 
 #dateInput {
-  width: 30%;
+  width: 40%;
   margin: 1rem 0 1rem 5rem;
 }
 

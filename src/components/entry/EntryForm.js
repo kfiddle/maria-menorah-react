@@ -54,8 +54,7 @@ const EntryForm = (props) => {
     setEnteredPurpose(purpose);
 
     // fetch("https://bref-chaise-13325.herokuapp.com/get-matching-foundations", {
-      fetch("http://localhost:8080/get-matching-foundations", {
-      
+    fetch("http://localhost:8080/get-matching-foundations", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -95,7 +94,7 @@ const EntryForm = (props) => {
 
     const postingFunction = setTimeout(() => {
       // fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
-        fetch("http://localhost:8080/add-event", {
+      fetch("http://localhost:8080/add-event", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -112,7 +111,6 @@ const EntryForm = (props) => {
         }
       });
     }, 200);
-
   }
 
   return (
@@ -132,22 +130,28 @@ const EntryForm = (props) => {
               </div>
 
               <div className={classes.control}>
-                <label htmlFor="company">Company</label>
-                <input type="text" ref={companyRef} />
-              </div>
-              <div className={`${classes.control} ${classes.moneyDiv}`}>
-                <label htmlFor="text">Dollars</label>
-                <input
-                  type="number"
-                  id={classes.dollars}
-                  ref={enteredDollars}
-                />
-                <label htmlFor="text">Cents</label>
-                <input type="number" ref={enteredCents} />
+                {/* <label htmlFor="payees">Payees</label>
+                <input type="text" ref={companyRef} /> */}
+
+                <div className={classes.payeesDiv}><h3>Payees?</h3></div>
               </div>
 
-              <div className={classes.control}>
-                <input type="date" id={classes.dateInput} ref={dateRef} />
+              <div className={classes.moneyAndDate}>
+                <div className={`${classes.control} ${classes.moneyDiv}`}>
+                  <label htmlFor="text">Dollars</label>
+                  <input
+                    type="number"
+                    id={classes.dollars}
+                    ref={enteredDollars}
+                  />
+                  <label htmlFor="text">Cents</label>
+                  <input type="number" ref={enteredCents} />
+                </div>
+
+                <div className={`${classes.control} ${classes.moneyDiv}`}>
+                  <label htmlFor="date">Date</label>
+                  <input type="date" id={classes.dateInput} ref={dateRef} />
+                </div>
               </div>
 
               <div className={classes.purposesAndFoundationsDiv}>
@@ -159,11 +163,13 @@ const EntryForm = (props) => {
                 </div>
 
                 <div>
-                  {purposeClicked && <PossibleFoundationsList
-                    list={possibleFoundationsList}
-                    submitClicked={submitClicked}
-                    acceptTransaction={acceptTransaction}
-                  />}
+                  {purposeClicked && (
+                    <PossibleFoundationsList
+                      list={possibleFoundationsList}
+                      submitClicked={submitClicked}
+                      acceptTransaction={acceptTransaction}
+                    />
+                  )}
                 </div>
               </div>
 
