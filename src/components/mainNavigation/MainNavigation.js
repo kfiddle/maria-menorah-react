@@ -8,10 +8,10 @@ const MainNavigation = (props) => {
       <div className={classes.logo}>Maria's Database</div>
       <nav className={classes.nav}>
         <ul>
-          <li className={classes.navItem} onClick={props.entryClicked}>
+          <li className={classes.navItem} onClick={props.entryClicked()}>
             Event Entry
           </li>
-          <li className={classes.navItem} onClick={props.entryClicked}>
+          <li className={classes.navItem} onClick={props.payeeEntryClicked()}>
             Payee Entry
           </li>
 
