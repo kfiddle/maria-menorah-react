@@ -9,7 +9,10 @@ const MainNavigation = (props) => {
       <nav className={classes.nav}>
         <ul>
           <li className={classes.navItem} onClick={props.entryClicked}>
-            Entry
+            Event Entry
+          </li>
+          <li className={classes.navItem} onClick={props.entryClicked}>
+            Payee Entry
           </li>
 
           <li className={classes.navItem}><NavLink to={'/events'}>Events</NavLink></li>

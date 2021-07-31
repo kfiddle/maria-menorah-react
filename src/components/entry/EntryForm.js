@@ -109,12 +109,12 @@ const EntryForm = (props) => {
         body: JSON.stringify(dataToSubmit),
       }).then((response) => {
         if (response.ok) {
-          console.log("got it!");
           titleRef.current.value = "";
           enteredDollars.current.value = "";
           enteredCents.current.value = "";
           dateRef.current.value = "";
           setPurposeClicked(false);
+          props.closeModal();
         }
       });
     }, 200);
