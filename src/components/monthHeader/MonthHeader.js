@@ -1,108 +1,34 @@
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
+// import SubHeaderMonth from './SubHeaderMonth';
 import classes from "./MonthHeader.module.css";
 
+const months = [
+  { name: "January", clicked: false },
+  { name: "February", clicked: false },
+  { name: "March", clicked: false },
+  { name: "April", clicked: false },
+  { name: "May", clicked: false },
+  { name: "June", clicked: false },
+  { name: "July", clicked: false },
+  { name: "August", clicked: false },
+  { name: "September", clicked: false },
+  { name: "October", clicked: false },
+  { name: "November", clicked: false },
+  { name: "December", clicked: false },
+];
+
 const MonthHeader = (props) => {
+  const [clickedList, setClickedList] = useState(months);
+
+  // const displayableList = months.map(month => (
+  //   <SubHeaderMonth />
+  // ))
+
   return (
     <header className={classes.header}>
       <nav className={classes.nav}>
-        <ul>
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/january"} activeClassName={classes.active}>
-                January
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/february"} activeClassName={classes.active}>
-                February
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/march"} activeClassName={classes.active}>
-                March
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/april"} activeClassName={classes.active}>
-                April
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/may"} activeClassName={classes.active}>
-                May
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/june"} activeClassName={classes.active}>
-                June
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/july"} activeClassName={classes.active}>
-                July
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/august"} activeClassName={classes.active}>
-                August
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/september"} activeClassName={classes.active}>
-                September
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/october"} activeClassName={classes.active}>
-                October
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/november"} activeClassName={classes.active}>
-                November
-              </NavLink>
-            </li>
-          </div>
-
-          <div className={classes.monthDiv}>
-            <li>
-              <NavLink to={"/december"} activeClassName={classes.active}>
-                December
-              </NavLink>
-            </li>
-          </div>
-        </ul>
+        <ul></ul>
       </nav>
     </header>
   );

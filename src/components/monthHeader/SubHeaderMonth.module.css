@@ -1,0 +1,35 @@
+div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.2rem;
+  padding: 0 1rem;
+}
+
+.clickedDiv {
+    background: white;
+}
+
+/* .unClickedli {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+} */
+
+/* .monthDiv:hover {
+  background: white;
+}
+
+.monthDiv:hover li {
+  color: rgb(167, 124, 16);
+} */
+
+/* .activeDiv {
+    background: white;
+}
+
+.activeLi{
+  color: rgb(167, 124, 16);
+} */
+
+
