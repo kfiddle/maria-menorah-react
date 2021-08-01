@@ -1,0 +1,8 @@
+.headingsDiv {
+  display: flex;
+  margin-left: 40%;
+}
+
+.leftOverHeader {
+    width: 25%;
+}
