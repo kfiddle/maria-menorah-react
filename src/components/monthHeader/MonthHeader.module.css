@@ -1,0 +1,55 @@
+.header {
+  width: 100%;
+  height: 3rem;
+  margin-top: 7rem;
+  display: flex;
+  justify-content: center;
+  background: rgb(167, 124, 16);
+  animation: slide-down 300ms ease-out forwards;
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.nav a {
+  text-decoration: none;
+  color: white;
+}
+
+.monthDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  padding: 0 1rem;
+}
+
+.monthDiv:active,
+.monthDiv:hover {
+  background: white;
+}
+
+.monthDiv:active a,
+.monthDiv:hover a {
+  color: rgb(167, 124, 16);
+}

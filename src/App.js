@@ -8,6 +8,8 @@ import AllFoundations from "./pages/AllFoundations";
 import AllPurposes from "./pages/AllPurposes";
 import AllPayees from "./pages/AllPayees";
 
+import StoneGardenMaster from "./pages/StoneGardenMaster";
+
 function App() {
 
 
@@ -30,6 +32,11 @@ function App() {
         <Route path={"/payees"}>
           <AllPayees />
         </Route>
+        <Route path={"/stone-garden-master"}>
+          <StoneGardenMaster />
+        </Route>
+
+
       </Switch>
     </Layout>
   );

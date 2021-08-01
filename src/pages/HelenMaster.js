@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 import MasterBudget from "../components/masterBudget/MasterBudget";
 
-const AllFoundations = () => {
-  const [foundationsList, setFoundationsList] = useState([]);
+const HelenMaster = () => {
+  const [budget, setFoundationsList] = useState([]);
 
   useEffect(() => {
     const getListOfFoundations = async () => {
@@ -23,4 +23,4 @@ const AllFoundations = () => {
 
 };
 
-export default AllFoundations;
+export default HelenMaster;
