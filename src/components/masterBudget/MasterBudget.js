@@ -1,21 +1,29 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import MonthHeader from "../monthHeader/MonthHeader";
+import BudgetItem from "./BudgetItem";
 
 const MasterBudget = (props) => {
+  const [budgetItemsList, setBudgetItemsList] = useState([]);
+
   let community = props.community;
 
   const chosenMonth = async (monthInt) => {
     let itemsFromBackend = await fetch(
-      "http://localhost:8080/" + props.community + "/" + monthInt
+      "http://localhost:8080/" + community + "/" + monthInt
     );
     let incomingItemsList = await itemsFromBackend.json();
-    console.log(incomingItemsList);
+    setBudgetItemsList(incomingItemsList);
+    console.log(budgetItemsList);
   };
+
+  const displayableItems = budgetItemsList.map(item => (
+      <BudgetItem budgetItem={item} key={item.id}/>
+  ))
 
   return (
     <Fragment>
       <MonthHeader whichMonth={chosenMonth} />
-      <div></div>
+      <div>{displayableItems}</div>
     </Fragment>
   );
 };

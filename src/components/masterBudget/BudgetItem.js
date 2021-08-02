@@ -1,11 +1,22 @@
+import useMoney from "../../hooks/useMoney";
+import classes from "./BudgetItem.module.css";
 
+const BudgetItem = (props) => {
+  const { item, dateOfPurchase, costInPennies } = props.budgetItem;
 
-import styles from './BudgetItem.module.css';
+  const amount = useMoney(costInPennies);
 
-const BudgetItem = props => {
-    
-
-
+  return (
+    <div className={classes.budgetItemDiv}>
+      <div className={classes.itemNameDiv}>{item}</div>
+      <div
+        className={classes.dateDiv}
+      >{dateOfPurchase}</div>
+      <div
+        className={classes.moneyDiv}
+      >{`${amount.dollars}.${amount.cents}`}</div>
+    </div>
+  );
 };
 
 export default BudgetItem;
