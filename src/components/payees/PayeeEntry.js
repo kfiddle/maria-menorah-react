@@ -1,11 +1,9 @@
-
 import { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import Card from "../UI/Card";
 
-import classes from './PayeeEntry.module.css';
-
+import classes from "./PayeeEntry.module.css";
 
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.closeModal} />;
@@ -22,24 +20,37 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const PayeeEntry = (props) => {
-  
+  const firstNameRef = useRef();
+  const lastNameRef = useRef();
+  const phoneNumberRef = useRef();
+  const emailRef = useRef();
 
-//   const sendDeleteRequest = async () => {
-//     // fetch("https://bref-chaise-13325.herokuapp.com/delete-event", {
-//     fetch("http://localhost:8080/delete-event", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(props.eventToDelete),
-//     })
-//       .then((response) => {
-//         if (response.ok) {
-//           props.closeModal();
-//         }
-//       })
-//       .catch((error) => console.log(error));
-//   };
+  const submitEvent = (event) => {
+    event.preventDefault();
+
+    const payeeToSubmit = {
+      firstName: firstNameRef.current.value,
+      lastName: lastNameRef.current.value,
+      phoneNumber: phoneNumberRef.current.value,
+      email: emailRef.current.value,
+    };
+
+    const sendToBackend = async () => {
+      fetch("http://localhost:8080/add-payee", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payeeToSubmit),
+      }).then((response) => {
+        if (response.ok) {
+          console.log("got it!");
+        }
+      });
+    };
+
+    sendToBackend();
+  };
 
   return (
     <div className={classes.outerContainer}>
@@ -51,17 +62,33 @@ const PayeeEntry = (props) => {
       {ReactDOM.createPortal(
         <ModalOverlay>
           <Card>
-            <div className={classes.innerContainer}>
-              <div
-                className={classes.question}
-              >Why will a div not appear here- It should be magic.</div>
-              <button
-                className={classes.confirmButton}
-                // onClick={sendDeleteRequest}
-              >
-                Confirm
-              </button>
-            </div>
+            <form className={classes.innerContainer}>
+              <div className={classes.control}>
+                <label>First Name</label>
+                <input type="text" id="firstName" ref={firstNameRef} />
+              </div>
+
+              <div className={classes.control}>
+                <label>Last Name</label>
+                <input type="text" id="lastName" ref={lastNameRef} />
+              </div>
+
+              <div className={classes.control}>
+                <label>Phone Number</label>
+                <input type="text" id="phoneNumber" ref={phoneNumberRef} />
+              </div>
+
+              <div className={classes.control}>
+                <label>Email</label>
+                <input type="text" id="email" ref={emailRef} />
+              </div>
+
+              <div className={classes.buttonDiv}>
+                <button className={classes.button} onClick={submitEvent}>
+                  Submit Payee
+                </button>
+              </div>
+            </form>
           </Card>
         </ModalOverlay>,
         portalElement
@@ -71,4 +98,3 @@ const PayeeEntry = (props) => {
 };
 
 export default PayeeEntry;
-
