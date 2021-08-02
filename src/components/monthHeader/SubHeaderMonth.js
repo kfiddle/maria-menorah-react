@@ -15,7 +15,7 @@ const SubHeaderMonth = (props) => {
       className={!active ? classes.monthDiv : classes.highlightedDiv}
       onClick={clickHandler}
     >
-      <li className={!active? classes.monthLi : classes.highlightedLi}>{month}</li>
+      <li className={!active? classes.monthLi : classes.highlightedLi}>{month.name}</li>
     </div>
   );
 };

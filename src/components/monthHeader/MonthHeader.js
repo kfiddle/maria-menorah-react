@@ -4,34 +4,36 @@ import SubHeaderMonth from "./SubHeaderMonth";
 import classes from "./MonthHeader.module.css";
 
 const months = [
-  { name: "January", clicked: false },
-  { name: "February", clicked: false },
-  { name: "March", clicked: false },
-  { name: "April", clicked: false },
-  { name: "May", clicked: false },
-  { name: "June", clicked: false },
-  { name: "July", clicked: false },
-  { name: "August", clicked: false },
-  { name: "September", clicked: false },
-  { name: "October", clicked: false },
-  { name: "November", clicked: false },
-  { name: "December", clicked: false },
+  { id: 1, name: "January", clicked: false },
+  { id: 2, name: "February", clicked: false },
+  { id: 3, name: "March", clicked: false },
+  { id: 4, name: "April", clicked: false },
+  { id: 5, name: "May", clicked: false },
+  { id: 6, name: "June", clicked: false },
+  { id: 7, name: "July", clicked: false },
+  { id: 8, name: "August", clicked: false },
+  { id: 9, name: "September", clicked: false },
+  { id: 10, name: "October", clicked: false },
+  { id: 11, name: "November", clicked: false },
+  { id: 12, name: "December", clicked: false },
 ];
 
 const MonthHeader = (props) => {
   const [clickedList, setClickedList] = useState(months);
   const [currentChoice, setCurrentChoice] = useState("");
 
-  const clicked = (monthName) => {
-    setCurrentChoice(monthName);
+  const clicked = (month) => {
+    setCurrentChoice(month.name);
+    props.whichMonth(month.id);
   };
 
   const displayableMonths = clickedList.map((month) => (
     <SubHeaderMonth
-      month={month.name}
+      month={month}
       testClicked={month.clicked}
       clicked={clicked}
       active={currentChoice === month.name}
+      key={month.id}
     />
   ));
 
