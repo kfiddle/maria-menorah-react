@@ -1,26 +1,10 @@
-import { useState, useEffect } from "react";
+
 
 import MasterBudget from "../components/masterBudget/MasterBudget";
+import styles from "./StoneGardenMaster.module.css";
 
-const HelenMaster = () => {
-  const [budget, setFoundationsList] = useState([]);
-
-  useEffect(() => {
-    const getListOfFoundations = async () => {
-      let foundationsFromBackend = await fetch(
-        // "https://bref-chaise-13325.herokuapp.com/get-foundations"
-        "http://localhost:8080/get-foundations"
-      );
-    
-      let incomingFoundationsList = await foundationsFromBackend.json();
-      setFoundationsList(incomingFoundationsList);
-    };
-
-    getListOfFoundations();
-  }, []);
-
-  return <FoundationsList list={foundationsList} />;
-
+const HelenMaster = (props) => {
+  return <MasterBudget community={'Helen'}/>;
 };
 
 export default HelenMaster;

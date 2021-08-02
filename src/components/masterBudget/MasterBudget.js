@@ -6,7 +6,7 @@ const MasterBudget = (props) => {
 
   const chosenMonth = async (monthInt) => {
     let itemsFromBackend = await fetch(
-      "http://localhost:8080/Stone Gardens/" + monthInt
+      "http://localhost:8080/" + props.community + "/" + monthInt
     );
     let incomingItemsList = await itemsFromBackend.json();
     console.log(incomingItemsList);

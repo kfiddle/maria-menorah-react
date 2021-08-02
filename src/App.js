@@ -9,12 +9,11 @@ import AllPurposes from "./pages/AllPurposes";
 import AllPayees from "./pages/AllPayees";
 
 import StoneGardenMaster from "./pages/StoneGardenMaster";
+import HelenMaster from "./pages/HelenMaster";
 
 function App() {
-
-
   return (
-    <Layout >
+    <Layout>
       <Switch>
         <Route path={"/"} exact>
           <Redirect to={"/events"} />
@@ -35,8 +34,9 @@ function App() {
         <Route path={"/stone-garden-master"}>
           <StoneGardenMaster />
         </Route>
-
-
+        <Route path={"/helen-master"}>
+          <HelenMaster />
+        </Route>
       </Switch>
     </Layout>
   );
