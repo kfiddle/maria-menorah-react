@@ -6,6 +6,7 @@ const MasterBudget = (props) => {
   const [budgetItemsList, setBudgetItemsList] = useState([]);
 
   let community = props.community;
+  let startingAmount = 250000;
 
   const chosenMonth = async (monthInt) => {
     let itemsFromBackend = await fetch(
@@ -16,7 +17,13 @@ const MasterBudget = (props) => {
     console.log(budgetItemsList);
   };
 
-  const displayableItems = budgetItemsList.map(item => (
+  const listAddingInRemaining = budgetItemsList.map(item => {
+      startingAmount -= item.costInPennies;
+    return {...item, remainingAmount: startingAmount}
+
+  })
+
+  const displayableItems = listAddingInRemaining.map(item => (
       <BudgetItem budgetItem={item} key={item.id}/>
   ))
 
