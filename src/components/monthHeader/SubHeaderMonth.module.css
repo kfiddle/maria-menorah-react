@@ -1,4 +1,4 @@
-div {
+.monthDiv {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,30 +6,25 @@ div {
   padding: 0 1rem;
 }
 
-.clickedDiv {
-    background: white;
-}
-
-/* .unClickedli {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: white;
-} */
-
-/* .monthDiv:hover {
+.activeDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.2rem;
+  padding: 0 1rem;
   background: white;
 }
 
-.monthDiv:hover li {
-  color: rgb(167, 124, 16);
-} */
-
-/* .activeDiv {
-    background: white;
+.monthLi {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
 }
 
-.activeLi{
+.monthDiv:hover {
+  background: white;
+}
+
+.monthLi:hover {
   color: rgb(167, 124, 16);
-} */
-
-
+}

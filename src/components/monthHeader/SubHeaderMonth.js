@@ -3,21 +3,19 @@ import { useState } from "react";
 import classes from "./SubHeaderMonth.module.css";
 
 const SubHeaderMonth = (props) => {
-  const { name, clicked } = props.month;
+  const month = props.month;
 
   const clickHandler = () => {
-    props.clicked(props.month);
+    props.clicked(month);
   };
 
   return (
-    <div onClick={clickHandler}>
-      <li>{name}</li>
+    <div className={classes.monthDiv} onClick={clickHandler}>
+      <li className={`${classes.monthLi}`}>{`${month}  ${props.active}`}</li>
     </div>
   );
 };
 
 // className={`${styles.navBarItem} ${highlighted && chosenOne && styles.hoveredText} `}
 
-
 export default SubHeaderMonth;
-

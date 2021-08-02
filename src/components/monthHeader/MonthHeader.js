@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// import SubHeaderMonth from './SubHeaderMonth';
+import SubHeaderMonth from "./SubHeaderMonth";
 import classes from "./MonthHeader.module.css";
 
 const months = [
@@ -20,15 +20,26 @@ const months = [
 
 const MonthHeader = (props) => {
   const [clickedList, setClickedList] = useState(months);
+  const [currentChoice, setCurrentChoice] = useState("");
 
-  // const displayableList = months.map(month => (
-  //   <SubHeaderMonth />
-  // ))
+  const clicked = (monthName) => {
+    setCurrentChoice(monthName);
+  };
+
+  const displayableMonths = clickedList.map((month) => (
+    <SubHeaderMonth
+      month={month.name}
+      testClicked={month.clicked}
+      clicked={clicked}
+      active={currentChoice === month.name}
+    />
+  ));
 
   return (
     <header className={classes.header}>
       <nav className={classes.nav}>
-        <ul></ul>
+        <ul>{displayableMonths}</ul>
+        {/* <ul>{clickedList}</ul> */}
       </nav>
     </header>
   );
