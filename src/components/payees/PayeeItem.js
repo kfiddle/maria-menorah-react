@@ -13,6 +13,8 @@ const PayeeItem = (props) => {
     : classes.payeeItemDiv;
 
   const fetchEvents = async () => {
+    // fetch("https://bref-chaise-13325.herokuapp.com/get-events-from-payee", {
+
     fetch("http://localhost:8080/get-events-from-payee", {
       method: "POST",
       headers: {

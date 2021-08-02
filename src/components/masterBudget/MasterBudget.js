@@ -10,6 +10,8 @@ const MasterBudget = (props) => {
 
   const chosenMonth = async (monthInt) => {
     let itemsFromBackend = await fetch(
+      //   "https://bref-chaise-13325.herokuapp.com/" + community + "/" + monthInt
+
       "http://localhost:8080/" + community + "/" + monthInt
     );
     let incomingItemsList = await itemsFromBackend.json();
@@ -17,15 +19,14 @@ const MasterBudget = (props) => {
     console.log(budgetItemsList);
   };
 
-  const listAddingInRemaining = budgetItemsList.map(item => {
-      startingAmount -= item.costInPennies;
-    return {...item, remainingAmount: startingAmount}
+  const listAddingInRemaining = budgetItemsList.map((item) => {
+    startingAmount -= item.costInPennies;
+    return { ...item, remainingAmount: startingAmount };
+  });
 
-  })
-
-  const displayableItems = listAddingInRemaining.map(item => (
-      <BudgetItem budgetItem={item} key={item.id}/>
-  ))
+  const displayableItems = listAddingInRemaining.map((item) => (
+    <BudgetItem budgetItem={item} key={item.id} />
+  ));
 
   return (
     <Fragment>
