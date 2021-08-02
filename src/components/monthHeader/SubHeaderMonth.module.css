@@ -6,7 +6,7 @@
   padding: 0 1rem;
 }
 
-.activeDiv {
+.highlightedDiv {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,10 +21,14 @@
   color: white;
 }
 
+.highlightedLi {
+  color: rgb(167, 124, 16);
+}
+
 .monthDiv:hover {
   background: white;
 }
 
-.monthLi:hover {
+.monthDiv:hover li {
   color: rgb(167, 124, 16);
 }

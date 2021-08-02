@@ -4,14 +4,18 @@ import classes from "./SubHeaderMonth.module.css";
 
 const SubHeaderMonth = (props) => {
   const month = props.month;
+  const active = props.active;
 
   const clickHandler = () => {
     props.clicked(month);
   };
 
   return (
-    <div className={classes.monthDiv} onClick={clickHandler}>
-      <li className={`${classes.monthLi}`}>{`${month}  ${props.active}`}</li>
+    <div
+      className={!active ? classes.monthDiv : classes.highlightedDiv}
+      onClick={clickHandler}
+    >
+      <li className={!active? classes.monthLi : classes.highlightedLi}>{month}</li>
     </div>
   );
 };
