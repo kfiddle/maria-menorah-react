@@ -1,41 +1,60 @@
 .payeeItemDiv {
-    margin: 0.5rem 3rem;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    background-color: #c2e7f0;
-    font-weight: 900;
-  }
+  position: relative;
+  margin: 0.5rem 2rem;
+  padding: 1rem;
+  display: flex;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background-color: #c2e7f0;
+  font-weight: 900;
+}
 
-  .payeeItemDiv:hover {
-    background: rgb(44, 120, 182);
-  }
+.payeeItemDiv:hover {
+  background: rgb(44, 120, 182);
+}
 
-  .clickedItem {
-    margin: 0.5rem 3rem;
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    border-radius: 6px;
-    background-color: #c7bf4d;
-    font-weight: 900;
-  }
-  
-  .nameDiv {
-    width: 40%;
-  }
-  
-  .leftOverDiv {
-    width: 20%;
-    color: rgb(50, 167, 50);
-  }
-  
-  .moneyDiv {
-    text-align: left;
-  }
-  
+.clickedItem {
+  margin: 0.5rem 3rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  background-color: #c7bf4d;
+  font-weight: 900;
+}
+
+.nameDiv {
+  display: flex;
+  justify-content: flex-start;
+  width: 25%;
+}
+
+.emailDiv {
+  width: 15%;
+}
+
+.phoneDiv {
+  width: 15%;
+}
+
+.moneyDiv {
+  text-align: left;
+}
+
+.checkMarkDiv {
+  display: flex;
+  width: 10%;
+  justify-content: flex-end;
+}
+
+.editButtonDiv {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  right: 5%;
+ 
+}
