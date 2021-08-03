@@ -14,6 +14,7 @@ const PayeesList = (props) => {
     props.unclick(payee);
   };
 
+
   const payeesToDisplay = !possible
     ? props.list.map((payee) => (
         <PayeeItem
@@ -22,6 +23,7 @@ const PayeesList = (props) => {
           key={payee.id}
           clicked={clicked}
           unclick={unclicked}
+        
         />
       ))
     : props.list.map((payee) => (

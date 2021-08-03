@@ -20,6 +20,20 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const PayeeEntry = (props) => {
+  let id = '';
+  let firstName = "";
+  let lastName = "";
+  let email = "";
+  let phoneNumber = "";
+
+  if (props.payee) {
+    id = props.payee.id;
+    firstName = props.payee.firstName;
+    lastName = props.payee.lastName;
+    email = props.payee.email;
+    phoneNumber = props.payee.phoneNumber;
+  }
+
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const phoneNumberRef = useRef();
@@ -29,6 +43,7 @@ const PayeeEntry = (props) => {
     event.preventDefault();
 
     const payeeToSubmit = {
+      id,
       firstName: firstNameRef.current.value,
       lastName: lastNameRef.current.value,
       phoneNumber: phoneNumberRef.current.value,
@@ -66,22 +81,42 @@ const PayeeEntry = (props) => {
             <form className={classes.innerContainer}>
               <div className={classes.control}>
                 <label>First Name</label>
-                <input type="text" id="firstName" ref={firstNameRef} />
+                <input
+                  type="text"
+                  id="firstName"
+                  ref={firstNameRef}
+                  placeholder={firstName}
+                />
               </div>
 
               <div className={classes.control}>
                 <label>Last Name</label>
-                <input type="text" id="lastName" ref={lastNameRef} />
+                <input
+                  type="text"
+                  id="lastName"
+                  ref={lastNameRef}
+                  placeholder={lastName}
+                />
               </div>
 
               <div className={classes.control}>
                 <label>Phone Number</label>
-                <input type="text" id="phoneNumber" ref={phoneNumberRef} />
+                <input
+                  type="text"
+                  id="phoneNumber"
+                  ref={phoneNumberRef}
+                  placeholder={phoneNumber}
+                />
               </div>
 
               <div className={classes.control}>
                 <label>Email</label>
-                <input type="text" id="email" ref={emailRef} />
+                <input
+                  type="text"
+                  id="email"
+                  ref={emailRef}
+                  placeholder={email}
+                />
               </div>
 
               <div className={classes.buttonDiv}>

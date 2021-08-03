@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import PayeesList from "../components/payees/PayeesList";
 
-const AllPayees = () => {
+const AllPayees = (props) => {
   const [payeesList, setPayeesList] = useState([]);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const AllPayees = () => {
         // "https://bref-chaise-13325.herokuapp.com/get-foundations"
         "http://localhost:8080/get-payees"
       );
-    
+
       let incomingPayeesList = await payeesFromBackend.json();
       setPayeesList(incomingPayeesList);
     };
@@ -19,8 +19,9 @@ const AllPayees = () => {
     getListOfPayees();
   }, []);
 
-  return <PayeesList list={payeesList} />;
 
+
+  return <PayeesList list={payeesList}/>;
 };
 
 export default AllPayees;

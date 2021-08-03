@@ -7,6 +7,7 @@ import PayeeEntry from "../payees/PayeeEntry";
 const Layout = (props) => {
   const [entryFormRendered, setEntryFormRendered] = useState(false);
   const [payeeEntryFormRendered, setPayeeEntryFormRendered] = useState(false);
+  const [payeeEditFormRendered, setPayeeEditFormRendered] = useState(props.editPayeeClicked);
 
   const openEventModalHandler = () => {
     setEntryFormRendered(true);
@@ -21,6 +22,11 @@ const Layout = (props) => {
     setPayeeEntryFormRendered(false);
   };
 
+  const editPayeeClicked = () => {
+    console.log('hytt')
+    setPayeeEditFormRendered(true);
+  };
+
   return (
     <Fragment>
       <MainNavigation
@@ -29,7 +35,10 @@ const Layout = (props) => {
       />
       {entryFormRendered && <EntryForm closeModal={closeModalHandler} />};
       {payeeEntryFormRendered && <PayeeEntry closeModal={closeModalHandler} />}
-      <main className={classes.main}>{props.children}</main>
+      {payeeEditFormRendered && <PayeeEntry closeModal={closeModalHandler} />}
+      <main className={classes.main} >
+        {props.children}
+      </main>
     </Fragment>
   );
 };

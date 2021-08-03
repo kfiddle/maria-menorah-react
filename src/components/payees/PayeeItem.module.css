@@ -50,11 +50,16 @@
   justify-content: flex-end;
 }
 
+.redEx {
+  color: rgb(114, 22, 22);
+  margin: 0;
+}
+
 .editButtonDiv {
   position: absolute;
   display: flex;
   justify-content: center;
   align-items:center;
   right: 5%;
- 
+  bottom: 10%;
 }
