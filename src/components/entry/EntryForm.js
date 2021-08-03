@@ -122,7 +122,7 @@ const EntryForm = (props) => {
 
   const getPayees = async () => {
     let payeesFromBackend = await fetch(
-      // "https://bref-chaise-13325.herokuapp.com/get-foundations"
+      // "https://bref-chaise-13325.herokuapp.com/get-payees"
       "http://localhost:8080/get-payees"
     );
 
@@ -170,12 +170,17 @@ const EntryForm = (props) => {
 
                   {payeeDropdownClicked && (
                     <div className={classes.payeeListDiv}>
+
                       <PayeesList
                         list={payeesList}
                         clicked={clickedPayee}
                         unclick={unclickedPayee}
                         which={"possible"}
                       />
+
+                
+
+
                     </div>
                   )}
                 </div>

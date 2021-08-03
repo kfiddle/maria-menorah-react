@@ -6,12 +6,6 @@ const PayeeItem = (props) => {
   const [clicked, setClicked] = useState(false);
   const { firstName, lastName } = props.payee;
 
-  const possible = props.which === "possible";
-
-  const outerContainerClass = clicked
-    ? classes.clickedItem
-    : classes.payeeItemDiv;
-
   const fetchEvents = async () => {
     // fetch("https://bref-chaise-13325.herokuapp.com/get-events-from-payee", {
 
@@ -27,18 +21,13 @@ const PayeeItem = (props) => {
   };
 
   const clickedPossible = () => {
-    if (props.which === "possible") {
-      setClicked((previous) => !previous);
-      !clicked ? props.clicked(props.payee) : props.unclick(props.payee);
-    } else {
-      fetchEvents();
-    }
+    fetchEvents();
   };
 
   return (
-    <div onClick={clickedPossible} className={outerContainerClass}>
+    <div onClick={clickedPossible} className={classes.payeeItemDiv}>
       <div className={classes.nameDiv}>{`${firstName} ${lastName}`}</div>
-      {!possible && <div className={classes.leftOverDiv}>nothing yet</div>}
+      <div className={classes.leftOverDiv}>nothing yet</div>
     </div>
   );
 };
