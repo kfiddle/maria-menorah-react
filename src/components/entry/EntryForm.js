@@ -177,10 +177,6 @@ const EntryForm = (props) => {
                         unclick={unclickedPayee}
                         which={"possible"}
                       />
-
-                
-
-
                     </div>
                   )}
                 </div>

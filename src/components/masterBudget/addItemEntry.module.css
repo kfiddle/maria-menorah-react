@@ -27,5 +27,18 @@ input {
 }
 
 .submitButtonDiv {
-    margin: 3rem  0 0 30%;
+  margin: 3rem 0 0 30%;
+}
+
+.payeesDiv {
+    color: midnightblue;
+    font-weight: 900;
+}
+
+.payeeListDiv {
+  position: fixed;
+  width: 100%;
+  margin-left: 0;
+  max-height: 25rem;
+  overflow: auto;
 }
