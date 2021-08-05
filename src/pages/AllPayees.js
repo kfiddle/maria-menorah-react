@@ -8,7 +8,7 @@ const AllPayees = (props) => {
   useEffect(() => {
     const getListOfPayees = async () => {
       let payeesFromBackend = await fetch(
-        "https://bref-chaise-13325.herokuapp.com/get-foundations"
+        "https://bref-chaise-13325.herokuapp.com/get-payees"
         // "http://localhost:8080/get-payees"
       );
 
