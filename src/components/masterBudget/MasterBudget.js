@@ -49,7 +49,7 @@ const MasterBudget = (props) => {
       <div className={styles.addItemButtonDiv}>
         <button onClick={openAddItemModal}>Add Item</button>
       </div>
-      {addItemClicked && <Modal closeModal={closeModal}><AddItemEntry /></Modal>}
+      {addItemClicked && <Modal closeModal={closeModal}><AddItemEntry community={community} closeModal={closeModal} /></Modal>}
     </Fragment>
   );
 };
