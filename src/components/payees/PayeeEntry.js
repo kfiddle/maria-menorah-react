@@ -47,11 +47,11 @@ const PayeeEntry = (props) => {
 
     const payeeToSubmit = {
       id,
-      firstName: firstNameRef.current.value,
-      lastName: lastNameRef.current.value,
-      phoneNumber: phoneNumberRef.current.value,
-      email: emailRef.current.value,
-      w9ed: w9Ref.current.value === "y" ? true : false,
+      firstName: firstNameRef.current.value === ''? firstName: firstNameRef.current.value,
+      lastName: lastNameRef.current.value === ''? lastName: lastNameRef.current.value,
+      phoneNumber: phoneNumberRef.current.value === ''? phoneNumber: phoneNumberRef.current.value,
+      email: emailRef.current.value === ''? email: emailRef.current.value,
+      w9ed: w9Ref.current.value === ''? w9: w9Ref.current.value === 'y'? true: false
     };
 
     console.log(payeeToSubmit);
