@@ -16,9 +16,9 @@ const MasterBudget = (props) => {
 
   const chosenMonth = async (monthInt) => {
     let itemsFromBackend = await fetch(
-      //   "https://bref-chaise-13325.herokuapp.com/" + community + "/" + monthInt
+        "https://bref-chaise-13325.herokuapp.com/" + community + "/" + monthInt
 
-      "http://localhost:8080/" + community + "/" + monthInt
+      // "http://localhost:8080/" + community + "/" + monthInt
     );
     let incomingItemsList = await itemsFromBackend.json();
     setBudgetItemsList(incomingItemsList);

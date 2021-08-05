@@ -5,8 +5,8 @@ const useGetData =  (whichData) => {
     let listToReturn = [];
     let fetchUrl = "";
     if (whichData === "purposes") {
-      // fetchUrl = "https://bref-chaise-13325.herokuapp.com/get-purposes";
-      fetchUrl = "http://localhost:8080/get-purposes";
+      fetchUrl = "https://bref-chaise-13325.herokuapp.com/get-purposes";
+      // fetchUrl = "http://localhost:8080/get-purposes";
 
       
     }

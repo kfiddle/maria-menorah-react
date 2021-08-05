@@ -43,8 +43,8 @@ const EntryForm = (props) => {
   useEffect(() => {
     const getListOfPurposes = async () => {
       let purposesFromBackend = await fetch(
-        // "https://bref-chaise-13325.herokuapp.com/get-purposes"
-        "http://localhost:8080/get-purposes"
+        "https://bref-chaise-13325.herokuapp.com/get-purposes"
+        // "http://localhost:8080/get-purposes"
       );
       let incomingPurposesList = await purposesFromBackend.json();
       setPurposesList(incomingPurposesList);
@@ -57,8 +57,8 @@ const EntryForm = (props) => {
     setPurposeClicked(true);
     setEnteredPurpose(purpose);
 
-    // fetch("https://bref-chaise-13325.herokuapp.com/get-matching-foundations", {
-    fetch("http://localhost:8080/get-matching-foundations", {
+    fetch("https://bref-chaise-13325.herokuapp.com/get-matching-foundations", {
+    // fetch("http://localhost:8080/get-matching-foundations", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -100,8 +100,8 @@ const EntryForm = (props) => {
     console.log(clickedPayeeList);
 
     const postingFunction = setTimeout(() => {
-      // fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
-      fetch("http://localhost:8080/add-event", {
+      fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
+      // fetch("http://localhost:8080/add-event", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -122,8 +122,8 @@ const EntryForm = (props) => {
 
   const getPayees = async () => {
     let payeesFromBackend = await fetch(
-      // "https://bref-chaise-13325.herokuapp.com/get-payees"
-      "http://localhost:8080/get-payees"
+      "https://bref-chaise-13325.herokuapp.com/get-payees"
+      // "http://localhost:8080/get-payees"
     );
 
     let incomingPayeesList = await payeesFromBackend.json();

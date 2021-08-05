@@ -1,4 +1,5 @@
 .foundationItemDiv {
+  position: relative;
   margin: 0.5rem 3rem;
   padding: 1rem;
   display: flex;
@@ -21,4 +22,13 @@
 
 .moneyDiv {
   text-align: left;
+}
+
+.editButtonDiv {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  right: 5%;
+  bottom: 10%;
 }

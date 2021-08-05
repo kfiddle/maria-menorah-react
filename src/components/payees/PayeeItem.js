@@ -14,9 +14,9 @@ const PayeeItem = (props) => {
   const { firstName, lastName, email, phoneNumber, w9ed } = props.payee;
 
   const fetchEvents = async () => {
-    // fetch("https://bref-chaise-13325.herokuapp.com/get-events-from-payee", {
+    fetch("https://bref-chaise-13325.herokuapp.com/get-events-from-payee", {
 
-    fetch("http://localhost:8080/get-events-from-payee", {
+    // fetch("http://localhost:8080/get-events-from-payee", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ const PayeeItem = (props) => {
       <div className={classes.emailDiv}>{email}</div>
       <div className={classes.phoneDiv}>{phoneNumber}</div>
       <div className={classes.checkMarkDiv}>
-        {w9ed && <img classname={classes.checkMark} src={greenCheck}></img>}{" "}
+        {w9ed && <img className={classes.checkMark} src={greenCheck}></img>}{" "}
         {!w9ed && <h2 className={classes.redEx}>X</h2>}
       </div>
       <div className={classes.editButtonDiv}>

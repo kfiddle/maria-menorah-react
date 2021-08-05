@@ -10,9 +10,9 @@ const BudgetItem = (props) => {
   const remainingObject = useMoney(remainingAmount);
 
   const deleteItem = async() => {
-      // fetch("https://bref-chaise-13325.herokuapp.com/delete-budget-item", {
+      fetch("https://bref-chaise-13325.herokuapp.com/delete-budget-item", {
 
-        fetch("http://localhost:8080/delete-budget-item", {
+        // fetch("http://localhost:8080/delete-budget-item", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
