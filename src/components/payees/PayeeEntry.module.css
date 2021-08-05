@@ -65,3 +65,18 @@
     background-color: #cbf8f8;
     outline-color: teal;
   }
+
+  .w9Div {
+    display: flex;
+    margin: 2rem 3rem;
+  }
+
+  .w9Div label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .w9Div input {
+    width: 10%;
+  }

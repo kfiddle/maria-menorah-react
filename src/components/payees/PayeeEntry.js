@@ -20,11 +20,12 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const PayeeEntry = (props) => {
-  let id = '';
+  let id = "";
   let firstName = "";
   let lastName = "";
   let email = "";
   let phoneNumber = "";
+  let w9 = false;
 
   if (props.payee) {
     id = props.payee.id;
@@ -32,12 +33,14 @@ const PayeeEntry = (props) => {
     lastName = props.payee.lastName;
     email = props.payee.email;
     phoneNumber = props.payee.phoneNumber;
+    w9 = props.payee.w9ed;
   }
 
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const phoneNumberRef = useRef();
   const emailRef = useRef();
+  const w9Ref = useRef();
 
   const submitEvent = (event) => {
     event.preventDefault();
@@ -48,7 +51,10 @@ const PayeeEntry = (props) => {
       lastName: lastNameRef.current.value,
       phoneNumber: phoneNumberRef.current.value,
       email: emailRef.current.value,
+      w9ed: w9Ref.current.value === "y" ? true : false,
     };
+
+    console.log(payeeToSubmit);
 
     const sendToBackend = async () => {
       // fetch("https://bref-chaise-13325.herokuapp.com/add-payee", {
@@ -61,6 +67,7 @@ const PayeeEntry = (props) => {
       }).then((response) => {
         if (response.ok) {
           console.log("got it!");
+          props.closeModal();
         }
       });
     };
@@ -116,6 +123,16 @@ const PayeeEntry = (props) => {
                   id="email"
                   ref={emailRef}
                   placeholder={email}
+                />
+              </div>
+
+              <div className={classes.w9Div}>
+                <label>W9 on file? 'y' or 'no'</label>
+                <input
+                  type="text"
+                  id="w9Check"
+                  ref={w9Ref}
+                  placeholder={w9 ? "yes" : "no"}
                 />
               </div>
 
