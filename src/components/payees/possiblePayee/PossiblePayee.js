@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import classes from "../PayeeItem.module.css";
+import classes from './PossiblePayee.module.css';
 
 const PossiblePayee = (props) => {
   const [clicked, setClicked] = useState(false);

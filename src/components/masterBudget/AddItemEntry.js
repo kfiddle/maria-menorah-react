@@ -9,7 +9,6 @@ const AddItemEntry = (props) => {
   const [payeesList, setPayeesList] = useState([]);
   const [clickedPayeeList, setClickedPayeeList] = useState([]);
 
-
   const getPayees = async () => {
     let payeesFromBackend = await fetch(
       // "https://bref-chaise-13325.herokuapp.com/get-payees"
@@ -37,7 +36,6 @@ const AddItemEntry = (props) => {
     );
     setClickedPayeeList(tempPayeeList);
   };
- 
 
   return (
     <Card>
@@ -47,17 +45,18 @@ const AddItemEntry = (props) => {
 
         <div className={styles.payeesDiv} onClick={openPayeeDropdown}>
           Payees?
-          {payeeDropdownClicked && (
-            <div className={styles.payeeListDiv}>
-              <PayeesList
-                list={payeesList}
-                clicked={clickedPayee}
-                unclick={unclickedPayee}
-                which={"possible"}
-              />
-            </div>
-          )}
         </div>
+
+        {payeeDropdownClicked && (
+          <div className={styles.payeeListDiv}>
+            <PayeesList
+              list={payeesList}
+              clicked={clickedPayee}
+              unclick={unclickedPayee}
+              which={"possible"}
+            />
+          </div>
+        )}
 
         <label className={styles.text}>Date</label>
         <input type="date" />
