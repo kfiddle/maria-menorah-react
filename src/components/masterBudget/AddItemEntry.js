@@ -54,7 +54,7 @@ const AddItemEntry = (props) => {
     };
 
     const postingFunction = setTimeout(() => {
-      fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
+      fetch("https://bref-chaise-13325.herokuapp.com/add-budget-item", {
       // fetch("http://localhost:8080/add-budget-item", {
         method: "POST",
         headers: {
