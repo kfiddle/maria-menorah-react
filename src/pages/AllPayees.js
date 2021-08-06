@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 
+import useTestHook from "../hooks/useTestHook";
+
 import PayeesList from "../components/payees/PayeesList";
 
 const AllPayees = (props) => {
   const [payeesList, setPayeesList] = useState([]);
+
+  const multiplyByThree = useTestHook();
 
   useEffect(() => {
     const getListOfPayees = async () => {
@@ -15,6 +19,8 @@ const AllPayees = (props) => {
       let incomingPayeesList = await payeesFromBackend.json();
       setPayeesList(incomingPayeesList);
     };
+
+    console.log(() => { multiplyByThree(7)});
 
     getListOfPayees();
   }, []);
