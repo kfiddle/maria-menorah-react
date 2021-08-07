@@ -3,7 +3,7 @@ import WhichServer from "./WhichServer";
 const PushSomething = async (objectToPush, pushFunction) => {
   const whichServer = WhichServer();
 
-  let responseAfterPushing = await fetch(whichServer + pushFunction, {
+  let response = await fetch(whichServer + pushFunction, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -11,7 +11,7 @@ const PushSomething = async (objectToPush, pushFunction) => {
     body: JSON.stringify(objectToPush),
   });
 
-  return responseAfterPushing.ok;
+  return response;
 
 };
 

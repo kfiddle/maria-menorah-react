@@ -25,7 +25,7 @@ const DeleteForm = (props) => {
 
   const sendDeleteRequest = async () => {
     let response = await PushSomething(props.eventToDelete, "delete-event");
-    if (response) {
+    if (response.ok) {
       props.closeModal();
     }
   };

@@ -53,26 +53,17 @@ const EntryForm = (props) => {
     getPurposes();
   }, []);
 
-  const clickedPurpose = (purpose) => {
+  const clickedPurpose = async (purpose) => {
     setPurposeClicked(true);
     setEnteredPurpose(purpose);
 
-    fetch("https://bref-chaise-13325.herokuapp.com/get-matching-foundations", {
-      // fetch("http://localhost:8080/get-matching-foundations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(purpose),
-    })
-      .then((data) => data.json())
-      .then((answerList) =>
-        setPossibleFoundationsList(
-          answerList.map((foundation) => {
-            return { ...foundation, amountToDebit: 0 };
-          })
-        )
-      );
+    let response = await PushSomething(purpose, "get-matching-foundations");
+    let answerList = await response.json();
+    setPossibleFoundationsList(
+      answerList.map((foundation) => {
+        return { ...foundation, amountToDebit: 0 };
+      })
+    );
   };
 
   const acceptTransaction = (transactionObject) => {
@@ -82,7 +73,7 @@ const EntryForm = (props) => {
     setTransactionList(newList);
   };
 
-  function submitEvent(event) {
+  const submitEvent = async (event) => {
     event.preventDefault();
     setSubmitClicked(true);
 
@@ -99,30 +90,11 @@ const EntryForm = (props) => {
 
     console.log(dataToSubmit);
 
-    
-
-
-
-    // const postingFunction = setTimeout(() => {
-    //   fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
-    //     // fetch("http://localhost:8080/add-event", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(dataToSubmit),
-    //   }).then((response) => {
-    //     if (response.ok) {
-    //       titleRef.current.value = "";
-    //       dateRef.current.value = "";
-    //       setPurposeClicked(false);
-    //       props.closeModal();
-    //     }
-    //   });
-    // }, 200);
-
-
-  }
+    let response = await PushSomething(dataToSubmit, "add-event");
+    if (response.ok) {
+      props.closeModal();
+    }
+  };
 
   const getPayees = async () => {
     const allPayees = await GetAList("get-payees");
