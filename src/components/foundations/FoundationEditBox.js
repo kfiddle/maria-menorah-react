@@ -4,27 +4,32 @@ import useMoney from "../../hooks/useMoney";
 import Card from "../UI/Card";
 
 import PushSomething from "../helperFunctions/PushSomething";
+import MoneySplitter from "../helperFunctions/MoneySplitter";
 
 const FoundationEditBox = (props) => {
   const { id, leftOverPennies, contributionInPennies } = props.foundation;
 
-  const originalDollarsRef = useRef();
-  const originalCentsRef = useRef();
-  const leftOverDollarsRef = useRef();
-  const leftOverCentsRef = useRef();
+  const originalMoneyRef = useRef();
+  const leftOverMoneyRef = useRef();
 
   const realLeftOverAmount = useMoney(leftOverPennies);
   const realOriginal = useMoney(contributionInPennies);
 
   const submitEdits = async () => {
+    let originalPenniesToSend =
+      originalMoneyRef.current.value === ""
+        ? contributionInPennies
+        : MoneySplitter(originalMoneyRef.current.value);
+
+    let remainingPenniesToSend =
+      leftOverMoneyRef.current.value === ""
+        ? leftOverPennies
+        : MoneySplitter(leftOverMoneyRef.current.value);
+
     const foundationToSubmit = {
       id: id,
-      contributionInPennies:
-        originalDollarsRef.current.value * 100 +
-        +originalCentsRef.current.value,
-      leftOverPennies:
-        leftOverDollarsRef.current.value * 100 +
-        +leftOverCentsRef.current.value,
+      contributionInPennies: originalPenniesToSend,
+      leftOverPennies: remainingPenniesToSend,
     };
 
     console.log(foundationToSubmit);
@@ -40,20 +45,17 @@ const FoundationEditBox = (props) => {
       <div>
         <h3>Original contribution</h3>
         <input
-          placeholder={realOriginal.dollars}
-          ref={originalDollarsRef}
+          style={{ paddingLeft: "1rem" }}
+          placeholder={`${realOriginal.dollars}.${realOriginal.cents}`}
+          ref={originalMoneyRef}
         ></input>
-        <input placeholder={realOriginal.cents} ref={originalCentsRef}></input>
       </div>
       <div>
         <h3>Remaining Amount</h3>
         <input
-          placeholder={realLeftOverAmount.dollars}
-          ref={leftOverDollarsRef}
-        ></input>
-        <input
-          placeholder={realLeftOverAmount.cents}
-          ref={leftOverCentsRef}
+          style={{ paddingLeft: "1rem", marginBottom: '1rem' }}
+          placeholder={`${realLeftOverAmount.dollars}.${realLeftOverAmount.cents}`}
+          ref={leftOverMoneyRef}
         ></input>
       </div>
 
