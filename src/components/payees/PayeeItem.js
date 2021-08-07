@@ -2,6 +2,8 @@ import { useState } from "react";
 
 import Modal from "../UI/Modal/Modal";
 import Card from "../UI/Card";
+import PushSomething from "../helperFunctions/PushSomething";
+
 import greenCheck from "../../assets/greenCheck1.jpg";
 import redCheck from "../../assets/redCheck1.jpg";
 
@@ -9,9 +11,12 @@ import classes from "./PayeeItem.module.css";
 import PayeeEntry from "./PayeeEntry";
 
 const PayeeItem = (props) => {
-  const [clicked, setClicked] = useState(false);
+  const [eventsClicked, setEventsClicked] = useState(false);
+  const [eventsList, setEventsList] = useState([]);
   const [modalEditClicked, setModalEditClicked] = useState(false);
   const { firstName, lastName, email, phoneNumber, w9ed } = props.payee;
+
+  console.log(props.payee);
 
   const openEditingModal = () => {
     setModalEditClicked(true);
@@ -21,9 +26,20 @@ const PayeeItem = (props) => {
     setModalEditClicked(false);
   };
 
-  const clickedForEvents = () => {
-    console.log(props.payee);
+  const clickedForEvents = async () => {
+    setEventsClicked((previous) => !previous);
+    let listOfEvents = await PushSomething(
+      props.payee,
+      "get-events-from-payee"
+    );
+    let finalEventsList = await listOfEvents.json();
+    let finalShowing = await setEventsList(finalEventsList);
   };
+
+  const eventsToShow = eventsList.map(event => (
+    <div>{event.title}</div>
+  ))
+
 
   return (
     <div onClick={clickedForEvents} className={classes.payeeItemDiv}>
@@ -37,6 +53,7 @@ const PayeeItem = (props) => {
       <div className={classes.editButtonDiv}>
         <button onClick={openEditingModal}>Edit</button>
       </div>
+      {eventsClicked && <div>{eventsToShow}</div>}
 
       {modalEditClicked && (
         <PayeeEntry payee={props.payee} closeModal={closeModal} />
