@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 
 import Card from "../UI/Card";
+import PushSomething from "../helperFunctions/PushSomething";
 
 import classes from "./DeleteForm.module.css";
 
@@ -23,20 +24,10 @@ const DeleteForm = (props) => {
   const { id, title, date } = props.eventToDelete;
 
   const sendDeleteRequest = async () => {
-    fetch("https://bref-chaise-13325.herokuapp.com/delete-event", {
-    // fetch("http://localhost:8080/delete-event", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(props.eventToDelete),
-    })
-      .then((response) => {
-        if (response.ok) {
-          props.closeModal();
-        }
-      })
-      .catch((error) => console.log(error));
+    let response = await PushSomething(props.eventToDelete, "delete-event");
+    if (response) {
+      props.closeModal();
+    }
   };
 
   return (

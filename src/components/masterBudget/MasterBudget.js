@@ -2,8 +2,9 @@ import { Fragment, useState } from "react";
 import MonthHeader from "../monthHeader/MonthHeader";
 import BudgetItem from "./BudgetItem";
 
-import Modal from '../UI/Modal/Modal';
+import Modal from "../UI/Modal/Modal";
 import AddItemEntry from "./AddItemEntry";
+import GetAList from "../helperFunctions/GetAList";
 
 import styles from "./MasterBudget.module.css";
 
@@ -15,14 +16,8 @@ const MasterBudget = (props) => {
   let startingAmount = 250000;
 
   const chosenMonth = async (monthInt) => {
-    let itemsFromBackend = await fetch(
-        "https://bref-chaise-13325.herokuapp.com/" + community + "/" + monthInt
-
-      // "http://localhost:8080/" + community + "/" + monthInt
-    );
-    let incomingItemsList = await itemsFromBackend.json();
-    setBudgetItemsList(incomingItemsList);
-    console.log(budgetItemsList);
+    const allItemsOfMonth = await GetAList(community + "/" + monthInt);
+    setBudgetItemsList(allItemsOfMonth);
   };
 
   const listAddingInRemaining = budgetItemsList.map((item) => {
@@ -49,7 +44,11 @@ const MasterBudget = (props) => {
       <div className={styles.addItemButtonDiv}>
         <button onClick={openAddItemModal}>Add Item</button>
       </div>
-      {addItemClicked && <Modal closeModal={closeModal}><AddItemEntry community={community} closeModal={closeModal} /></Modal>}
+      {addItemClicked && (
+        <Modal closeModal={closeModal}>
+          <AddItemEntry community={community} closeModal={closeModal} />
+        </Modal>
+      )}
     </Fragment>
   );
 };

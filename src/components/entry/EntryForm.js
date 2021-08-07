@@ -7,6 +7,11 @@ import PossibleFoundationsList from "./possibleFoundations/PossibleFoundationsLi
 import PurposesList from "./PurposesList";
 import PayeesList from "../payees/PayeesList";
 
+import GetAList from "../helperFunctions/GetAList";
+import PushSomething from "../helperFunctions/PushSomething";
+
+import MoneySplitter from "../helperFunctions/MoneySplitter";
+
 const Backdrop = (props) => {
   return <div className={classes.backdrop} onClick={props.closeModal} />;
 };
@@ -37,28 +42,23 @@ const EntryForm = (props) => {
 
   const titleRef = useRef();
   const dateRef = useRef();
-  const enteredDollars = useRef();
-  const enteredCents = useRef();
+  const enteredMoneyRef = useRef();
 
   useEffect(() => {
-    const getListOfPurposes = async () => {
-      let purposesFromBackend = await fetch(
-        "https://bref-chaise-13325.herokuapp.com/get-purposes"
-        // "http://localhost:8080/get-purposes"
-      );
-      let incomingPurposesList = await purposesFromBackend.json();
-      setPurposesList(incomingPurposesList);
+    const getPurposes = async () => {
+      const allPurposes = await GetAList("get-purposes");
+      setPurposesList(allPurposes);
     };
 
-    getListOfPurposes();
-  }, [purposesList]);
+    getPurposes();
+  }, []);
 
   const clickedPurpose = (purpose) => {
     setPurposeClicked(true);
     setEnteredPurpose(purpose);
 
     fetch("https://bref-chaise-13325.herokuapp.com/get-matching-foundations", {
-    // fetch("http://localhost:8080/get-matching-foundations", {
+      // fetch("http://localhost:8080/get-matching-foundations", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -86,48 +86,47 @@ const EntryForm = (props) => {
     event.preventDefault();
     setSubmitClicked(true);
 
+    let penniesToSend = MoneySplitter(enteredMoneyRef.current.value);
+
     const dataToSubmit = {
       title: titleRef.current.value,
       date: dateRef.current.value,
-      totalCostInCents:
-        +(enteredDollars.current.value * 100) + +enteredCents.current.value,
-
+      totalCostInCents: penniesToSend,
       purpose: enteredPurpose,
       transactions: transactionList,
-      payees: clickedPayeeList
+      payees: clickedPayeeList,
     };
 
-    console.log(clickedPayeeList);
+    console.log(dataToSubmit);
 
-    const postingFunction = setTimeout(() => {
-      fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
-      // fetch("http://localhost:8080/add-event", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(dataToSubmit),
-      }).then((response) => {
-        if (response.ok) {
-          titleRef.current.value = "";
-          enteredDollars.current.value = "";
-          enteredCents.current.value = "";
-          dateRef.current.value = "";
-          setPurposeClicked(false);
-          props.closeModal();
-        }
-      });
-    }, 200);
+    
+
+
+
+    // const postingFunction = setTimeout(() => {
+    //   fetch("https://bref-chaise-13325.herokuapp.com/add-event", {
+    //     // fetch("http://localhost:8080/add-event", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(dataToSubmit),
+    //   }).then((response) => {
+    //     if (response.ok) {
+    //       titleRef.current.value = "";
+    //       dateRef.current.value = "";
+    //       setPurposeClicked(false);
+    //       props.closeModal();
+    //     }
+    //   });
+    // }, 200);
+
+
   }
 
   const getPayees = async () => {
-    let payeesFromBackend = await fetch(
-      "https://bref-chaise-13325.herokuapp.com/get-payees"
-      // "http://localhost:8080/get-payees"
-    );
-
-    let incomingPayeesList = await payeesFromBackend.json();
-    setPayeesList(incomingPayeesList);
+    const allPayees = await GetAList("get-payees");
+    setPayeesList(allPayees);
   };
 
   const openPayeeDropdown = () => {
@@ -170,7 +169,6 @@ const EntryForm = (props) => {
 
                   {payeeDropdownClicked && (
                     <div className={classes.payeeListDiv}>
-
                       <PayeesList
                         list={payeesList}
                         clicked={clickedPayee}
@@ -184,14 +182,12 @@ const EntryForm = (props) => {
 
               <div className={classes.moneyAndDate}>
                 <div className={`${classes.control} ${classes.moneyDiv}`}>
-                  <label htmlFor="text">Dollars</label>
+                  <label htmlFor="text">Event Cost</label>
                   <input
                     type="number"
                     id={classes.dollars}
-                    ref={enteredDollars}
+                    ref={enteredMoneyRef}
                   />
-                  <label htmlFor="text">Cents</label>
-                  <input type="number" ref={enteredCents} />
                 </div>
 
                 <div className={`${classes.control} ${classes.moneyDiv}`}>

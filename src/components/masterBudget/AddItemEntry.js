@@ -3,6 +3,7 @@ import Card from "../UI/Card";
 
 import PayeesList from "../payees/PayeesList";
 import styles from "./addItemEntry.module.css";
+import MoneySplitter from "../helperFunctions/MoneySplitter";
 
 const AddItemEntry = (props) => {
   const [payeeDropdownClicked, setPayeeDropdownClicked] = useState(false);
@@ -13,8 +14,8 @@ const AddItemEntry = (props) => {
 
   const itemRef = useRef();
   const dateRef = useRef();
-  const dollarsRef = useRef();
-  const centsRef = useRef();
+  const costRef = useRef();
+
 
   const getPayees = async () => {
     let payeesFromBackend = await fetch(
@@ -46,16 +47,19 @@ const AddItemEntry = (props) => {
   };
 
   const submitItem = () => {
+    let penniesToSend = MoneySplitter(costRef.current.value);
+    console.log(penniesToSend);
+
     let itemToSubmit = {
       community: community,
       item: itemRef.current.value,
       dateOfPurchase: dateRef.current.value,
-      costInPennies: dollarsRef.current.value * 100 + +centsRef.current.value,
+      costInPennies: penniesToSend,
     };
 
     const postingFunction = setTimeout(() => {
-      fetch("https://bref-chaise-13325.herokuapp.com/add-budget-item", {
-      // fetch("http://localhost:8080/add-budget-item", {
+      // fetch("https://bref-chaise-13325.herokuapp.com/add-budget-item", {
+      fetch("http://localhost:8080/add-budget-item", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -63,13 +67,13 @@ const AddItemEntry = (props) => {
         body: JSON.stringify(itemToSubmit),
       }).then((response) => {
         if (response.ok) {
-         console.log('got it toots')
+          console.log("got it toots");
           // setPurposeClicked(false);
           props.closeModal();
         }
       });
     }, 200);
-  }
+  };
 
   return (
     <Card>
@@ -95,11 +99,8 @@ const AddItemEntry = (props) => {
         <label className={styles.text}>Date</label>
         <input type="date" ref={dateRef} />
 
-        <label className={styles.text}>Dollars</label>
-        <input type="number" className={styles.dollarsInput} ref={dollarsRef} />
-
-        <label className={styles.text}>Cents</label>
-        <input type="number" className={styles.centsInput} ref={centsRef} />
+        <label className={styles.text}>Cost</label>
+        <input type="number" className={styles.dollarsInput} ref={costRef} />
 
         <div className={styles.submitButtonDiv}>
           <button onClick={submitItem}>Submit Item</button>
