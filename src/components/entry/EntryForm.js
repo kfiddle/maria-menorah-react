@@ -73,7 +73,7 @@ const EntryForm = (props) => {
     setTransactionList(newList);
   };
 
-  const submitEvent = async (event) => {
+  const submitEvent = (event) => {
     event.preventDefault();
     setSubmitClicked(true);
 
@@ -82,18 +82,20 @@ const EntryForm = (props) => {
     const dataToSubmit = {
       title: titleRef.current.value,
       date: dateRef.current.value,
-      totalCostInCents: penniesToSend,
       purpose: enteredPurpose,
+      totalCostInCents: penniesToSend,
       transactions: transactionList,
       payees: clickedPayeeList,
     };
 
-    console.log(dataToSubmit);
+    const sendData = async () => {
+      let response = await PushSomething(dataToSubmit, "add-event");
+      if (response.ok) {
+        props.closeModal();
+      }
+    };
 
-    let response = await PushSomething(dataToSubmit, "add-event");
-    if (response.ok) {
-      props.closeModal();
-    }
+    setTimeout(sendData, 2500);
   };
 
   const getPayees = async () => {

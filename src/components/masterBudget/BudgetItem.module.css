@@ -28,6 +28,12 @@
   color: rgb(30, 148, 30);
 }
 
+.payeesDiv {
+  font-size: small;
+  font-weight: 700;
+  margin: 0 0 1rem 10rem;
+}
+
 .editButtonDiv {
   position: absolute;
   display: flex;
