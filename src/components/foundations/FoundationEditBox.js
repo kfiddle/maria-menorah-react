@@ -3,6 +3,8 @@ import { useRef } from "react";
 import useMoney from "../../hooks/useMoney";
 import Card from "../UI/Card";
 
+import PushSomething from "../helperFunctions/PushSomething";
+
 const FoundationEditBox = (props) => {
   const { id, leftOverPennies, contributionInPennies } = props.foundation;
 
@@ -27,18 +29,10 @@ const FoundationEditBox = (props) => {
 
     console.log(foundationToSubmit);
 
-    fetch("https://bref-chaise-13325.herokuapp.com/edit-foundation", {
-    // fetch("http://localhost:8080/edit-foundation", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(foundationToSubmit),
-    }).then((result) => {
-      if (result.ok) {
-        props.closeModal();
-      }
-    });
+    let response = await PushSomething(foundationToSubmit, "edit-foundation");
+    if (response.ok) {
+      props.closeModal();
+    }
   };
 
   return (

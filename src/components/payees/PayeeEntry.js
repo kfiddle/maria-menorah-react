@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import PushSomething from "../helperFunctions/PushSomething";
 
 import Card from "../UI/Card";
 
@@ -42,37 +43,36 @@ const PayeeEntry = (props) => {
   const emailRef = useRef();
   const w9Ref = useRef();
 
-  const submitEvent = (event) => {
+  const submitEvent = async (event) => {
     event.preventDefault();
 
     const payeeToSubmit = {
       id,
-      firstName: firstNameRef.current.value === ''? firstName: firstNameRef.current.value,
-      lastName: lastNameRef.current.value === ''? lastName: lastNameRef.current.value,
-      phoneNumber: phoneNumberRef.current.value === ''? phoneNumber: phoneNumberRef.current.value,
-      email: emailRef.current.value === ''? email: emailRef.current.value,
-      w9ed: w9Ref.current.value === ''? w9: w9Ref.current.value === 'y'? true: false
+      firstName:
+        firstNameRef.current.value === ""
+          ? firstName
+          : firstNameRef.current.value,
+      lastName:
+        lastNameRef.current.value === "" ? lastName : lastNameRef.current.value,
+      phoneNumber:
+        phoneNumberRef.current.value === ""
+          ? phoneNumber
+          : phoneNumberRef.current.value,
+      email: emailRef.current.value === "" ? email : emailRef.current.value,
+      w9ed:
+        w9Ref.current.value === ""
+          ? w9
+          : w9Ref.current.value === "y"
+          ? true
+          : false,
     };
 
     console.log(payeeToSubmit);
 
-    const sendToBackend = async () => {
-      fetch("https://bref-chaise-13325.herokuapp.com/add-payee", {
-      // fetch("http://localhost:8080/add-payee", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payeeToSubmit),
-      }).then((response) => {
-        if (response.ok) {
-          console.log("got it!");
-          props.closeModal();
-        }
-      });
-    };
-
-    sendToBackend();
+    let response = await PushSomething(payeeToSubmit, "add-payee");
+    if (response.ok) {
+      props.closeModal();
+    }
   };
 
   return (

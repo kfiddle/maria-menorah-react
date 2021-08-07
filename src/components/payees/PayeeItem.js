@@ -13,20 +13,6 @@ const PayeeItem = (props) => {
   const [modalEditClicked, setModalEditClicked] = useState(false);
   const { firstName, lastName, email, phoneNumber, w9ed } = props.payee;
 
-  const fetchEvents = async () => {
-    fetch("https://bref-chaise-13325.herokuapp.com/get-events-from-payee", {
-
-    // fetch("http://localhost:8080/get-events-from-payee", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(props.payee),
-    })
-      .then((response) => response.json())
-      .then((answer) => console.log(answer));
-  };
-
   const openEditingModal = () => {
     setModalEditClicked(true);
   };
@@ -36,7 +22,6 @@ const PayeeItem = (props) => {
   };
 
   const clickedForEvents = () => {
-    fetchEvents();
     console.log(props.payee);
   };
 

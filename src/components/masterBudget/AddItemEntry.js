@@ -4,6 +4,8 @@ import Card from "../UI/Card";
 import PayeesList from "../payees/PayeesList";
 import styles from "./addItemEntry.module.css";
 import MoneySplitter from "../helperFunctions/MoneySplitter";
+import PushSomething from "../helperFunctions/PushSomething";
+import GetAList from "../helperFunctions/GetAList";
 
 const AddItemEntry = (props) => {
   const [payeeDropdownClicked, setPayeeDropdownClicked] = useState(false);
@@ -16,20 +18,10 @@ const AddItemEntry = (props) => {
   const dateRef = useRef();
   const costRef = useRef();
 
-
-  const getPayees = async () => {
-    let payeesFromBackend = await fetch(
-      "https://bref-chaise-13325.herokuapp.com/get-payees"
-      // "http://localhost:8080/get-payees"
-    );
-
-    let incomingPayeesList = await payeesFromBackend.json();
-    setPayeesList(incomingPayeesList);
-  };
-
-  const openPayeeDropdown = () => {
+  const openPayeeDropdown = async () => {
     setPayeeDropdownClicked((previous) => !previous);
-    getPayees();
+    let listOfPayees = await GetAList("get-payees");
+    setPayeesList(listOfPayees);
   };
 
   const clickedPayee = (payee) => {
@@ -46,7 +38,7 @@ const AddItemEntry = (props) => {
     setClickedPayeeList(tempPayeeList);
   };
 
-  const submitItem = () => {
+  const submitItem = async () => {
     let penniesToSend = MoneySplitter(costRef.current.value);
     console.log(penniesToSend);
 
@@ -57,22 +49,12 @@ const AddItemEntry = (props) => {
       costInPennies: penniesToSend,
     };
 
-    const postingFunction = setTimeout(() => {
-      // fetch("https://bref-chaise-13325.herokuapp.com/add-budget-item", {
-      fetch("http://localhost:8080/add-budget-item", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(itemToSubmit),
-      }).then((response) => {
-        if (response.ok) {
-          console.log("got it toots");
-          // setPurposeClicked(false);
-          props.closeModal();
-        }
-      });
-    }, 200);
+    const response = await PushSomething(itemToSubmit, 'add-budget-item');
+    if (response.ok) {
+      props.closeModal();
+    }
+
+   
   };
 
   return (
