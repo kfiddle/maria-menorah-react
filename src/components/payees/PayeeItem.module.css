@@ -55,6 +55,27 @@
   margin: 0;
 }
 
+.eventsDiv {
+  font-size: small;
+  font-weight: 700;
+  margin: 0 0 1rem 10rem;
+}
+
+.budgetItemDiv {
+  display: flex;
+}
+
+.community{
+  color: darkblue;
+  font-size: smaller;
+  margin-left: 1rem;
+}
+
+.itemDate{
+  margin-left: 1rem;
+}
+
+
 .editButtonDiv {
   position: absolute;
   display: flex;
@@ -63,3 +84,5 @@
   right: 5%;
   bottom: 10%;
 }
+
+

@@ -45,6 +45,7 @@ const AddItemEntry = (props) => {
     let itemToSubmit = {
       community: community,
       item: itemRef.current.value,
+      payees: clickedPayeeList,
       dateOfPurchase: dateRef.current.value,
       costInPennies: penniesToSend,
     };
