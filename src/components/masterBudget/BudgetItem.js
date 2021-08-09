@@ -1,15 +1,18 @@
 import { Fragment, useState } from "react";
 import useMoney from "../../hooks/useMoney";
 import PushSomething from "../helperFunctions/PushSomething";
+import DateFormatter from "../helperFunctions/DateFormatter";
+
 import classes from "./BudgetItem.module.css";
 
 const BudgetItem = (props) => {
   const [payeesClicked, setPayeesClicked] = useState(false);
-  const { item, payees, dateOfPurchase, costInPennies, remainingAmount } =
+  const { item, payees, dateOfPurchase:incomingDate, costInPennies, remainingAmount } =
     props.budgetItem;
 
   const amount = useMoney(costInPennies);
   const remainingObject = useMoney(remainingAmount);
+  const dateOfPurchase = DateFormatter(incomingDate);
 
   console.log(payees);
 

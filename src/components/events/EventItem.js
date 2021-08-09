@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import useMoney from "../../hooks/useMoney";
+import DateFormatter from "../helperFunctions/DateFormatter";
 import TransactionsToDisplay from "./transactionsToDisplay/TransactionsToDisplay";
 
 import styles from "./EventItem.module.css";
@@ -7,9 +8,10 @@ import styles from "./EventItem.module.css";
 const EventItem = (props) => {
   const [foundationsClicked, setFoundationsClicked] = useState(false);
   const [editingClicked, setEditingClicked] = useState(false);
-  const { title, date, purpose, totalCostInCents, transactions } = props.event;
+  const { title, date:oldDate, purpose, totalCostInCents, transactions } = props.event;
 
   const money = useMoney(totalCostInCents);
+  const date = DateFormatter(oldDate);
 
   const clickedForFoundations = () => {
     setFoundationsClicked((previous) => !previous);
