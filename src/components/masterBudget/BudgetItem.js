@@ -7,7 +7,7 @@ import classes from "./BudgetItem.module.css";
 
 const BudgetItem = (props) => {
   const [payeesClicked, setPayeesClicked] = useState(false);
-  const { item, payees, dateOfPurchase:incomingDate, costInPennies, remainingAmount, notes } =
+  const { id, item, payees, dateOfPurchase:incomingDate, costInPennies, remainingAmount, notes, accountNum } =
     props.budgetItem;
 
   const amount = useMoney(costInPennies);
@@ -19,7 +19,7 @@ const BudgetItem = (props) => {
   let payeesToShow = [];
 
   payeesToShow = payees.map((payee) => (
-    <div>{`${payee.firstName} ${payee.lastName}`}</div>
+    <div key={Math.random()}>{`${payee.firstName} ${payee.lastName}`}</div>
   ));
 
   const deleteItem = async () => {
@@ -46,6 +46,7 @@ const BudgetItem = (props) => {
         >{`${remainingObject.dollars}.${remainingObject.cents}`}</div>
 
         <div className={classes.notesDiv}>{notes}</div>
+        <div className={classes.accountNumDiv}>{accountNum}</div>
         <div className={classes.editButtonDiv}>
           <button onClick={deleteItem}>Delete</button>
         </div>

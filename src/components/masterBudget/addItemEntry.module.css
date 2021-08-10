@@ -17,13 +17,23 @@ input {
 }
 
 .dollarsInput {
-  transform: translateX(-20rem);
-  width: 20%;
+  width: 25%;
+  margin-right: 2rem;
 }
 
-.centsInput {
-  transform: translateX(-20rem);
-  width: 20%;
+.costAndAccountNumDiv{
+  display: flex;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.costAndAccountNumDiv label {
+  margin: 0 2.5rem 2.5rem 0;
+}
+
+.accountNumInput {
+  width: 30%;
+  margin: 0;
 }
 
 .submitButtonDiv {
@@ -33,7 +43,7 @@ input {
 .payeesDiv {
     color: midnightblue;
     font-weight: 900;
-    margin: 1rem 0 1rem 5rem;
+    margin: 2rem 0 2rem 5rem;
     cursor: pointer;
 }
 

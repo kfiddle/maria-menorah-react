@@ -18,6 +18,7 @@ const AddItemEntry = (props) => {
   const dateRef = useRef();
   const costRef = useRef();
   const notesRef = useRef();
+  const accountNumRef = useRef();
 
   const openPayeeDropdown = async () => {
     setPayeeDropdownClicked((previous) => !previous);
@@ -49,15 +50,14 @@ const AddItemEntry = (props) => {
       payees: clickedPayeeList,
       dateOfPurchase: dateRef.current.value,
       costInPennies: penniesToSend,
-      notes: notesRef.current.value
+      notes: notesRef.current.value,
+      accountNum: accountNumRef.current.value,
     };
 
-    const response = await PushSomething(itemToSubmit, 'add-budget-item');
+    const response = await PushSomething(itemToSubmit, "add-budget-item");
     if (response.ok) {
       props.closeModal();
     }
-
-   
   };
 
   return (
@@ -84,10 +84,19 @@ const AddItemEntry = (props) => {
         <label className={styles.text}>Date</label>
         <input type="date" ref={dateRef} />
 
-        <label className={styles.text}>Cost</label>
-        <input type="number" className={styles.dollarsInput} ref={costRef} />
+        <div className={styles.costAndAccountNumDiv}>
+          <label className={styles.text}>Cost</label>
+          <input type="number" className={styles.dollarsInput} ref={costRef} />
 
-        <label className={styles.text}>Notes</label> 
+          <label className={styles.text}>Account</label>
+          <input
+            type="text"
+            className={styles.accountNumInput}
+            ref={accountNumRef}
+          />
+        </div>
+
+        <label className={styles.text}>Notes</label>
         <input type="text" className={styles.notesInput} ref={notesRef} />
 
         <div className={styles.submitButtonDiv}>

@@ -41,7 +41,12 @@
 
 .notesDiv {
   font-size: small;
+  margin: 0 0 0.5rem 2rem;
+}
+
+.accountNumDiv{
   margin-left: 2rem;
+  color: midnightblue;
 }
 
 .editButtonDiv {
