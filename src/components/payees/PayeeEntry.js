@@ -26,6 +26,7 @@ const PayeeEntry = (props) => {
   let lastName = "";
   let email = "";
   let phoneNumber = "";
+  let address = '';
   let w9 = false;
 
   if (props.payee) {
@@ -34,6 +35,7 @@ const PayeeEntry = (props) => {
     lastName = props.payee.lastName;
     email = props.payee.email;
     phoneNumber = props.payee.phoneNumber;
+    address = props.payee.address;
     w9 = props.payee.w9ed;
   }
 
@@ -42,6 +44,7 @@ const PayeeEntry = (props) => {
   const phoneNumberRef = useRef();
   const emailRef = useRef();
   const w9Ref = useRef();
+  const addressRef = useRef();
 
   const submitEvent = async (event) => {
     event.preventDefault();
@@ -59,21 +62,18 @@ const PayeeEntry = (props) => {
           ? phoneNumber
           : phoneNumberRef.current.value,
       email: emailRef.current.value === "" ? email : emailRef.current.value,
-      w9ed:
-        w9Ref.current.value === ""
-          ? w9
-          : w9Ref.current.value === "y"
-          ? true
-          : false,
+      address: addressRef.current.value === '' ? address : addressRef.current.value,
+      w9ed: w9Ref.current.checked
     };
 
-    console.log(payeeToSubmit);
+    console.log(w9Ref.current.checked);
 
     let response = await PushSomething(payeeToSubmit, "add-payee");
     if (response.ok) {
       props.closeModal();
     }
   };
+
 
   return (
     <div className={classes.outerContainer}>
@@ -126,15 +126,27 @@ const PayeeEntry = (props) => {
                 />
               </div>
 
-              <div className={classes.w9Div}>
-                <label>W9 on file? 'y' or 'no'</label>
+              <div className={classes.control}>
+                <label>Address</label>
                 <input
                   type="text"
-                  id="w9Check"
-                  ref={w9Ref}
-                  placeholder={w9 ? "yes" : "no"}
+                  id="address"
+                  ref={addressRef}
+                  placeholder={address}
                 />
               </div>
+
+              <div className={classes.w9Div}>
+                <label>W9 on file?</label>
+                <input
+                  type="checkbox"
+                  id="w9Check"
+                  ref={w9Ref}
+                  placeholder={w9 ? true : false}
+                />
+              </div>
+
+              
 
               <div className={classes.buttonDiv}>
                 <button className={classes.button} onClick={submitEvent}>
