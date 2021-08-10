@@ -6,15 +6,25 @@ import DateFormatter from "../helperFunctions/DateFormatter";
 import classes from "./BudgetItem.module.css";
 
 const BudgetItem = (props) => {
+  const {
+    id,
+    item,
+    payees,
+    dateOfPurchase: incomingDate,
+    costInPennies,
+    remainingAmount,
+    notes,
+    accountNum,
+    completed,
+  } = props.budgetItem;
+
   const [payeesClicked, setPayeesClicked] = useState(false);
-  const { id, item, payees, dateOfPurchase:incomingDate, costInPennies, remainingAmount, notes, accountNum } =
-    props.budgetItem;
+  const [checkCompleted, setCheckCompleted] = useState(completed);
+  const [currentlyEditing, setCurrentlyEditing] = useState(false);
 
   const amount = useMoney(costInPennies);
   const remainingObject = useMoney(remainingAmount);
   const dateOfPurchase = DateFormatter(incomingDate);
-
-  console.log(payees);
 
   let payeesToShow = [];
 
@@ -30,13 +40,33 @@ const BudgetItem = (props) => {
   };
 
   const showPayees = () => {
-    setPayeesClicked(previous => !previous);
+    setPayeesClicked((previous) => !previous);
+  };
+
+
+  const completedBoxChanged = async () => {
+    setCheckCompleted((previous) => !previous);
+    if (checkCompleted === completed) {
+      setCurrentlyEditing(true);
+    } else {
+      setCurrentlyEditing(false);
+    }
+  };
+
+  const submitEdit = async() => {
+
+    let response = await PushSomething({...props.budgetItem, completed: checkCompleted }, "edit-budget-completion");
+    if (response.ok) {
+      setCurrentlyEditing(false)
+    }
   };
 
   return (
     <Fragment>
-      <div className={classes.budgetItemDiv} onClick={showPayees}>
-        <div className={classes.itemNameDiv}>{item}</div>
+      <div className={classes.budgetItemDiv}>
+        <div className={classes.itemNameDiv} onClick={showPayees}>
+          {item}
+        </div>
         <div className={classes.dateDiv}>{dateOfPurchase}</div>
         <div
           className={classes.moneyDiv}
@@ -47,8 +77,21 @@ const BudgetItem = (props) => {
 
         <div className={classes.notesDiv}>{notes}</div>
         <div className={classes.accountNumDiv}>{accountNum}</div>
+        <div className={classes.completedDiv}>
+          <input
+            type="checkbox"
+            checked={checkCompleted}
+            // onChange={() => setCheckCompleted((previous) => !previous)}
+            onChange={completedBoxChanged}
+          />
+        </div>
         <div className={classes.editButtonDiv}>
-          <button onClick={deleteItem}>Delete</button>
+          {!currentlyEditing && <button onClick={deleteItem}>Edit</button>}
+          {currentlyEditing && (
+            <button className={classes.submitChangeButton} onClick={submitEdit}>
+              Submit?
+            </button>
+          )}
         </div>
       </div>
       {payeesClicked && <div className={classes.payeesDiv}>{payeesToShow}</div>}

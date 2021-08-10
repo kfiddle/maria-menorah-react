@@ -21,12 +21,14 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const PayeeEntry = (props) => {
+  const [checkedW9, setCheckedW9] = useState(props.payee.w9ed);
+
   let id = "";
   let firstName = "";
   let lastName = "";
   let email = "";
   let phoneNumber = "";
-  let address = '';
+  let address = "";
   let w9 = false;
 
   if (props.payee) {
@@ -36,7 +38,6 @@ const PayeeEntry = (props) => {
     email = props.payee.email;
     phoneNumber = props.payee.phoneNumber;
     address = props.payee.address;
-    w9 = props.payee.w9ed;
   }
 
   const firstNameRef = useRef();
@@ -62,18 +63,19 @@ const PayeeEntry = (props) => {
           ? phoneNumber
           : phoneNumberRef.current.value,
       email: emailRef.current.value === "" ? email : emailRef.current.value,
-      address: addressRef.current.value === '' ? address : addressRef.current.value,
-      w9ed: w9Ref.current.checked
+      address:
+        addressRef.current.value === "" ? address : addressRef.current.value,
+      // w9ed: w9Ref.current.checked,
+      w9ed: checkedW9,
     };
 
-    console.log(w9Ref.current.checked);
+    console.log(payeeToSubmit);
 
     let response = await PushSomething(payeeToSubmit, "add-payee");
     if (response.ok) {
       props.closeModal();
     }
   };
-
 
   return (
     <div className={classes.outerContainer}>
@@ -142,11 +144,10 @@ const PayeeEntry = (props) => {
                   type="checkbox"
                   id="w9Check"
                   ref={w9Ref}
-                  placeholder={w9 ? true : false}
+                  checked={checkedW9}
+                  onChange={() => setCheckedW9((previous) => !previous)}
                 />
               </div>
-
-              
 
               <div className={classes.buttonDiv}>
                 <button className={classes.button} onClick={submitEvent}>

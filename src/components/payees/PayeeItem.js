@@ -1,8 +1,7 @@
 import { Fragment, useState } from "react";
 
-
 import PushSomething from "../helperFunctions/PushSomething";
-import DateFormatter from '../helperFunctions/DateFormatter';
+import DateFormatter from "../helperFunctions/DateFormatter";
 
 import greenCheck from "../../assets/greenCheck1.jpg";
 import redCheck from "../../assets/redCheck1.jpg";
@@ -11,13 +10,13 @@ import classes from "./PayeeItem.module.css";
 import PayeeEntry from "./PayeeEntry";
 
 const PayeeItem = (props) => {
-  const [eventsClicked, setEventsClicked] = useState(false);
-  const [eventsList, setEventsList] = useState([]);
-  const [budgetItemsList, setBudgetItemsList] = useState([]);
-  const [modalEditClicked, setModalEditClicked] = useState(false);
   const { firstName, lastName, email, phoneNumber, w9ed } = props.payee;
 
-  
+  const [eventsClicked, setEventsClicked] = useState(false);
+  const [eventsList, setEventsList] = useState([]);
+  const [checkedW9, setCheckedW9] = useState(w9ed);
+  const [budgetItemsList, setBudgetItemsList] = useState([]);
+  const [modalEditClicked, setModalEditClicked] = useState(false);
 
   const openEditingModal = () => {
     setModalEditClicked(true);
@@ -44,17 +43,26 @@ const PayeeItem = (props) => {
     let finalBudgetItemsShowing = await setBudgetItemsList(finalItemsList);
   };
 
-  const eventsToShow = eventsList.map((event) => <div>{event.title}</div>);
-  const budgetItemsToShow = budgetItemsList.map(budgetItem => <div className={classes.budgetItemDiv}>
-    {budgetItem.item}
-    <div className={classes.community}>{budgetItem.community}</div>
-    <div className={classes.itemDate}>{DateFormatter(budgetItem.dateOfPurchase)}</div>
-    </div>)
+  const eventsToShow = eventsList.map((event) => (
+    <div key={Math.random()}>{event.title}</div>
+  ));
+  const budgetItemsToShow = budgetItemsList.map((budgetItem) => (
+    <div className={classes.budgetItemDiv}>
+      {budgetItem.item}
+      <div className={classes.community}>{budgetItem.community}</div>
+      <div className={classes.itemDate}>
+        {DateFormatter(budgetItem.dateOfPurchase)}
+      </div>
+    </div>
+  ));
 
   return (
     <Fragment>
-      <div onClick={clickedForEvents} className={classes.payeeItemDiv}>
-        <div className={classes.nameDiv}>{`${firstName} ${lastName}`}</div>
+      <div className={classes.payeeItemDiv}>
+        <div
+          className={classes.nameDiv}
+          onClick={clickedForEvents}
+        >{`${firstName} ${lastName}`}</div>
         <div className={classes.emailDiv}>{email}</div>
         <div className={classes.phoneDiv}>{phoneNumber}</div>
         <div className={classes.checkMarkDiv}>
@@ -70,7 +78,9 @@ const PayeeItem = (props) => {
         )}
       </div>
       {eventsClicked && <div className={classes.eventsDiv}>{eventsToShow}</div>}
-      {eventsClicked && <div className={classes.eventsDiv}>{budgetItemsToShow}</div>}
+      {eventsClicked && (
+        <div className={classes.eventsDiv}>{budgetItemsToShow}</div>
+      )}
     </Fragment>
   );
 };
