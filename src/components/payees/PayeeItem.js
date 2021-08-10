@@ -1,8 +1,8 @@
 import { Fragment, useState } from "react";
 
-import Modal from "../UI/Modal/Modal";
-import Card from "../UI/Card";
+
 import PushSomething from "../helperFunctions/PushSomething";
+import DateFormatter from '../helperFunctions/DateFormatter';
 
 import greenCheck from "../../assets/greenCheck1.jpg";
 import redCheck from "../../assets/redCheck1.jpg";
@@ -17,7 +17,7 @@ const PayeeItem = (props) => {
   const [modalEditClicked, setModalEditClicked] = useState(false);
   const { firstName, lastName, email, phoneNumber, w9ed } = props.payee;
 
-  console.log(props.payee);
+  
 
   const openEditingModal = () => {
     setModalEditClicked(true);
@@ -48,7 +48,7 @@ const PayeeItem = (props) => {
   const budgetItemsToShow = budgetItemsList.map(budgetItem => <div className={classes.budgetItemDiv}>
     {budgetItem.item}
     <div className={classes.community}>{budgetItem.community}</div>
-    <div className={classes.itemDate}>{budgetItem.dateOfPurchase}</div>
+    <div className={classes.itemDate}>{DateFormatter(budgetItem.dateOfPurchase)}</div>
     </div>)
 
   return (

@@ -33,6 +33,12 @@ input {
 .payeesDiv {
     color: midnightblue;
     font-weight: 900;
+    margin: 1rem 0 1rem 5rem;
+    cursor: pointer;
+}
+
+.payeesDiv:hover {
+  color: chartreuse;
 }
 
 .payeeListDiv {

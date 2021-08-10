@@ -7,7 +7,7 @@ import classes from "./BudgetItem.module.css";
 
 const BudgetItem = (props) => {
   const [payeesClicked, setPayeesClicked] = useState(false);
-  const { item, payees, dateOfPurchase:incomingDate, costInPennies, remainingAmount } =
+  const { item, payees, dateOfPurchase:incomingDate, costInPennies, remainingAmount, notes } =
     props.budgetItem;
 
   const amount = useMoney(costInPennies);
@@ -44,6 +44,8 @@ const BudgetItem = (props) => {
         <div
           className={classes.remainingDiv}
         >{`${remainingObject.dollars}.${remainingObject.cents}`}</div>
+
+        <div className={classes.notesDiv}>{notes}</div>
         <div className={classes.editButtonDiv}>
           <button onClick={deleteItem}>Delete</button>
         </div>

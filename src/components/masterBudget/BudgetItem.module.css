@@ -3,7 +3,7 @@
   margin: 0.5rem 6rem;
   padding: 1rem;
   display: flex;
-  width: 80%;
+  width: 90%;
   align-items: flex-end;
   box-shadow: 0 2px 4px rgba(223, 156, 156, 0.2);
   border-radius: 6px;
@@ -37,6 +37,11 @@
   font-size: small;
   font-weight: 700;
   margin: 0 0 1rem 10rem;
+}
+
+.notesDiv {
+  font-size: small;
+  margin-left: 2rem;
 }
 
 .editButtonDiv {
