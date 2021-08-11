@@ -3,7 +3,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import "./App.css";
 import Layout from "./components/UI/Layout";
-import AllEvents from "./pages/AllEvents";
+import AllFoundationItems from "./pages/AllFoundationItems";
 import AllFoundations from "./pages/AllFoundations";
 import AllPurposes from "./pages/AllPurposes";
 import AllPayees from "./pages/AllPayees";
@@ -20,11 +20,11 @@ function App() {
     <Layout>
       <Switch>
         <Route path={"/"} exact>
-          <Redirect to={"/events"} />
+          <Redirect to={"/foundation-items"} />
         </Route>
 
-        <Route path={"/events"}>
-          <AllEvents />
+        <Route path={"/foundation-items"}>
+          <AllFoundationItems />
         </Route>
         <Route path={"/foundations"}>
           <AllFoundations />

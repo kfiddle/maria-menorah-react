@@ -9,6 +9,7 @@ import PayeesList from "../payees/PayeesList";
 
 import GetAList from "../helperFunctions/GetAList";
 import PushSomething from "../helperFunctions/PushSomething";
+import PushNewOrEdit  from '../helperFunctions/PushNewOrEdit';
 
 import MoneySplitter from "../helperFunctions/MoneySplitter";
 
@@ -80,7 +81,7 @@ const EntryForm = (props) => {
     let penniesToSend = MoneySplitter(enteredMoneyRef.current.value);
 
     const dataToSubmit = {
-      title: titleRef.current.value,
+      name: titleRef.current.value,
       date: dateRef.current.value,
       purpose: enteredPurpose,
       totalCostInCents: penniesToSend,
@@ -89,7 +90,10 @@ const EntryForm = (props) => {
     };
 
     const sendData = async () => {
-      let response = await PushSomething(dataToSubmit, "add-event");
+      // let response = await PushSomething(dataToSubmit, "add-event");
+      let response = await PushNewOrEdit(dataToSubmit, 'add-or-modify-foundation-item', 'add')
+
+
       if (response.ok) {
         props.closeModal();
       }
@@ -133,7 +137,7 @@ const EntryForm = (props) => {
           <Card>
             <form className={classes.form}>
               <div className={classes.control}>
-                <label htmlFor="title">Event</label>
+                <label htmlFor="title">Foundation Item</label>
                 <input type="text" id="title" ref={titleRef} />
               </div>
 
@@ -156,7 +160,7 @@ const EntryForm = (props) => {
 
               <div className={classes.moneyAndDate}>
                 <div className={`${classes.control} ${classes.moneyDiv}`}>
-                  <label htmlFor="text">Event Cost</label>
+                  <label htmlFor="text">Cost</label>
                   <input
                     type="number"
                     id={classes.dollars}
@@ -191,7 +195,7 @@ const EntryForm = (props) => {
 
               <div className={classes.buttonDiv}>
                 <button className={classes.button} onClick={submitEvent}>
-                  Submit Event
+                  Submit Item
                 </button>
               </div>
             </form>

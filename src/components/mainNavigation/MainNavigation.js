@@ -9,13 +9,13 @@ const MainNavigation = (props) => {
       <nav className={classes.nav}>
         <ul>
           <li className={classes.navItem} onClick={props.entryClicked}>
-            Event Entry
+            Foundation Item Entry
           </li>
           <li className={classes.navItem} onClick={props.payeeEntryClicked}>
             Payee Entry
           </li>
 
-          <li className={classes.navItem}><NavLink to={'/events'}>Events</NavLink></li>
+          <li className={classes.navItem}><NavLink to={'/foundation-items'}>Foundation Items</NavLink></li>
           <li className={classes.navItem}><NavLink to={'/foundations'}>Foundations</NavLink></li>
           <li className={classes.navItem}><NavLink to={'/payees'}>Rolodex</NavLink></li>
 

@@ -3,12 +3,12 @@ import useMoney from "../../hooks/useMoney";
 import DateFormatter from "../helperFunctions/DateFormatter";
 import TransactionsToDisplay from "./transactionsToDisplay/TransactionsToDisplay";
 
-import styles from "./EventItem.module.css";
+import styles from "./FoundationItem.module.css";
 
-const EventItem = (props) => {
+const FoundationItem = (props) => {
   const [foundationsClicked, setFoundationsClicked] = useState(false);
   const [editingClicked, setEditingClicked] = useState(false);
-  const { title, date:oldDate, purpose, totalCostInCents, transactions } = props.event;
+  const { name, date:oldDate, purpose, totalCostInCents, transactions } = props.foundationItem;
 
   const money = useMoney(totalCostInCents);
   const date = DateFormatter(oldDate);
@@ -17,19 +17,19 @@ const EventItem = (props) => {
     setFoundationsClicked((previous) => !previous);
   };
 
-  const editEventClicked = () => {
+  const editFoundationItemClicked = () => {
     setEditingClicked((previous) => !previous);
   };
 
   if (!editingClicked) {
     const deleteClicked = () => {
-      props.deleteClicked(props.event);
+      props.deleteClicked(props.foundationItem);
     };
 
     return (
       <Fragment>
         <div className={styles.item} onClick={clickedForFoundations}>
-          <div className={styles.titleDiv}>{title}</div>
+          <div className={styles.titleDiv}>{name}</div>
           <div className={styles.dateDiv}>{date}</div>
           <div className={styles.purposeDiv}>{purpose.title}</div>
           <div
@@ -48,4 +48,4 @@ const EventItem = (props) => {
   }
 };
 
-export default EventItem;
+export default FoundationItem;
