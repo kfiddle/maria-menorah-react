@@ -21,7 +21,7 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const PayeeEntry = (props) => {
-  const [checkedW9, setCheckedW9] = useState(props.payee.w9ed);
+  // const [checkedW9, setCheckedW9] = useState(props.payee.w9ed);
 
   let id = "";
   let firstName = "";
@@ -38,6 +38,7 @@ const PayeeEntry = (props) => {
     email = props.payee.email;
     phoneNumber = props.payee.phoneNumber;
     address = props.payee.address;
+    w9 = props.payee.w9ed;
   }
 
   const firstNameRef = useRef();
@@ -66,7 +67,7 @@ const PayeeEntry = (props) => {
       address:
         addressRef.current.value === "" ? address : addressRef.current.value,
       // w9ed: w9Ref.current.checked,
-      w9ed: checkedW9,
+      
     };
 
     console.log(payeeToSubmit);
@@ -144,8 +145,8 @@ const PayeeEntry = (props) => {
                   type="checkbox"
                   id="w9Check"
                   ref={w9Ref}
-                  checked={checkedW9}
-                  onChange={() => setCheckedW9((previous) => !previous)}
+                  // checked={false}
+                  // onChange={() => setCheckedW9((previous) => !previous)}
                 />
               </div>
 
