@@ -4,7 +4,9 @@ import MasterBudget from "../components/masterBudget/MasterBudget";
 import styles from "./StoneGardenMaster.module.css";
 
 const HelenMaster = (props) => {
-  return <MasterBudget community={'Helen'}/>;
+
+  let monthlyAmount = 52500;
+  return <MasterBudget community={'Helen'} monthlyStartingAmount={monthlyAmount}/>;
 };
 
 export default HelenMaster;

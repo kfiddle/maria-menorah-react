@@ -13,7 +13,9 @@ const MasterBudget = (props) => {
   const [addItemClicked, setAddItemClicked] = useState(false);
 
   let community = props.community;
-  let startingAmount = 250000;
+  // let startingAmount = +props.monthlyStartingAmount;
+  let startingAmount = 52500;
+  console.log(props.monthlyStartingAmount);
 
   const chosenMonth = async (monthInt) => {
     const allItemsOfMonth = await GetAList(community + "/" + monthInt);
