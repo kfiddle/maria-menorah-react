@@ -12,8 +12,8 @@ import PayeeEntry from "./PayeeEntry";
 const PayeeItem = (props) => {
   const { firstName, lastName, email, phoneNumber, w9ed } = props.payee;
 
-  const [eventsClicked, setEventsClicked] = useState(false);
-  const [eventsList, setEventsList] = useState([]);
+  const [itemsClicked, setItemsClicked] = useState(false);
+  const [itemsList, setItemsList] = useState([]);
   const [checkedW9, setCheckedW9] = useState(w9ed);
   const [budgetItemsList, setBudgetItemsList] = useState([]);
   const [modalEditClicked, setModalEditClicked] = useState(false);
@@ -26,42 +26,42 @@ const PayeeItem = (props) => {
     setModalEditClicked(false);
   };
 
-  const clickedForEvents = async () => {
-    setEventsClicked((previous) => !previous);
-    let listOfEvents = await PushSomething(
+  const clickedForItems = async () => {
+    setItemsClicked((previous) => !previous);
+    let listOfItems = await PushSomething(
       props.payee,
-      "get-events-from-payee"
+      "get-items-from-payee"
     );
-    let finalEventsList = await listOfEvents.json();
-    let finalShowing = await setEventsList(finalEventsList);
+    let finalItemsList = await listOfItems.json();
+    let finalShowing = await setItemsList(finalItemsList);
 
-    let listOfBudgetItems = await PushSomething(
-      props.payee,
-      "get-budget-items-from-payee"
-    );
-    let finalItemsList = await listOfBudgetItems.json();
-    let finalBudgetItemsShowing = await setBudgetItemsList(finalItemsList);
+    // let listOfBudgetItems = await PushSomething(
+    //   props.payee,
+    //   "get-budget-items-from-payee"
+    // );
+    // let finalItemsList = await listOfBudgetItems.json();
+    // let finalBudgetItemsShowing = await setBudgetItemsList(finalItemsList);
   };
 
-  const eventsToShow = eventsList.map((event) => (
-    <div key={Math.random()}>{event.title}</div>
+  const itemsToShow = itemsList.map((item) => (
+    <div key={Math.random()}>{item.name}</div>
   ));
-  const budgetItemsToShow = budgetItemsList.map((budgetItem) => (
-    <div className={classes.budgetItemDiv}>
-      {budgetItem.item}
-      <div className={classes.community}>{budgetItem.community}</div>
-      <div className={classes.itemDate}>
-        {DateFormatter(budgetItem.dateOfPurchase)}
-      </div>
-    </div>
-  ));
+  // const budgetItemsToShow = budgetItemsList.map((budgetItem) => (
+  //   <div className={classes.budgetItemDiv}>
+  //     {budgetItem.item}
+  //     <div className={classes.community}>{budgetItem.community}</div>
+  //     <div className={classes.itemDate}>
+  //       {DateFormatter(budgetItem.dateOfPurchase)}
+  //     </div>
+  //   </div>
+  // ));
 
   return (
     <Fragment>
       <div className={classes.payeeItemDiv}>
         <div
           className={classes.nameDiv}
-          onClick={clickedForEvents}
+          onClick={clickedForItems}
         >{`${firstName} ${lastName}`}</div>
         <div className={classes.emailDiv}>{email}</div>
         <div className={classes.phoneDiv}>{phoneNumber}</div>
@@ -77,10 +77,10 @@ const PayeeItem = (props) => {
           <PayeeEntry payee={props.payee} closeModal={closeModal} />
         )}
       </div>
-      {eventsClicked && <div className={classes.eventsDiv}>{eventsToShow}</div>}
-      {eventsClicked && (
+      {itemsClicked && <div className={classes.eventsDiv}>{itemsToShow}</div>}
+      {/* {eventsClicked && (
         <div className={classes.eventsDiv}>{budgetItemsToShow}</div>
-      )}
+      )} */}
     </Fragment>
   );
 };
