@@ -48,6 +48,13 @@ const FoundationItem = (props) => {
       }
     };
 
+    const deleteItem = async () => {
+      let response = await PushSomething(props.foundationItem, "delete-item");
+      if (response.ok) {
+        console.log(response);
+      }
+    };
+
     const submitEdit = async () => {
       let response = await PushSomething(
         { ...props.foundationItem, completed: checkCompleted },
@@ -78,7 +85,7 @@ const FoundationItem = (props) => {
 
           {!currentlyEditing && (
             <button onClick={deleteClicked} className={styles.button}>
-              Edit
+              Delete
             </button>
           )}
           {currentlyEditing && (

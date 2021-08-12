@@ -35,26 +35,13 @@ const PayeeItem = (props) => {
     let finalItemsList = await listOfItems.json();
     let finalShowing = await setItemsList(finalItemsList);
 
-    // let listOfBudgetItems = await PushSomething(
-    //   props.payee,
-    //   "get-budget-items-from-payee"
-    // );
-    // let finalItemsList = await listOfBudgetItems.json();
-    // let finalBudgetItemsShowing = await setBudgetItemsList(finalItemsList);
+   
   };
 
   const itemsToShow = itemsList.map((item) => (
     <div key={Math.random()}>{item.name}</div>
   ));
-  // const budgetItemsToShow = budgetItemsList.map((budgetItem) => (
-  //   <div className={classes.budgetItemDiv}>
-  //     {budgetItem.item}
-  //     <div className={classes.community}>{budgetItem.community}</div>
-  //     <div className={classes.itemDate}>
-  //       {DateFormatter(budgetItem.dateOfPurchase)}
-  //     </div>
-  //   </div>
-  // ));
+ 
 
   return (
     <Fragment>

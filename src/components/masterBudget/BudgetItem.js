@@ -1,9 +1,12 @@
 import { Fragment, useState } from "react";
+
+import Modal from "../UI/Modal/Modal";
 import useMoney from "../../hooks/useMoney";
 import PushSomething from "../helperFunctions/PushSomething";
 import DateFormatter from "../helperFunctions/DateFormatter";
 
 import classes from "./BudgetItem.module.css";
+import AddItemEntry from "./AddItemEntry";
 
 const BudgetItem = (props) => {
   const {
@@ -21,7 +24,15 @@ const BudgetItem = (props) => {
   const [payeesClicked, setPayeesClicked] = useState(false);
   const [checkCompleted, setCheckCompleted] = useState(completed);
   const [currentlyEditing, setCurrentlyEditing] = useState(false);
+  const [modalEditClicked, setModalEditClicked] = useState(false);
 
+  const openEditingModal = () => {
+    setModalEditClicked(true);
+  };
+
+  const closeModal = () => {
+    setModalEditClicked(false);
+  };
   const amount = useMoney(totalCostInCents);
   const remainingObject = useMoney(remainingAmount);
   const date = DateFormatter(incomingDate);
@@ -33,7 +44,7 @@ const BudgetItem = (props) => {
   ));
 
   const deleteItem = async () => {
-    let response = await PushSomething(props.budgetItem, "delete-budget-item");
+    let response = await PushSomething(props.budgetItem, "delete-item");
     if (response.ok) {
       console.log(response);
     }
@@ -86,7 +97,9 @@ const BudgetItem = (props) => {
           />
         </div>
         <div className={classes.editButtonDiv}>
-          {!currentlyEditing && <button onClick={deleteItem}>Edit</button>}
+          {!currentlyEditing && (
+            <button onClick={openEditingModal}>Delete</button>
+          )}
           {currentlyEditing && (
             <button className={classes.submitChangeButton} onClick={submitEdit}>
               Submit?
@@ -94,6 +107,12 @@ const BudgetItem = (props) => {
           )}
         </div>
       </div>
+      {modalEditClicked && (
+        <Modal closeModal={closeModal}>
+          <div>Just confirming, you're ok with deleting {name}?</div>
+          <button onClick={deleteItem}>Confirm Delete</button>
+        </Modal>
+      )}
       {payeesClicked && <div className={classes.payeesDiv}>{payeesToShow}</div>}
     </Fragment>
   );
