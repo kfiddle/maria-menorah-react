@@ -5,6 +5,7 @@ import PayeesList from "../payees/PayeesList";
 import styles from "./addItemEntry.module.css";
 import MoneySplitter from "../helperFunctions/MoneySplitter";
 import PushSomething from "../helperFunctions/PushSomething";
+import PushNewOrEdit from "../helperFunctions/PushNewOrEdit";
 import GetAList from "../helperFunctions/GetAList";
 
 const AddItemEntry = (props) => {
@@ -46,15 +47,22 @@ const AddItemEntry = (props) => {
 
     let itemToSubmit = {
       community: community,
-      item: itemRef.current.value,
+      name: itemRef.current.value,
       payees: clickedPayeeList,
-      dateOfPurchase: dateRef.current.value,
-      costInPennies: penniesToSend,
+      date: dateRef.current.value,
+      totalCostInCents: penniesToSend,
       notes: notesRef.current.value,
       accountNum: accountNumRef.current.value,
     };
 
-    const response = await PushSomething(itemToSubmit, "add-budget-item");
+    // const response = await PushSomething(itemToSubmit, "add-budget-item");
+
+    const response = await PushNewOrEdit(
+      itemToSubmit,
+      "add-or-modify-master-budget-item",
+      "add"
+    );
+
     if (response.ok) {
       props.closeModal();
     }

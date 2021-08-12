@@ -18,7 +18,7 @@ const AllFoundations = () => {
     };
 
     getFoundations();
-  }, []);
+  }, [foundationsList]);
 
   return (
     <Fragment>

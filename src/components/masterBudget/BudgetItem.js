@@ -8,10 +8,10 @@ import classes from "./BudgetItem.module.css";
 const BudgetItem = (props) => {
   const {
     id,
-    item,
+    name,
     payees,
-    dateOfPurchase: incomingDate,
-    costInPennies,
+    date: incomingDate,
+    totalCostInCents,
     remainingAmount,
     notes,
     accountNum,
@@ -22,9 +22,9 @@ const BudgetItem = (props) => {
   const [checkCompleted, setCheckCompleted] = useState(completed);
   const [currentlyEditing, setCurrentlyEditing] = useState(false);
 
-  const amount = useMoney(costInPennies);
+  const amount = useMoney(totalCostInCents);
   const remainingObject = useMoney(remainingAmount);
-  const dateOfPurchase = DateFormatter(incomingDate);
+  const date = DateFormatter(incomingDate);
 
   let payeesToShow = [];
 
@@ -65,9 +65,9 @@ const BudgetItem = (props) => {
     <Fragment>
       <div className={classes.budgetItemDiv}>
         <div className={classes.itemNameDiv} onClick={showPayees}>
-          {item}
+          {name}
         </div>
-        <div className={classes.dateDiv}>{dateOfPurchase}</div>
+        <div className={classes.dateDiv}>{date}</div>
         <div
           className={classes.moneyDiv}
         >{`${amount.dollars}.${amount.cents}`}</div>

@@ -21,7 +21,7 @@ const MasterBudget = (props) => {
   };
 
   const listAddingInRemaining = budgetItemsList.map((item) => {
-    startingAmount -= item.costInPennies;
+    startingAmount -= item.totalCostInCents;
     return { ...item, remainingAmount: startingAmount };
   });
 

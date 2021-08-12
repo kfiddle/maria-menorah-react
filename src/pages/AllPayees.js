@@ -13,7 +13,7 @@ const AllPayees = (props) => {
     };
 
     getPayees();
-  }, []);
+  }, [payeesList]);
 
   return <PayeesList list={payeesList} />;
 };
