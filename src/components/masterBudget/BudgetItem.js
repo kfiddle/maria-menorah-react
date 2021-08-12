@@ -43,7 +43,6 @@ const BudgetItem = (props) => {
     setPayeesClicked((previous) => !previous);
   };
 
-
   const completedBoxChanged = async () => {
     setCheckCompleted((previous) => !previous);
     if (checkCompleted === completed) {
@@ -53,11 +52,13 @@ const BudgetItem = (props) => {
     }
   };
 
-  const submitEdit = async() => {
-
-    let response = await PushSomething({...props.budgetItem, completed: checkCompleted }, "edit-budget-completion");
+  const submitEdit = async () => {
+    let response = await PushSomething(
+      { ...props.budgetItem, completed: checkCompleted },
+      "edit-item-completion"
+    );
     if (response.ok) {
-      setCurrentlyEditing(false)
+      setCurrentlyEditing(false);
     }
   };
 
@@ -81,7 +82,6 @@ const BudgetItem = (props) => {
           <input
             type="checkbox"
             checked={checkCompleted}
-            // onChange={() => setCheckCompleted((previous) => !previous)}
             onChange={completedBoxChanged}
           />
         </div>

@@ -33,3 +33,7 @@ button:hover {
   background: rgb(240, 46, 104);
 }
 
+.submitChangeButton {
+  background-color: blue;
+  width: fit-content;
+}

@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import MonthHeader from "../monthHeader/MonthHeader";
 import BudgetItem from "./BudgetItem";
 
@@ -11,16 +11,20 @@ import styles from "./MasterBudget.module.css";
 const MasterBudget = (props) => {
   const [budgetItemsList, setBudgetItemsList] = useState([]);
   const [addItemClicked, setAddItemClicked] = useState(false);
+  const [chosenMonthInt, setChosenMonthInt] = useState(0);
 
   let community = props.community;
-  // let startingAmount = +props.monthlyStartingAmount;
-  let startingAmount = 52500;
-  console.log(props.monthlyStartingAmount);
+  let startingAmount = props.monthlyStartingAmount;
 
   const chosenMonth = async (monthInt) => {
+    setChosenMonthInt(monthInt);
     const allItemsOfMonth = await GetAList(community + "/" + monthInt);
     setBudgetItemsList(allItemsOfMonth);
   };
+
+  useEffect(() => {
+    chosenMonth(chosenMonthInt);
+  }, [budgetItemsList]);
 
   const listAddingInRemaining = budgetItemsList.map((item) => {
     startingAmount -= item.totalCostInCents;
