@@ -21,7 +21,7 @@ const ModalOverlay = (props) => {
 const portalElement = document.getElementById("overlays");
 
 const PayeeEntry = (props) => {
-  // const [checkedW9, setCheckedW9] = useState(props.payee.w9ed);
+  const [checkedW9, setCheckedW9] = useState(false);
 
   let id = "";
   let firstName = "";
@@ -41,8 +41,7 @@ const PayeeEntry = (props) => {
     w9 = props.payee.w9ed;
   }
 
-  const firstNameRef = useRef();
-  const lastNameRef = useRef();
+  const fullNameRef = useRef();
   const phoneNumberRef = useRef();
   const emailRef = useRef();
   const w9Ref = useRef();
@@ -51,14 +50,15 @@ const PayeeEntry = (props) => {
   const submitEvent = async (event) => {
     event.preventDefault();
 
+    const names = fullNameRef.current.value.split(" ");
+    const inputtedFirstName = names[0];
+    const inputtedLastName = names[names.length - 1];
+
     const payeeToSubmit = {
       id,
       firstName:
-        firstNameRef.current.value === ""
-          ? firstName
-          : firstNameRef.current.value,
-      lastName:
-        lastNameRef.current.value === "" ? lastName : lastNameRef.current.value,
+        fullNameRef.current.value === "" ? firstName : inputtedFirstName,
+      lastName: fullNameRef.current.value === "" ? lastName : inputtedLastName,
       phoneNumber:
         phoneNumberRef.current.value === ""
           ? phoneNumber
@@ -66,8 +66,7 @@ const PayeeEntry = (props) => {
       email: emailRef.current.value === "" ? email : emailRef.current.value,
       address:
         addressRef.current.value === "" ? address : addressRef.current.value,
-      // w9ed: w9Ref.current.checked,
-      
+      w9ed: w9Ref.current.checked,
     };
 
     console.log(payeeToSubmit);
@@ -90,22 +89,11 @@ const PayeeEntry = (props) => {
           <Card>
             <form className={classes.innerContainer}>
               <div className={classes.control}>
-                <label>First Name</label>
+                <label>Full Name</label>
                 <input
                   type="text"
-                  id="firstName"
-                  ref={firstNameRef}
-                  placeholder={firstName}
-                />
-              </div>
-
-              <div className={classes.control}>
-                <label>Last Name</label>
-                <input
-                  type="text"
-                  id="lastName"
-                  ref={lastNameRef}
-                  placeholder={lastName}
+                  ref={fullNameRef}
+                  placeholder={`${firstName} ${lastName}`}
                 />
               </div>
 
@@ -145,7 +133,7 @@ const PayeeEntry = (props) => {
                   type="checkbox"
                   id="w9Check"
                   ref={w9Ref}
-                  // checked={false}
+                  defaultChecked={w9}
                   // onChange={() => setCheckedW9((previous) => !previous)}
                 />
               </div>
