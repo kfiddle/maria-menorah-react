@@ -1,22 +1,4 @@
-.foundationsDiv {
-    display: flex;
-  }
-  
-  .costDiv {
-    color: rgb(209, 36, 36);
-  }
-  
-  .foundationName {
-    width: 30%;
-    padding-right: 2rem;
-    font-weight: 700;
-    color:blue;
-    text-align: right;
-  }
-  
-  .foundationPennies {
-    width: 30%;
-    font-weight: 700;
-    color:green;
-  }
-  
+
+.container {
+  width: 50%;
+}

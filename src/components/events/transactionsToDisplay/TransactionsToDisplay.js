@@ -6,7 +6,7 @@ const TransactionsToDisplay = (props) => {
     <TransactionToShow transaction={transaction} key={transaction.id} />
   ));
 
-  return <div>{displayableTransactions}</div>;
+  return <div className={styles.container}>{displayableTransactions}</div>;
 };
 
 export default TransactionsToDisplay;

@@ -37,3 +37,8 @@ button:hover {
   background-color: blue;
   width: fit-content;
 }
+
+
+.transAndPayeesDiv {
+  display: flex;
+}

@@ -2,8 +2,9 @@ import { Fragment, useState } from "react";
 import useMoney from "../../hooks/useMoney";
 import PushSomething from "../helperFunctions/PushSomething";
 import DateFormatter from "../helperFunctions/DateFormatter";
-import TransactionsToDisplay from "./transactionsToDisplay/TransactionsToDisplay";
 
+import TransactionsToDisplay from "./transactionsToDisplay/TransactionsToDisplay";
+import PayeesToDisplay from "./payeesToDisplay/PayeesToDisplay";
 
 import styles from "./FoundationItem.module.css";
 
@@ -14,6 +15,7 @@ const FoundationItem = (props) => {
     purpose,
     totalCostInCents,
     transactions,
+    payees,
     notes,
     completed,
   } = props.foundationItem;
@@ -45,13 +47,6 @@ const FoundationItem = (props) => {
         setCurrentlyEditing(true);
       } else {
         setCurrentlyEditing(false);
-      }
-    };
-
-    const deleteItem = async () => {
-      let response = await PushSomething(props.foundationItem, "delete-item");
-      if (response.ok) {
-        console.log(response);
       }
     };
 
@@ -95,7 +90,10 @@ const FoundationItem = (props) => {
           )}
         </div>
         {foundationsClicked && (
-          <TransactionsToDisplay transactions={transactions} />
+          <div className={styles.transAndPayeesDiv}>
+            <TransactionsToDisplay transactions={transactions} />
+            <PayeesToDisplay payees={payees} />
+          </div>
         )}
       </Fragment>
     );
