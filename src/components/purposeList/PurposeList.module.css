@@ -1,0 +1,9 @@
+
+.purposeListDiv {
+    position: fixed;
+    width: 100%;
+    margin-left: 0;
+    transform: translateX(25%);
+    max-height: 25rem;
+    overflow: auto;
+  }
