@@ -4,5 +4,15 @@
 }
 
 .leftOverHeader {
-    width: 25%;
+  width: 25%;
+}
+
+.addFoundationDiv {
+  display: flex;
+  justify-content: flex-end;
+  width: 80%;
+}
+
+.addButton {
+  width: fit-content;
 }

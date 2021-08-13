@@ -55,8 +55,6 @@ const AddItemEntry = (props) => {
       accountNum: accountNumRef.current.value,
     };
 
-    // const response = await PushSomething(itemToSubmit, "add-budget-item");
-
     const response = await PushNewOrEdit(
       itemToSubmit,
       "add-or-modify-master-budget-item",

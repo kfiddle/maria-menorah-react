@@ -1,0 +1,45 @@
+
+input {
+    margin: 1rem 2rem;
+}
+
+.purposeDropdown{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    background: lightgrey;
+    margin: 1rem 2rem;
+    height: 2rem;
+}
+
+.purposeText {
+    color: midnightblue;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.purposeText:hover {
+    color: darkred;
+}
+
+.purposeListDiv {
+    position: fixed;
+    width: 100%;
+    margin-left: 0;
+    transform: translateX(25%);
+    max-height: 25rem;
+    overflow: auto;
+  }
+
+
+.buttonDiv {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.submitButton {
+  width: fit-content;
+}
