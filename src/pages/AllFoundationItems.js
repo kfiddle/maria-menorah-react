@@ -26,7 +26,7 @@ const AllFoundationItems = (props) => {
     };
 
     getListOfFoundationItems();
-  }, []);
+  }, [foundationItemsList]);
 
   return (
     <Fragment>

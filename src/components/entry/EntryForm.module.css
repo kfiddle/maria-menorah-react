@@ -109,6 +109,8 @@
 
 .payeesDiv h3 {
   margin-left: 5rem;
+  cursor: pointer;
+
 }
 
 .payeesDiv h3:hover {
@@ -146,7 +148,7 @@
 }
 
 #dateInput {
-  width: 40%;
+  width: 50%;
   margin: 1rem 0 1rem 5rem;
 }
 

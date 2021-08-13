@@ -51,6 +51,7 @@
 
 .confirmButton {
   background: red;
+  width: fit-content;
 }
 
 .confirmButton:hover {
