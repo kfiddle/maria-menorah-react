@@ -110,7 +110,6 @@
 .payeesDiv h3 {
   margin-left: 5rem;
   cursor: pointer;
-
 }
 
 .payeesDiv h3:hover {
@@ -171,4 +170,14 @@
 
 .purposeDiv li:hover {
   color: rgb(226, 66, 167);
+}
+
+.notesDiv {
+  display: flex;
+  width: 65%;
+  margin: 2rem 4rem;
+}
+
+.notesDiv label {
+  margin-top: 1rem;
 }

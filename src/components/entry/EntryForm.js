@@ -44,6 +44,7 @@ const EntryForm = (props) => {
   const titleRef = useRef();
   const dateRef = useRef();
   const enteredMoneyRef = useRef();
+  const notesRef = useRef();
 
   useEffect(() => {
     const getPurposes = async () => {
@@ -87,12 +88,11 @@ const EntryForm = (props) => {
       totalCostInCents: penniesToSend,
       transactions: transactionList,
       payees: clickedPayeeList,
+      notes: notesRef.current.value
     };
 
     const sendData = async () => {
-      // let response = await PushSomething(dataToSubmit, "add-event");
       let response = await PushNewOrEdit(dataToSubmit, 'add-or-modify-foundation-item', 'add')
-
 
       if (response.ok) {
         props.closeModal();
@@ -191,6 +191,11 @@ const EntryForm = (props) => {
                     />
                   )}
                 </div>
+              </div>
+
+              <div className={`${classes.control} ${classes.notesDiv}`}>
+                <label htmlFor="title">Notes</label>
+                <input type="text" ref={notesRef} />
               </div>
 
               <div className={classes.buttonDiv}>

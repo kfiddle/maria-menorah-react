@@ -6,7 +6,7 @@ import DateFormatter from "../helperFunctions/DateFormatter";
 import TransactionsToDisplay from "./transactionsToDisplay/TransactionsToDisplay";
 import PayeesToDisplay from "./payeesToDisplay/PayeesToDisplay";
 
-import styles from "./FoundationItem.module.css";
+import styles from "./EventFoundationItem.module.css";
 
 const FoundationItem = (props) => {
   const {
@@ -69,6 +69,8 @@ const FoundationItem = (props) => {
           <div
             className={styles.costDiv}
           >{`${money.dollars}.${money.cents}`}</div>
+
+          <div className={styles.notesDiv}>{notes}</div>
 
           <div className={styles.completedDiv}>
             <input
