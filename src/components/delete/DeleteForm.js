@@ -24,9 +24,22 @@ const DeleteForm = (props) => {
   const { id, name, date } = props.eventToDelete;
 
   const sendDeleteRequest = async () => {
-    let response = await PushSomething(props.eventToDelete, "delete-item");
+    let response = await PushSomething(
+      props.eventToDelete,
+      "delete-foundation-item"
+    );
     if (response.ok) {
       props.closeModal();
+    }
+
+    for (let transaction of props.eventToDelete.transactions) {
+      let transactResponse = await PushSomething(
+        transaction,
+        "delete-transaction"
+      );
+      if (transactResponse.ok) {
+        console.log("got it");
+      }
     }
   };
 
