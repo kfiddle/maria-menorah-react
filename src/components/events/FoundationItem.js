@@ -7,6 +7,7 @@ import TransactionsToDisplay from "./transactionsToDisplay/TransactionsToDisplay
 import PayeesToDisplay from "./payeesToDisplay/PayeesToDisplay";
 
 import styles from "./EventFoundationItem.module.css";
+import EntryForm from "../entry/EntryForm";
 
 const FoundationItem = (props) => {
   const {
@@ -24,6 +25,7 @@ const FoundationItem = (props) => {
   const [checkCompleted, setCheckCompleted] = useState(completed);
   const [currentlyEditing, setCurrentlyEditing] = useState(false);
   const [editingClicked, setEditingClicked] = useState(false);
+  const [editingModalOpen, setEditingModalOpen] = useState(false);
 
   const money = useMoney(totalCostInCents);
   const date = DateFormatter(oldDate);
@@ -37,8 +39,14 @@ const FoundationItem = (props) => {
   };
 
   if (!editingClicked) {
-    const deleteClicked = () => {
-      props.deleteClicked(props.foundationItem);
+    const editClicked = () => {
+      // props.deleteClicked(props.foundationItem);
+
+      setEditingModalOpen(true);
+    };
+
+    const closeModal = () => {
+      setEditingModalOpen(false);
     };
 
     const completedBoxChanged = async () => {
@@ -81,8 +89,8 @@ const FoundationItem = (props) => {
           </div>
 
           {!currentlyEditing && (
-            <button onClick={deleteClicked} className={styles.button}>
-              Delete
+            <button onClick={editClicked} className={styles.button}>
+              Edit
             </button>
           )}
           {currentlyEditing && (
@@ -96,6 +104,13 @@ const FoundationItem = (props) => {
             <TransactionsToDisplay transactions={transactions} />
             <PayeesToDisplay payees={payees} />
           </div>
+        )}
+
+        {editingModalOpen && (
+          <EntryForm
+            foundationItem={props.foundationItem}
+            closeModal={closeModal}
+          />
         )}
       </Fragment>
     );

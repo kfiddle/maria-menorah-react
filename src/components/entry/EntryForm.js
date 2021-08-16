@@ -41,6 +41,26 @@ const EntryForm = (props) => {
 
   const [transactionList, setTransactionList] = useState([]);
 
+  let name = "";
+  let date = "";
+  let purpose = "";
+  let totalCostInCents = "";
+  let transactions = "";
+  let payees = "";
+  let notes = "";
+  let completed = "";
+
+  if (props.foundationItem) {
+    name = props.foundationItem.name;
+    date = props.foundationItem.date;
+    purpose = props.foundationItem.purpose;
+    totalCostInCents = props.foundationItem.totalCostInCents;
+    transactions = props.foundationItem.transactions;
+    payees = props.foundationItem.payees;
+    notes = props.foundationItem.notes;
+    completed = props.foundationItem.completed;
+  }
+
   const titleRef = useRef();
   const dateRef = useRef();
   const enteredMoneyRef = useRef();
@@ -142,7 +162,7 @@ const EntryForm = (props) => {
             <form className={classes.form}>
               <div className={classes.control}>
                 <label htmlFor="title">Foundation Item</label>
-                <input type="text" id="title" ref={titleRef} />
+                <input type="text" id="title" ref={titleRef} placeholder={name} />
               </div>
 
               <div className={classes.control}>
@@ -169,6 +189,7 @@ const EntryForm = (props) => {
                     type="number"
                     id={classes.dollars}
                     ref={enteredMoneyRef}
+                    placeholder={totalCostInCents}
                   />
                 </div>
 
