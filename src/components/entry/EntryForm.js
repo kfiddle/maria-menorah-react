@@ -9,7 +9,7 @@ import PayeesList from "../payees/PayeesList";
 
 import GetAList from "../helperFunctions/GetAList";
 import PushSomething from "../helperFunctions/PushSomething";
-import PushNewOrEdit  from '../helperFunctions/PushNewOrEdit';
+import PushNewOrEdit from "../helperFunctions/PushNewOrEdit";
 
 import MoneySplitter from "../helperFunctions/MoneySplitter";
 
@@ -88,11 +88,15 @@ const EntryForm = (props) => {
       totalCostInCents: penniesToSend,
       transactions: transactionList,
       payees: clickedPayeeList,
-      notes: notesRef.current.value
+      notes: notesRef.current.value,
     };
 
     const sendData = async () => {
-      let response = await PushNewOrEdit(dataToSubmit, 'add-or-modify-foundation-item', 'add')
+      let response = await PushNewOrEdit(
+        dataToSubmit,
+        "add-or-modify-foundation-item",
+        "add"
+      );
 
       if (response.ok) {
         props.closeModal();
