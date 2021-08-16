@@ -48,17 +48,27 @@ const EntryForm = (props) => {
   let transactions = "";
   let payees = "";
   let notes = "";
-  let completed = "";
 
   if (props.foundationItem) {
+    let cost = props.foundationItem.totalCostInCents;
+
+    const costToDisplay = () => {
+      let dollars = ~~(cost / 100);
+      let cents = cost % 100;
+      if (cents < 10) {
+        return dollars + "." + cents + "0";
+      } else {
+        return dollars + "." + cents;
+      }
+    };
+
     name = props.foundationItem.name;
     date = props.foundationItem.date;
     purpose = props.foundationItem.purpose;
-    totalCostInCents = props.foundationItem.totalCostInCents;
+    totalCostInCents = costToDisplay();
     transactions = props.foundationItem.transactions;
     payees = props.foundationItem.payees;
     notes = props.foundationItem.notes;
-    completed = props.foundationItem.completed;
   }
 
   const titleRef = useRef();
@@ -101,21 +111,36 @@ const EntryForm = (props) => {
 
     let penniesToSend = MoneySplitter(enteredMoneyRef.current.value);
 
-    const dataToSubmit = {
-      name: titleRef.current.value,
-      date: dateRef.current.value,
-      purpose: enteredPurpose,
-      totalCostInCents: penniesToSend,
-      transactions: transactionList,
-      payees: clickedPayeeList,
-      notes: notesRef.current.value,
-    };
-
     const sendData = async () => {
+      let dataToSubmit = {};
+      if (!props.foundationItem) {
+        dataToSubmit = {
+          name: titleRef.current.value,
+          date: dateRef.current.value,
+          purpose: enteredPurpose,
+          totalCostInCents: penniesToSend,
+          transactions: transactionList,
+          payees: clickedPayeeList,
+          notes: notesRef.current.value,
+        };
+      } else {
+        dataToSubmit = {
+          id: props.foundationItem.id,
+          name: titleRef.current.value === null? name: titleRef.current.value,
+          date: dateRef.current.value === null? date: dateRef.current.value,
+          purpose: enteredPurpose === null? purpose : enteredPurpose,
+          totalCostInCents: penniesToSend === null? props.foundationItem.totalCostInCents: penniesToSend,
+          transactions: transactionList,
+          payees: clickedPayeeList,
+          notes: notesRef.current.value,
+        };
+      }
+      let type; 
+      props.foundationItem ? type = 'modify' : type = 'add';
       let response = await PushNewOrEdit(
         dataToSubmit,
         "add-or-modify-foundation-item",
-        "add"
+        type
       );
 
       if (response.ok) {
@@ -162,7 +187,12 @@ const EntryForm = (props) => {
             <form className={classes.form}>
               <div className={classes.control}>
                 <label htmlFor="title">Foundation Item</label>
-                <input type="text" id="title" ref={titleRef} placeholder={name} />
+                <input
+                  type="text"
+                  id="title"
+                  ref={titleRef}
+                  placeholder={name}
+                />
               </div>
 
               <div className={classes.control}>
@@ -195,7 +225,12 @@ const EntryForm = (props) => {
 
                 <div className={`${classes.control} ${classes.moneyDiv}`}>
                   <label htmlFor="date">Date</label>
-                  <input type="date" id={classes.dateInput} ref={dateRef} />
+                  <input
+                    type="date"
+                    id={classes.dateInput}
+                    ref={dateRef}
+                    defaultValue={date}
+                  />
                 </div>
               </div>
 
@@ -220,7 +255,7 @@ const EntryForm = (props) => {
 
               <div className={`${classes.control} ${classes.notesDiv}`}>
                 <label htmlFor="title">Notes</label>
-                <input type="text" ref={notesRef} />
+                <input type="text" ref={notesRef} placeholder={notes} />
               </div>
 
               <div className={classes.buttonDiv}>

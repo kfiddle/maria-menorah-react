@@ -11,6 +11,7 @@ import EntryForm from "../entry/EntryForm";
 
 const FoundationItem = (props) => {
   const {
+    id,
     name,
     date: oldDate,
     purpose,
