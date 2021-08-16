@@ -7,6 +7,7 @@ import MoneySplitter from "../helperFunctions/MoneySplitter";
 import PushSomething from "../helperFunctions/PushSomething";
 import PushNewOrEdit from "../helperFunctions/PushNewOrEdit";
 import GetAList from "../helperFunctions/GetAList";
+import ReceivedCentsSplitter from "../helperFunctions/ReceivedCentsSplitter";
 
 const AddItemEntry = (props) => {
   const [payeeDropdownClicked, setPayeeDropdownClicked] = useState(false);
@@ -15,7 +16,21 @@ const AddItemEntry = (props) => {
 
   const community = props.community;
 
-  const itemRef = useRef();
+  let name = "";
+  let date = "";
+  let cost = "";
+  let accountNum = "";
+  let notes = "";
+
+  if (props.masterBudgetItem) {
+    name = props.masterBudgetItem.name;
+    date = props.masterBudgetItem.date;
+    cost = ReceivedCentsSplitter(props.masterBudgetItem.totalCostInCents);
+    accountNum = props.masterBudgetItem.accountNum;
+    notes = props.masterBudgetItem.notes;
+  }
+
+  const nameRef = useRef();
   const dateRef = useRef();
   const costRef = useRef();
   const notesRef = useRef();
@@ -47,7 +62,7 @@ const AddItemEntry = (props) => {
 
     let itemToSubmit = {
       community: community,
-      name: itemRef.current.value,
+      name: nameRef.current.value,
       payees: clickedPayeeList,
       date: dateRef.current.value,
       totalCostInCents: penniesToSend,
@@ -70,7 +85,7 @@ const AddItemEntry = (props) => {
     <Card>
       <div className={styles.outerDiv}>
         <label className={styles.text}>Item</label>
-        <input ref={itemRef} />
+        <input ref={nameRef} placeholder={name} />
 
         <div className={styles.payeesDiv} onClick={openPayeeDropdown}>
           Payees?
@@ -88,25 +103,33 @@ const AddItemEntry = (props) => {
         )}
 
         <label className={styles.text}>Date</label>
-        <input type="date" ref={dateRef} />
+        <input type="date" ref={dateRef} defaultValue={date} />
 
         <div className={styles.costAndAccountNumDiv}>
           <label className={styles.text}>Cost</label>
-          <input type="number" className={styles.dollarsInput} ref={costRef} />
+          <input type="number" className={styles.dollarsInput} ref={costRef} placeholder={cost}/>
 
           <label className={styles.text}>Account</label>
           <input
             type="text"
             className={styles.accountNumInput}
             ref={accountNumRef}
+            placeholder={accountNum}
           />
         </div>
 
         <label className={styles.text}>Notes</label>
-        <input type="text" className={styles.notesInput} ref={notesRef} />
+        <input
+          type="text"
+          className={styles.notesInput}
+          ref={notesRef}
+          placeholder={notes}
+        />
 
         <div className={styles.submitButtonDiv}>
-          <button onClick={submitItem}>Submit Item</button>
+          <button onClick={submitItem} className={styles.submitButton}>
+            Submit Item
+          </button>
         </div>
       </div>
     </Card>

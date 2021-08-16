@@ -10,6 +10,7 @@ import PayeesList from "../payees/PayeesList";
 import GetAList from "../helperFunctions/GetAList";
 import PushSomething from "../helperFunctions/PushSomething";
 import PushNewOrEdit from "../helperFunctions/PushNewOrEdit";
+import ReceivedCentsSplitter from "../helperFunctions/ReceivedCentsSplitter";
 
 import MoneySplitter from "../helperFunctions/MoneySplitter";
 
@@ -52,20 +53,10 @@ const EntryForm = (props) => {
   if (props.foundationItem) {
     let cost = props.foundationItem.totalCostInCents;
 
-    const costToDisplay = () => {
-      let dollars = ~~(cost / 100);
-      let cents = cost % 100;
-      if (cents < 10) {
-        return dollars + "." + cents + "0";
-      } else {
-        return dollars + "." + cents;
-      }
-    };
-
     name = props.foundationItem.name;
     date = props.foundationItem.date;
     purpose = props.foundationItem.purpose;
-    totalCostInCents = costToDisplay();
+    totalCostInCents = ReceivedCentsSplitter(cost);
     transactions = props.foundationItem.transactions;
     payees = props.foundationItem.payees;
     notes = props.foundationItem.notes;

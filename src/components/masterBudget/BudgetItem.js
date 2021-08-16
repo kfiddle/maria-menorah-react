@@ -98,7 +98,7 @@ const BudgetItem = (props) => {
         </div>
         <div className={classes.editButtonDiv}>
           {!currentlyEditing && (
-            <button onClick={openEditingModal}>Delete</button>
+            <button onClick={openEditingModal}>Edit</button>
           )}
           {currentlyEditing && (
             <button className={classes.submitChangeButton} onClick={submitEdit}>
@@ -109,9 +109,13 @@ const BudgetItem = (props) => {
       </div>
       {modalEditClicked && (
         <Modal closeModal={closeModal}>
-          <div>Just confirming, you're ok with deleting {name}?</div>
-          <button onClick={deleteItem}>Confirm Delete</button>
-        </Modal>
+
+        <AddItemEntry masterBudgetItem={props.budgetItem}/>
+
+           {/* <div>Just confirming, you're ok with deleting {name}?</div>
+          <button onClick={deleteItem}>Confirm Delete</button>  */}
+
+         </Modal>
       )}
       {payeesClicked && <div className={classes.payeesDiv}>{payeesToShow}</div>}
     </Fragment>

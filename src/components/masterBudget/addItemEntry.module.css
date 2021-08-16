@@ -59,3 +59,13 @@ input {
   max-height: 25rem;
   overflow: auto;
 }
+
+.submitButton {
+  width: fit-content;
+  padding: 0 1rem;
+}
+
+.submitButton:hover {
+  color: chartreuse;
+  background: midnightblue;
+}
