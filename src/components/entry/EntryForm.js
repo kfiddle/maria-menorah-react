@@ -126,7 +126,7 @@ const EntryForm = (props) => {
       } else {
         dataToSubmit = {
           id: props.foundationItem.id,
-          name: titleRef.current.value === null? name: titleRef.current.value,
+          name: titleRef.current.value,
           date: dateRef.current.value === null? date: dateRef.current.value,
           purpose: enteredPurpose === null? purpose : enteredPurpose,
           totalCostInCents: penniesToSend === null? props.foundationItem.totalCostInCents: penniesToSend,
