@@ -58,7 +58,7 @@ const AddItemEntry = (props) => {
 
   const submitItem = async () => {
     let penniesToSend = MoneySplitter(costRef.current.value);
-    console.log(penniesToSend);
+    let type = "add";
 
     let itemToSubmit = {
       community: community,
@@ -70,10 +70,25 @@ const AddItemEntry = (props) => {
       accountNum: accountNumRef.current.value,
     };
 
+    if (props.masterBudgetItem) {
+      type = "modify";
+
+      itemToSubmit = {
+        id: props.masterBudgetItem.id,
+        community: community,
+        name: nameRef.current.value,
+        payees: clickedPayeeList,
+        date: dateRef.current.value,
+        totalCostInCents: penniesToSend,
+        notes: notesRef.current.value,
+        accountNum: accountNumRef.current.value,
+      };
+    }
+
     const response = await PushNewOrEdit(
       itemToSubmit,
       "add-or-modify-master-budget-item",
-      "add"
+      type
     );
 
     if (response.ok) {
@@ -107,7 +122,12 @@ const AddItemEntry = (props) => {
 
         <div className={styles.costAndAccountNumDiv}>
           <label className={styles.text}>Cost</label>
-          <input type="number" className={styles.dollarsInput} ref={costRef} placeholder={cost}/>
+          <input
+            type="number"
+            className={styles.dollarsInput}
+            ref={costRef}
+            placeholder={cost}
+          />
 
           <label className={styles.text}>Account</label>
           <input
