@@ -13,6 +13,7 @@ const AddItemEntry = (props) => {
   const [payeeDropdownClicked, setPayeeDropdownClicked] = useState(false);
   const [payeesList, setPayeesList] = useState([]);
   const [clickedPayeeList, setClickedPayeeList] = useState([]);
+  const [deleteButtonClicked, setDeleteButtonClicked] = useState(false);
 
   const community = props.community;
 
@@ -96,6 +97,19 @@ const AddItemEntry = (props) => {
     }
   };
 
+  const deleteButtonClickHandler = async() => {
+    setDeleteButtonClicked((previous) => !previous);
+    if (deleteButtonClicked) {
+      const response = await PushSomething(
+        props.masterBudgetItem,
+        "delete-item"
+      );
+      if (response.ok) {
+        props.closeModal();
+      }
+    }
+  };
+
   return (
     <Card>
       <div className={styles.outerDiv}>
@@ -146,10 +160,19 @@ const AddItemEntry = (props) => {
           placeholder={notes}
         />
 
-        <div className={styles.submitButtonDiv}>
+        <div className={styles.buttonsDiv}>
           <button onClick={submitItem} className={styles.submitButton}>
             Submit Item
           </button>
+
+          {props.masterBudgetItem && (
+            <button
+              onClick={deleteButtonClickHandler}
+              className={styles.deleteButton}
+            >
+              {!deleteButtonClicked ? "Delete Item" : "Are You Sure?"}
+            </button>
+          )}
         </div>
       </div>
     </Card>

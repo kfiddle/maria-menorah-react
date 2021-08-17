@@ -109,13 +109,11 @@ const BudgetItem = (props) => {
       </div>
       {modalEditClicked && (
         <Modal closeModal={closeModal}>
-
-        <AddItemEntry masterBudgetItem={props.budgetItem} closeModal={closeModal}/>
-
-           {/* <div>Just confirming, you're ok with deleting {name}?</div>
-          <button onClick={deleteItem}>Confirm Delete</button>  */}
-
-         </Modal>
+          <AddItemEntry
+            masterBudgetItem={props.budgetItem}
+            closeModal={closeModal}
+          />
+        </Modal>
       )}
       {payeesClicked && <div className={classes.payeesDiv}>{payeesToShow}</div>}
     </Fragment>

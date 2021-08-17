@@ -22,7 +22,7 @@ input {
   margin-right: 2rem;
 }
 
-.costAndAccountNumDiv{
+.costAndAccountNumDiv {
   display: flex;
   width: 100%;
   margin: 1rem 0;
@@ -35,18 +35,13 @@ input {
 .accountNumInput {
   width: 30%;
   margin: 0;
-  
-}
-
-.submitButtonDiv {
-  margin: 3rem 0 0 30%;
 }
 
 .payeesDiv {
-    color: midnightblue;
-    font-weight: 900;
-    margin: 2rem 0 2rem 5rem;
-    cursor: pointer;
+  color: midnightblue;
+  font-weight: 900;
+  margin: 2rem 0 2rem 5rem;
+  cursor: pointer;
 }
 
 .payeesDiv:hover {
@@ -62,6 +57,12 @@ input {
   overflow: auto;
 }
 
+.buttonsDiv {
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem 0 0 0;
+}
+
 .submitButton {
   width: fit-content;
   padding: 0 1rem;
@@ -70,4 +71,10 @@ input {
 .submitButton:hover {
   color: chartreuse;
   background: midnightblue;
+}
+
+.deleteButton {
+  background: rgb(148, 18, 18);
+  width: fit-content;
+
 }
