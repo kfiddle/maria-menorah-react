@@ -8,7 +8,8 @@ import classes from "./FoundationItem.module.css";
 
 const FoundationItem = (props) => {
   const [modalEditClicked, setModalEditClicked] = useState(false);
-  const { id, name, leftOverPennies, contributionInPennies } = props.foundation;
+  const { id, name, leftOverPennies, contributionInPennies, transactions } =
+    props.foundation;
 
   const money = useMoney(contributionInPennies);
   const leftover = useMoney(leftOverPennies);
@@ -22,8 +23,12 @@ const FoundationItem = (props) => {
     setModalEditClicked(false);
   };
 
+  const showTransactions = () => {
+    console.log(props.foundation);
+  };
+
   return (
-    <div className={classes.foundationItemDiv}>
+    <div className={classes.foundationItemDiv} onClick={showTransactions}>
       <div className={classes.nameDiv}>{name}</div>
       <div
         className={classes.leftOverDiv}
@@ -35,7 +40,14 @@ const FoundationItem = (props) => {
         <button onClick={openEditingModal}>Edit</button>
       </div>
 
-      {modalEditClicked && <Modal closeModal={closeModal}><FoundationEditBox foundation={props.foundation} closeModal={closeModal} /></Modal>}
+      {modalEditClicked && (
+        <Modal closeModal={closeModal}>
+          <FoundationEditBox
+            foundation={props.foundation}
+            closeModal={closeModal}
+          />
+        </Modal>
+      )}
     </div>
   );
 };

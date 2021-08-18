@@ -33,6 +33,7 @@ const EntryForm = (props) => {
   const [possibleFoundationsList, setPossibleFoundationsList] = useState([]);
   const [enteredPurpose, setEnteredPurpose] = useState(null);
   const [purposeClicked, setPurposeClicked] = useState(false);
+  const [deleteButtonClicked, setDeleteButtonClicked] = useState(false);
 
   const [payeeDropdownClicked, setPayeeDropdownClicked] = useState(false);
   const [payeesList, setPayeesList] = useState([]);
@@ -118,16 +119,19 @@ const EntryForm = (props) => {
         dataToSubmit = {
           id: props.foundationItem.id,
           name: titleRef.current.value,
-          date: dateRef.current.value === null? date: dateRef.current.value,
-          purpose: enteredPurpose === null? purpose : enteredPurpose,
-          totalCostInCents: penniesToSend === null? props.foundationItem.totalCostInCents: penniesToSend,
+          date: dateRef.current.value === null ? date : dateRef.current.value,
+          purpose: enteredPurpose === null ? purpose : enteredPurpose,
+          totalCostInCents:
+            penniesToSend === null
+              ? props.foundationItem.totalCostInCents
+              : penniesToSend,
           transactions: transactionList,
           payees: clickedPayeeList,
           notes: notesRef.current.value,
         };
       }
-      let type; 
-      props.foundationItem ? type = 'modify' : type = 'add';
+      let type;
+      props.foundationItem ? (type = "modify") : (type = "add");
       let response = await PushNewOrEdit(
         dataToSubmit,
         "add-or-modify-foundation-item",
@@ -163,6 +167,27 @@ const EntryForm = (props) => {
       (pyee) => pyee.id !== payee.id
     );
     setClickedPayeeList(tempPayeeList);
+  };
+
+  const deleteButtonHandler = async (event) => {
+    event.preventDefault();
+
+    setDeleteButtonClicked((previous) => !previous);
+    if (deleteButtonClicked) {
+      // const response = await PushSomething(props.foundationItem, "delete-item");
+      // if (response.ok) {
+      //   props.closeModal();
+      // }
+
+      // for (let transaction of props.foundationItem.transactions) {
+      //   const response = await PushSomething(transaction, "delete-transaction");
+      //   if (response.ok) {
+      //     console.log("yessir");
+      //   }
+      // }
+
+      console.log(props.foundationItem.transactions)
+    }
   };
 
   return (
@@ -249,10 +274,19 @@ const EntryForm = (props) => {
                 <input type="text" ref={notesRef} placeholder={notes} />
               </div>
 
-              <div className={classes.buttonDiv}>
-                <button className={classes.button} onClick={submitEvent}>
+              <div className={classes.buttonsDiv}>
+                <button className={classes.submitButton} onClick={submitEvent}>
                   Submit Item
                 </button>
+
+                {props.foundationItem && (
+                  <button
+                    className={classes.deleteButton}
+                    onClick={deleteButtonHandler}
+                  >
+                    {!deleteButtonClicked ? "Delete Item" : "Are You Sure?"}
+                  </button>
+                )}
               </div>
             </form>
           </Card>

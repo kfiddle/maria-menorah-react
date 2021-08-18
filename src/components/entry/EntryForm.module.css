@@ -83,17 +83,9 @@
   text-align: right;
 }
 
-.buttonDiv {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
 
-.button {
-  font-size: 1rem;
-  width: 7rem;
-  margin: 1rem auto;
-}
+
+
 
 .payeesDiv {
   display: flex;
@@ -180,4 +172,31 @@
 
 .notesDiv label {
   margin-top: 1rem;
+}
+
+.buttonsDiv {
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.submitButton {
+  font-size: 1rem;
+  width: fit-content;
+}
+
+.submitButton:hover {
+  color: chartreuse;
+  background: midnightblue;
+}
+
+.deleteButton {
+  width: fit-content;
+  background: rgb(161, 21, 21);
+}
+
+.deleteButton:hover {
+  color: chartreuse;
+  background: red;
 }
