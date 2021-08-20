@@ -97,7 +97,7 @@ const AddItemEntry = (props) => {
     }
   };
 
-  const deleteButtonClickHandler = async() => {
+  const deleteButtonClickHandler = async () => {
     setDeleteButtonClicked((previous) => !previous);
     if (deleteButtonClicked) {
       const response = await PushSomething(

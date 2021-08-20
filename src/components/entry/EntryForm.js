@@ -174,19 +174,17 @@ const EntryForm = (props) => {
 
     setDeleteButtonClicked((previous) => !previous);
     if (deleteButtonClicked) {
-      // const response = await PushSomething(props.foundationItem, "delete-item");
-      // if (response.ok) {
-      //   props.closeModal();
-      // }
+      const response = await PushSomething(props.foundationItem, "delete-item");
+      if (response.ok) {
+        props.closeModal();
+      }
 
-      // for (let transaction of props.foundationItem.transactions) {
-      //   const response = await PushSomething(transaction, "delete-transaction");
-      //   if (response.ok) {
-      //     console.log("yessir");
-      //   }
-      // }
-
-      console.log(props.foundationItem.transactions)
+      for (let transaction of props.foundationItem.transactions) {
+        const response = await PushSomething(transaction, "delete-transaction");
+        if (response.ok) {
+          console.log("yessir");
+        }
+      }
     }
   };
 

@@ -16,7 +16,6 @@ const FoundationItem = (props) => {
     date: oldDate,
     purpose,
     totalCostInCents,
-    // transactions,
     receipts,
     payees,
     notes,
@@ -32,10 +31,11 @@ const FoundationItem = (props) => {
 
   const money = useMoney(totalCostInCents);
   const date = DateFormatter(oldDate);
+  
 
   useEffect(() => {
+    
     const getTransactions = async () => {
-
       for (let receipt of receipts) {
         let response = await PushSomething(
           receipt,
@@ -91,7 +91,6 @@ const FoundationItem = (props) => {
           <div className={styles.titleDiv}>{name}</div>
           <div className={styles.dateDiv}>{date}</div>
           <div className={styles.purposeDiv}>{purpose.title}</div>
-          <div>{receipts.length}</div>
           <div
             className={styles.costDiv}
           >{`${money.dollars}.${money.cents}`}</div>
@@ -119,7 +118,6 @@ const FoundationItem = (props) => {
         </div>
         {foundationsClicked && (
           <div className={styles.transAndPayeesDiv}>
-            
             <TransactionsToDisplay transactions={transactionsList} />
             <PayeesToDisplay payees={payees} />
           </div>

@@ -19,12 +19,12 @@ const AllFoundationItems = (props) => {
   };
 
   useEffect(() => {
-    const getListOfFoundationItems = async () => {
+    const getListOfFoundationItems = async() => {
       const allFoundationItems = await GetAList("get-foundation-items");
       setFoundationItemsList(allFoundationItems);
     };
 
-    getListOfFoundationItems();
+    setTimeout(getListOfFoundationItems, 200);
   }, [foundationItemsList]);
 
   return (
