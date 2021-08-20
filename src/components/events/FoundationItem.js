@@ -31,10 +31,8 @@ const FoundationItem = (props) => {
 
   const money = useMoney(totalCostInCents);
   const date = DateFormatter(oldDate);
-  
 
   useEffect(() => {
-    
     const getTransactions = async () => {
       for (let receipt of receipts) {
         let response = await PushSomething(
@@ -49,7 +47,7 @@ const FoundationItem = (props) => {
     getTransactions();
   }, []);
 
-  const clickedForFoundations = () => {
+  const clickedForFoundations = async () => {
     setFoundationsClicked((previous) => !previous);
   };
 
@@ -85,6 +83,15 @@ const FoundationItem = (props) => {
       }
     };
 
+    const destroyReceipt = async () => {
+      for (let receipt of receipts) {
+        let response = await PushSomething(receipt, "/delete-receipt");
+        if (response.ok) {
+          console.log("shot it down");
+        }
+      }
+    };
+
     return (
       <Fragment>
         <div className={styles.item} onClick={clickedForFoundations}>
@@ -106,7 +113,8 @@ const FoundationItem = (props) => {
           </div>
 
           {!currentlyEditing && (
-            <button onClick={editClicked} className={styles.button}>
+            // <button onClick={editClicked} className={styles.button}>
+            <button onClick={destroyReceipt} className={styles.button}>
               Edit
             </button>
           )}
