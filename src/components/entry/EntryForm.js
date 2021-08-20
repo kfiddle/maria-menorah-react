@@ -48,6 +48,7 @@ const EntryForm = (props) => {
   let purpose = "";
   let totalCostInCents = "";
   let transactions = "";
+  let receipts = "";
   let payees = "";
   let notes = "";
 
@@ -59,6 +60,7 @@ const EntryForm = (props) => {
     purpose = props.foundationItem.purpose;
     totalCostInCents = ReceivedCentsSplitter(cost);
     transactions = props.foundationItem.transactions;
+    receipts = props.foundationItem.receipts;
     payees = props.foundationItem.payees;
     notes = props.foundationItem.notes;
   }
@@ -97,6 +99,15 @@ const EntryForm = (props) => {
     setTransactionList(newList);
   };
 
+  const destroyPreviousReceipts = async () => {
+    for (let receipt of receipts) {
+      let response = PushSomething(receipt, "/delete-receipt");
+      if (response.ok) {
+        console.log("gone down the drain");
+      }
+    }
+  };
+
   const submitEvent = (event) => {
     event.preventDefault();
     setSubmitClicked(true);
@@ -116,6 +127,11 @@ const EntryForm = (props) => {
           notes: notesRef.current.value,
         };
       } else {
+    
+        if (transactionList.length > 0) {
+          destroyPreviousReceipts();
+        }
+
         dataToSubmit = {
           id: props.foundationItem.id,
           name: titleRef.current.value,
