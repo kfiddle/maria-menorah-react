@@ -47,7 +47,7 @@ const AddItemEntry = (props) => {
     const tempPayeeList = clickedPayeeList;
     tempPayeeList.push(payee);
     setClickedPayeeList(tempPayeeList);
-    console.log(clickedPayeeList);
+    
   };
 
   const unclickedPayee = (payee) => {
