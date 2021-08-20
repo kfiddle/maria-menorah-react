@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import useMoney from "../../hooks/useMoney";
 import PushSomething from "../helperFunctions/PushSomething";
 import DateFormatter from "../helperFunctions/DateFormatter";
@@ -16,7 +16,8 @@ const FoundationItem = (props) => {
     date: oldDate,
     purpose,
     totalCostInCents,
-    transactions,
+    // transactions,
+    receipts,
     payees,
     notes,
     completed,
@@ -27,9 +28,26 @@ const FoundationItem = (props) => {
   const [currentlyEditing, setCurrentlyEditing] = useState(false);
   const [editingClicked, setEditingClicked] = useState(false);
   const [editingModalOpen, setEditingModalOpen] = useState(false);
+  const [transactionsList, setTransactionsList] = useState([]);
 
   const money = useMoney(totalCostInCents);
   const date = DateFormatter(oldDate);
+
+  useEffect(() => {
+    const getTransactions = async () => {
+
+      for (let receipt of receipts) {
+        let response = await PushSomething(
+          receipt,
+          "get-transaction-from-receipt"
+        );
+        let finalTransaction = await response.json();
+        setTransactionsList((previous) => [...previous, finalTransaction]);
+      }
+    };
+
+    getTransactions();
+  }, []);
 
   const clickedForFoundations = () => {
     setFoundationsClicked((previous) => !previous);
@@ -41,8 +59,6 @@ const FoundationItem = (props) => {
 
   if (!editingClicked) {
     const editClicked = () => {
-      // props.deleteClicked(props.foundationItem);
-
       setEditingModalOpen(true);
     };
 
@@ -75,6 +91,7 @@ const FoundationItem = (props) => {
           <div className={styles.titleDiv}>{name}</div>
           <div className={styles.dateDiv}>{date}</div>
           <div className={styles.purposeDiv}>{purpose.title}</div>
+          <div>{receipts.length}</div>
           <div
             className={styles.costDiv}
           >{`${money.dollars}.${money.cents}`}</div>
@@ -102,7 +119,8 @@ const FoundationItem = (props) => {
         </div>
         {foundationsClicked && (
           <div className={styles.transAndPayeesDiv}>
-            <TransactionsToDisplay transactions={transactions} />
+            
+            <TransactionsToDisplay transactions={transactionsList} />
             <PayeesToDisplay payees={payees} />
           </div>
         )}
