@@ -5,7 +5,7 @@ const useMoney = (totalPennies) => {
   if (leftOverCents === 0) {
     displayedCents = '00';
   } else if (leftOverCents < 10) {
-    displayedCents = leftOverCents + '0';
+    displayedCents = '0' + leftOverCents;
   } else {
     displayedCents = leftOverCents;
   }
