@@ -7,8 +7,11 @@
   align-items: flex-end;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  background: rgb(163, 172, 184);
-  color: #252525;
+  /* background: rgb(163, 172, 184);
+  color: #252525; */
+
+  background: lightslategray;
+  color: rgb(223, 229, 233);
   font-weight: 900;
 }
 
@@ -23,7 +26,7 @@
 
 .leftOverDiv {
   width: 20%;
-  color: rgb(50, 167, 50);
+  color: rgb(17, 82, 17);
 }
 
 .moneyDiv {
@@ -41,11 +44,12 @@
 }
 
 .editButtonDiv button {
-  color: rgb(90, 177, 90);
+  color: rgb(40, 33, 134);
   background: transparent;
-  opacity: .5;
+  /* opacity: .2; */
 }
 
 .editButtonDiv button:hover {
-  background: rgb(36, 238, 120);
+  background: rgb(104, 61, 104);
+  color: wheat;
 }

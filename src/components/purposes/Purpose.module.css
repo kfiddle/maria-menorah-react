@@ -7,9 +7,10 @@
   width: 40%;
   height: 2.5rem;
   background: lightslategray;
-  color: aliceblue;
+  color: rgb(220, 229, 236);
   font-weight: 900;
   border-radius: 7px;
+  cursor: pointer;
 }
 
 .outerContainer:hover {

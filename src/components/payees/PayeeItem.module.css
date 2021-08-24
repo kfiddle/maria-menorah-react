@@ -3,15 +3,20 @@
   margin: 0.5rem 4rem;
   padding: 1rem;
   display: flex;
-  width: 100%;
+  width: 40%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  background-color: #c2e7f0;
+  /* background-color: #c2e7f0; */
+
+  background: lightslategray;
+  color: rgb(196, 229, 250);
+
   font-weight: 900;
 }
 
 .payeeItemDiv:hover {
-  background: rgb(44, 120, 182);
+  background: lightgray;
+  color: darkgoldenrod;
 }
 
 .clickedItem {
@@ -34,7 +39,7 @@
 }
 
 .nameDiv:hover {
-  color: chartreuse;
+  color: rgb(48, 40, 77);
 }
 
 .emailDiv {
@@ -70,24 +75,21 @@
   display: flex;
 }
 
-.community{
+.community {
   color: darkblue;
   font-size: smaller;
   margin-left: 1rem;
 }
 
-.itemDate{
+.itemDate {
   margin-left: 1rem;
 }
-
 
 .editButtonDiv {
   position: absolute;
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   right: 5%;
   bottom: 10%;
 }
-
-

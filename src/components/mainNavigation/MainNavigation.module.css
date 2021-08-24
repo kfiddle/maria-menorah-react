@@ -7,7 +7,8 @@
   padding: 0 10%;
   justify-content: space-between;
   align-items: center;
-  background-color: #008080;
+  background: #272121;
+  /* background-color: #008080; */
 }
 
 .logo {
@@ -37,7 +38,7 @@
 .nav a:active,
 .nav a.active,
 .navItem:hover {
-  color: #e6fcfc;
+  color: #e2f53a;
 
 }
 
