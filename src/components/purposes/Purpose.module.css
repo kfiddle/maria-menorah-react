@@ -1,0 +1,18 @@
+.outerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5rem;
+  margin-bottom: 0.5rem;
+  width: 40%;
+  height: 2.5rem;
+  background: lightslategray;
+  color: aliceblue;
+  font-weight: 900;
+  border-radius: 7px;
+}
+
+.outerContainer:hover {
+  background: lightgray;
+  color: darkgoldenrod;
+}
