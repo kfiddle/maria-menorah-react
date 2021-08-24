@@ -7,12 +7,18 @@
   align-items: flex-end;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  background-color: #c2e7f0;
+  background: rgb(163, 172, 184);
+  color: #252525;
   font-weight: 900;
 }
 
 .nameDiv {
   width: 40%;
+  cursor: pointer;
+}
+
+.nameDiv:hover {
+  color: rgb(238, 150, 238);
 }
 
 .leftOverDiv {
@@ -28,7 +34,18 @@
   position: absolute;
   display: flex;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   right: 5%;
   bottom: 10%;
+  background: transparent;
+}
+
+.editButtonDiv button {
+  color: rgb(90, 177, 90);
+  background: transparent;
+  opacity: .5;
+}
+
+.editButtonDiv button:hover {
+  background: rgb(36, 238, 120);
 }
