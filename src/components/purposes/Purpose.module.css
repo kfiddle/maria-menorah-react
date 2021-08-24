@@ -4,7 +4,6 @@
   align-items: center;
   margin-left: 5rem;
   margin-bottom: 0.5rem;
-  width: 40%;
   height: 2.5rem;
   background: lightslategray;
   color: rgb(220, 229, 236);
@@ -16,4 +15,21 @@
 .outerContainer:hover {
   background: lightgray;
   color: darkgoldenrod;
+}
+
+.chosenPurpose {
+  background: lightgray;
+  color: darkgoldenrod;
+}
+
+.text {
+  font-weight: 900;
+  /* transition: .3s; */
+}
+
+.highlightedText {
+  font-size: 1.5rem;
+  color: rgb(224, 176, 52);
+  text-shadow: 1px 1px rgb(141, 134, 34);
+  transition: 0.3s;
 }

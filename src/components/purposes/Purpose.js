@@ -1,30 +1,26 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import PushSomething from "../helperFunctions/PushSomething";
 import styles from "./Purpose.module.css";
 
 const Purpose = (props) => {
-  const [itemsList, setItemsList] = useState([]);
+  const [chosenPurpose, setChosenPurpose] = useState(false);
   const { title } = props.purpose;
 
-  const showFoundationItems = async () => {
-    let response = await PushSomething(
-      props.purpose,
-      "/get-foundation-items-from-purpose"
-    );
-    let finalItemsList = await response.json();
-    setItemsList(finalItemsList);
+  const clickedOrNot = props.highlighted
+    ? `${styles.outerContainer} ${styles.chosenPurpose}`
+    : styles.outerContainer;
 
-    // let finalShowing = await setItemsList(finalItemsList);
-    // let displayIt = await console.log(itemsList);
+  const clickedText = props.highlighted ? styles.highlightedText : styles.text;
+
+  const showFoundationItems = () => {
+    setChosenPurpose((previous) => !previous);
+    props.clicked(props.purpose);
   };
 
   return (
-    <Fragment>
-      <div onClick={showFoundationItems} className={styles.outerContainer}>
-        {title}
-      </div>
-      {}
-    </Fragment>
+    <div onClick={showFoundationItems} className={clickedOrNot}>
+      <h1 className={clickedText}>{title}</h1>
+    </div>
   );
 };
 

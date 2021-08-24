@@ -11,7 +11,6 @@ import styles from "./AllPurposes.module.css";
 
 const AllPurposes = () => {
   const [purposesList, setPurposesList] = useState([]);
-//   const [addFoundationClicked, setAddFoundationClicked] = useState(false);
 
   useEffect(() => {
     const getPurposes = async () => {
@@ -20,16 +19,13 @@ const AllPurposes = () => {
     };
 
     getPurposes();
-  }, [purposesList]);
-
-
+  }, []);
 
   return (
     <Fragment>
       <div className={styles.headingsDiv}>
-         
-          <Purposes list={purposesList}/>
-       </div>
+        <Purposes list={purposesList} />
+      </div>
     </Fragment>
   );
 };
