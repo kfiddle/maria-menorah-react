@@ -25,6 +25,26 @@
   display: flex;
 }
 
+.completedDiv {
+  height: 100%;
+  padding: 0;
+}
+
+.completedDiv input {
+  padding: 0;
+  margin: 0;
+  width: fit-content;
+}
+
+.button {
+  background: #252525;
+  color: antiquewhite;
+}
+
+.button:hover {
+  background: lightgrey;
+  color: rgb(37, 37, 231);
+}
 
 .submitChangeButton {
   background-color: blue;
