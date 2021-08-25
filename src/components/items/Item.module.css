@@ -1,9 +1,6 @@
 .outerContainer {
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
-  margin-left: 5rem;
-  margin-bottom: 0.5rem;
+  margin: 0 4rem 0.5rem 5rem;
   height: 3rem;
   background: rgb(204, 214, 224);
   color: rgb(56, 66, 73);
@@ -22,4 +19,14 @@
   width: 20%;
   justify-content: center;
   align-items: center;
+}
+
+.transAndPayeesDiv {
+  display: flex;
+}
+
+
+.submitChangeButton {
+  background-color: blue;
+  width: fit-content;
 }

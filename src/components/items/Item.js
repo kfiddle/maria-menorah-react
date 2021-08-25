@@ -75,7 +75,7 @@ const FoundationItem = (props) => {
 
     const submitEdit = async () => {
       let response = await PushSomething(
-        { ...props.foundationItem, completed: checkCompleted },
+        { ...props.item, completed: checkCompleted },
         "edit-item-completion"
       );
       if (response.ok) {
@@ -85,7 +85,7 @@ const FoundationItem = (props) => {
 
     return (
       <Fragment>
-        <div className={styles.item} onClick={clickedForFoundations}>
+        <div className={styles.outerContainer} onClick={clickedForFoundations}>
           <div className={styles.titleDiv}>{name}</div>
           <div className={styles.dateDiv}>{date}</div>
           <div className={styles.purposeDiv}>{purpose.title}</div>
