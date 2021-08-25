@@ -23,12 +23,16 @@ const FoundationItem = (props) => {
     setModalEditClicked(false);
   };
 
-  const showTransactions = () => {
-    console.log(props.foundation);
+  const showItems = () => {
+    props.clicked(props.foundation);
   };
 
+  const clickedOrNot = props.highlighted
+  ? `${classes.foundationItemDiv} ${classes.chosenFoundation}`
+  : classes.foundationItemDiv;
+
   return (
-    <div className={classes.foundationItemDiv} onClick={showTransactions}>
+    <div className={clickedOrNot} onClick={showItems}>
       <div className={classes.nameDiv}>{name}</div>
       <div
         className={classes.leftOverDiv}

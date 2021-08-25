@@ -7,21 +7,25 @@
   align-items: flex-end;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  /* background: rgb(163, 172, 184);
-  color: #252525; */
 
   background: lightslategray;
   color: rgb(223, 229, 233);
   font-weight: 900;
+  cursor: pointer;
+}
+
+.foundationItemDiv:hover {
+  background: silver;
+  color: rgb(104, 89, 66);
+}
+
+.chosenFoundation{
+  background: silver;
+  color: rgb(104, 89, 66);
 }
 
 .nameDiv {
   width: 40%;
-  cursor: pointer;
-}
-
-.nameDiv:hover {
-  color: rgb(238, 150, 238);
 }
 
 .leftOverDiv {
@@ -50,6 +54,6 @@
 }
 
 .editButtonDiv button:hover {
-  background: rgb(104, 61, 104);
+  background: rgb(78, 67, 78);
   color: wheat;
 }

@@ -123,7 +123,7 @@ const FoundationItem = (props) => {
 
         {editingModalOpen && (
           <EntryForm
-            foundationItem={props.foundationItem}
+            foundationItem={props.item}
             closeModal={closeModal}
           />
         )}

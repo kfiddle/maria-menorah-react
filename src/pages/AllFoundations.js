@@ -20,7 +20,7 @@ const AllFoundations = () => {
     };
 
     getFoundations();
-  }, [foundationsList]);
+  }, []);
 
   const addFoundation = () => {
     setAddFoundationClicked(true);
@@ -34,7 +34,7 @@ const AllFoundations = () => {
     <Fragment>
       <div className={styles.headingsDiv}>
         <h2 className={styles.leftOverHeader}>Left Over</h2>
-        <h2>Original Contribution</h2>
+        <h2>Original Amount</h2>
       </div>
       <FoundationsList list={foundationsList} />
       <div className={styles.addFoundationDiv}>
