@@ -1,7 +1,8 @@
 .outerContainer {
   display: flex;
   margin: 0 4rem 0.5rem 5rem;
-  height: 3rem;
+  padding: 0.5rem 2rem;
+  height: 4rem;
   background: rgb(204, 214, 224);
   color: rgb(56, 66, 73);
   font-weight: 900;

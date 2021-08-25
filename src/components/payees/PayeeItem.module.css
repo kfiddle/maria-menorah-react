@@ -1,15 +1,15 @@
 .payeeItemDiv {
   position: relative;
-  margin: 0.5rem 4rem;
-  padding: 1rem;
   display: flex;
-  width: 40%;
+  justify-content: space-between;
+  margin: 0.5rem 2rem;
+  padding: 1rem;
+  width: 75%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  /* background-color: #c2e7f0; */
 
   background: lightslategray;
-  color: rgb(196, 229, 250);
+  color: rgb(31, 54, 68);
 
   font-weight: 900;
 }
@@ -47,7 +47,7 @@
 }
 
 .phoneDiv {
-  width: 12%;
+  width: 20%;
 }
 
 .moneyDiv {
@@ -56,8 +56,8 @@
 
 .checkMarkDiv {
   display: flex;
-  width: 2%;
-  justify-content: flex-end;
+  width: 5%;
+  /* justify-content: flex-end; */
 }
 
 .redEx {
@@ -85,11 +85,13 @@
   margin-left: 1rem;
 }
 
-.editButtonDiv {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  right: 5%;
-  bottom: 10%;
+.editButtonDiv button {
+  color: rgb(40, 33, 134);
+  background: transparent;
+  width: fit-content;
+}
+
+.editButtonDiv button:hover {
+  background: rgb(78, 67, 78);
+  color: wheat;
 }

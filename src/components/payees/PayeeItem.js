@@ -57,7 +57,7 @@ const PayeeItem = (props) => {
           {!w9ed && <h2 className={classes.redEx}>X</h2>}
         </div>
         <div className={classes.editButtonDiv}>
-          <button onClick={openEditingModal}>Edit</button>
+          <button onClick={openEditingModal}>View or Edit</button>
         </div>
 
         {modalEditClicked && (
