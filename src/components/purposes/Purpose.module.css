@@ -14,22 +14,20 @@
 
 .outerContainer:hover {
   background: lightgray;
-  color: darkgoldenrod;
+  color: rgb(58, 106, 207);
 }
 
 .chosenPurpose {
-  background: lightgray;
-  color: darkgoldenrod;
+  background: rgb(214, 208, 208);
 }
 
 .text {
   font-weight: 900;
-  /* transition: .3s; */
 }
 
 .highlightedText {
   font-size: 1.5rem;
-  color: rgb(224, 176, 52);
-  text-shadow: 1px 1px rgb(141, 134, 34);
-  transition: 0.3s;
+  color: rgb(58, 106, 207);
+  text-shadow: 0.5px 0.5px rgb(47, 89, 179);
+  transition: 0.25s;
 }

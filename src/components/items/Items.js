@@ -2,7 +2,7 @@
 
 import Item from './Item'
 
-import styles from "./Item.module.css";
+import styles from "./Items.module.css";
 
 const Items = (props) => {
 
