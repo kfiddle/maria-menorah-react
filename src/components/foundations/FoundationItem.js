@@ -33,7 +33,7 @@ const FoundationItem = (props) => {
 
   return (
     <div className={clickedOrNot} onClick={showItems}>
-      <div className={classes.nameDiv}>{name}</div>
+      <div className={classes.nameDiv}><h2>{name}</h2></div>
       <div
         className={classes.leftOverDiv}
       >{`${leftover.dollars}.${leftover.cents}`}</div>

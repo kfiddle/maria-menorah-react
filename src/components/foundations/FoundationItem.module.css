@@ -28,6 +28,10 @@
   width: 40%;
 }
 
+.nameDiv h2 {
+  font-weight: 900;
+}
+
 .leftOverDiv {
   width: 20%;
   color: rgb(17, 82, 17);
