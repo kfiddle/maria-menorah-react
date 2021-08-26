@@ -5,20 +5,20 @@ import classes from "./MainNavigation.module.css";
 const MainNavigation = (props) => {
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>Maria's Database</div>
+      <div className={classes.logo}><h1>MARIA'S DATABASE</h1></div>
       <nav className={classes.nav}>
         <ul>
           <li className={classes.navItem} onClick={props.entryClicked}>
-            New Foundation Item 
+            NEW FOUNDATION ITEM
           </li>
           <li className={classes.navItem} onClick={props.payeeEntryClicked} style={{marginRight: '7rem'}}>
-            New Payee
+            NEW PAYEE
           </li>
 
-          <li className={classes.navItem}><NavLink to={'/foundation-items'}>Foundation Items</NavLink></li>
-          <li className={classes.navItem}><NavLink to={'/foundations'}>Foundations</NavLink></li>
-          <li className={classes.navItem}><NavLink to={'/purposes'}>Purposes</NavLink></li>
-          <li className={classes.navItem}><NavLink to={'/payees'}>Rolodex</NavLink></li>
+          <li className={classes.navItem}><NavLink to={'/foundation-items'}>FOUNDATION ITEMS</NavLink></li>
+          <li className={classes.navItem}><NavLink to={'/foundations'}>FOUNDATIONS</NavLink></li>
+          <li className={classes.navItem}><NavLink to={'/purposes'}>PURPOSES</NavLink></li>
+          <li className={classes.navItem}><NavLink to={'/payees'}>ROLODEX</NavLink></li>
 
           <li className={classes.navItem}><NavLink to={'/helen-master'}>Helen's Master</NavLink></li>
           <li className={classes.navItem}><NavLink to={'/stone-garden-master'}>SG Master</NavLink></li>

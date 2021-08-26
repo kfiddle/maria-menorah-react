@@ -28,6 +28,10 @@
   background: linear-gradient(#aaacac, white, rgb(233, 228, 228), #aaacac);
 }
 
+.completedDiv input:checked {
+  color: red;
+}
+
 button {
   width: 5rem;
   height: 3rem;
