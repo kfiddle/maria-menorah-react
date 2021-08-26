@@ -1,24 +1,31 @@
 .item {
   margin: 0.5rem 3rem;
-  padding: 0.5rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-  background-color: #c2e7f0;
+  background: linear-gradient(
+    #aaacac,
+    #aaacac,
+    #aaacac,
+    #aaacac,
+    #aaacac,
+    rgb(233, 228, 228)
+  );
   font-weight: 900;
 }
 
 .item div {
   display: flex;
   width: 15%;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 }
 
 .item:hover {
-  background: aqua;
+  background: linear-gradient(#aaacac, white, rgb(233, 228, 228), #aaacac);
 }
 
 button {
@@ -26,20 +33,20 @@ button {
   height: 3rem;
   color: white;
   font-weight: 900;
-  background: #008080;
+  background: linear-gradient(#252525, #252525, #252525, #252525, #362b2b, #252525, #252525, #252525, #252525 );
   border-radius: 8px;
   cursor: pointer;
 }
 
 button:hover {
-  background: rgb(240, 46, 104);
+  background: rgb(131, 128, 129);
+  color: #252525;
 }
 
 .submitChangeButton {
   background-color: blue;
   width: fit-content;
 }
-
 
 .transAndPayeesDiv {
   display: flex;
