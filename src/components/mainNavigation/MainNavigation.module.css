@@ -7,15 +7,15 @@
   padding: 0 10%;
   justify-content: space-between;
   align-items: center;
-  background: #272121;
+  background: rgb(165, 191, 230);
   /* background-color: #008080; */
 }
 
 .logo h1{
   font-size: 2.5rem;
-  color: white;
+  color: rgb(68, 68, 214);
   font-weight: 900;
-  text-shadow: .5px .5px rgb(243, 237, 237);
+  /* text-shadow: .5px .5px rgb(243, 237, 237); */
 }
 
 .nav ul {
@@ -31,10 +31,16 @@
   font-weight: 900;
 }
 
+.newFormDiv {
+  display: flex;
+  border:rgb(9, 8, 63) solid 3px;
+}
+
+
 .nav a,
 .navItem {
   text-decoration: none;
-  color: #88dfdf;
+  color: rgb(9, 8, 63);
 }
 
 .nav a:hover,
