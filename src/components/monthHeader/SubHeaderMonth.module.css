@@ -12,7 +12,7 @@
   align-items: center;
   height: 3.2rem;
   padding: 0 1rem;
-  background: white;
+  background: rgb(243, 243, 248);
 }
 
 .monthLi {
@@ -22,13 +22,14 @@
 }
 
 .highlightedLi {
-  color: rgb(167, 124, 16);
+  color: midnightblue;
+  font-weight: 900;
 }
 
 .monthDiv:hover {
-  background: white;
+  background: rgb(243, 243, 248);
 }
 
 .monthDiv:hover li {
-  color: rgb(167, 124, 16);
+  color: midnightblue;
 }

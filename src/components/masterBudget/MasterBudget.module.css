@@ -2,5 +2,8 @@
 
 .addItemButtonDiv {
     margin: 2rem 0 0 80%;
-    
+}
+
+.addItemButtonDiv button{
+   background: midnightblue;
 }

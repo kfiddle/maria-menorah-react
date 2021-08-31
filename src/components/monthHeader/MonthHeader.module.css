@@ -4,7 +4,6 @@
   margin-top: 7rem;
   display: flex;
   justify-content: center;
-  /* background: rgb(104, 81, 22); */
   background: linear-gradient(rgb(47, 22, 104),midnightblue, midnightblue, midnightblue, midnightblue,cyan);
   
   animation: slide-down 300ms ease-out forwards;

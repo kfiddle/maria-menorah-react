@@ -2,21 +2,22 @@
   position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0.5rem 2rem;
   padding: 1rem;
   width: 75%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
 
-  background: lightslategray;
+  background: rgb(155, 176, 197);
   color: rgb(31, 54, 68);
 
   font-weight: 900;
 }
 
 .payeeItemDiv:hover {
-  background: lightgray;
-  color: darkgoldenrod;
+  background: rgb(222, 222, 231);
+  color: midnightblue;
 }
 
 .clickedItem {
