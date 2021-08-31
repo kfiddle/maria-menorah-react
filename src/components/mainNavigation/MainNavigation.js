@@ -11,14 +11,14 @@ const MainNavigation = (props) => {
         <ul>
           <div className={classes.newFormDiv}>
             <li className={classes.navItem} onClick={props.entryClicked}>
-              ADD FOUNDATION ITEM
+              + FOUNDATION ITEM
             </li>
             <li
               className={classes.navItem}
               onClick={props.payeeEntryClicked}
               style={{ marginRight: "7rem" }}
             >
-              ADD PAYEE
+              + PAYEE
             </li>
           </div>
 

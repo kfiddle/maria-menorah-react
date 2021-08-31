@@ -6,12 +6,12 @@
 }
 
 body {
-  /* font-family: sans-serif;
+  font-family: sans-serif;
 
-  font-family: "Calibre-Bold", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
-    "メイリオ", "Meiryo", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif; */
+  /*font-family: "Calibre-Bold", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+    "メイリオ", "Meiryo", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif; 
 
-  font-family: "Calibre-Bold";
+   font-family: "Calibre-Bold"; */
   font-weight: 900;
 
   margin: 0;

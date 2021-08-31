@@ -1,20 +1,21 @@
 .header {
   width: 100%;
-  height: 5rem;
+  height: fit-content;
   display: flex;
   position: fixed;
   top: 0;
-  padding: 0 10%;
+  padding: 0 3%;
   justify-content: space-between;
   align-items: center;
-  background: rgb(165, 191, 230);
+  background: rgb(121, 149, 189);
   /* background-color: #008080; */
 }
 
 .logo h1{
   font-size: 2.5rem;
-  color: rgb(68, 68, 214);
+  color: rgb(51, 51, 179);
   font-weight: 900;
+  margin-right: 0;
   /* text-shadow: .5px .5px rgb(243, 237, 237); */
 }
 
@@ -33,7 +34,14 @@
 
 .newFormDiv {
   display: flex;
+  width: fit-content;
+  margin-left: 0;
   border:rgb(9, 8, 63) solid 3px;
+  border-radius: 3px;
+}
+
+.newFormDiv li {
+  font-size: 12px;
 }
 
 

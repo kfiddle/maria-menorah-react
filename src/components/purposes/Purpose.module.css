@@ -5,20 +5,20 @@
   margin-left: 5rem;
   margin-bottom: 0.5rem;
   height: 2.5rem;
-  background: lightslategray;
-  color: rgb(220, 229, 236);
+  background: rgb(140, 159, 179);
+  color: rgb(53, 80, 99);
   font-weight: 900;
   border-radius: 7px;
   cursor: pointer;
 }
 
 .outerContainer:hover {
-  background: lightgray;
-  color: rgb(58, 106, 207);
+  background: rgb(207, 207, 230);
+  color: rgb(27, 61, 134);
 }
 
 .chosenPurpose {
-  background: rgb(214, 208, 208);
+  background: rgb(207, 207, 230);
 }
 
 .text {
@@ -27,7 +27,7 @@
 
 .highlightedText {
   font-size: 1.5rem;
-  color: rgb(58, 106, 207);
+  color: rgb(13, 35, 82);
   text-shadow: 0.5px 0.5px rgb(47, 89, 179);
   transition: 0.25s;
 }

@@ -4,7 +4,7 @@ const WhichServer = () => {
   const realServer = "https://immense-badlands-06441.herokuapp.com/";
   const fakeServer = "http://localhost:8080/";
 
-  return realServer;
+  return fakeServer;
 };
 
 export default WhichServer;
