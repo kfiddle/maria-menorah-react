@@ -13,8 +13,9 @@
 
 input {
   width: 80%;
-  height: 2.5rem;
+  height: 1.5rem;
   padding-left: 1rem;
+  margin: 0;
 }
 
 .dollarsInput {
