@@ -48,7 +48,7 @@ const MasterBudget = (props) => {
       <MonthHeader whichMonth={chosenMonth} />
       <div>{displayableItems}</div>
       <div className={styles.addItemButtonDiv}>
-        <button onClick={openAddItemModal}>Add Item</button>
+        <button onClick={openAddItemModal}>+Item</button>
       </div>
       {addItemClicked && (
         <Modal closeModal={closeModal}>

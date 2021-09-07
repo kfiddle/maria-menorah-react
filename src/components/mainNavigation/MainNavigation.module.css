@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  height: fit-content;
+  height: 5.2rem;
   display: flex;
   position: fixed;
   top: 0;
@@ -12,7 +12,7 @@
 }
 
 .logo h1{
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   color: rgb(51, 51, 179);
   font-weight: 900;
   margin-right: 0;
@@ -41,7 +41,7 @@
 }
 
 .newFormDiv li {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 

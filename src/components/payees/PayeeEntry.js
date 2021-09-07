@@ -2,6 +2,8 @@ import { useRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import PushSomething from "../helperFunctions/PushSomething";
 
+import WhichServer from "../helperFunctions/WhichServer";
+
 import Card from "../UI/Card";
 
 import classes from "./PayeeEntry.module.css";
@@ -47,7 +49,7 @@ const PayeeEntry = (props) => {
   const w9Ref = useRef();
   const addressRef = useRef();
 
-  const submitEvent = async (event) => {
+  const submitEvent = (event) => {
     event.preventDefault();
 
     const names = fullNameRef.current.value.split(" ");
@@ -71,10 +73,13 @@ const PayeeEntry = (props) => {
 
     console.log(payeeToSubmit);
 
-    let response = await PushSomething(payeeToSubmit, "add-payee");
-    if (response.ok) {
-      props.closeModal();
-    }
+    const sendPayeeOff = async () => {
+      let response = await PushSomething(payeeToSubmit, "/add-payee");
+      if (response.ok) {
+        props.closeModal();
+      }
+    };
+    setTimeout(sendPayeeOff, 500);
   };
 
   return (
@@ -134,7 +139,6 @@ const PayeeEntry = (props) => {
                   id="w9Check"
                   ref={w9Ref}
                   defaultChecked={w9}
-                  // onChange={() => setCheckedW9((previous) => !previous)}
                 />
               </div>
 

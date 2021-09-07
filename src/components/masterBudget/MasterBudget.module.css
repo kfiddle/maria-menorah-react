@@ -7,3 +7,7 @@
 .addItemButtonDiv button{
    background: midnightblue;
 }
+
+.addItemButtonDiv button:hover {
+    background: rgb(170, 170, 231);
+}
