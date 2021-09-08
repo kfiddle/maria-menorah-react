@@ -67,6 +67,8 @@
 }
 
 .eventsDiv {
+  display: flex;
+  flex-direction: row;
   font-size: small;
   font-weight: 700;
   margin: 0 0 1rem 10rem;
@@ -95,4 +97,8 @@
 .editButtonDiv button:hover {
   background: rgb(106, 100, 128);
   color: wheat;
+}
+
+.smallItemDiv {
+  background-color: gold;
 }

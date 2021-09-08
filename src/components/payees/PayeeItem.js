@@ -28,20 +28,18 @@ const PayeeItem = (props) => {
 
   const clickedForItems = async () => {
     setItemsClicked((previous) => !previous);
-    let listOfItems = await PushSomething(
-      props.payee,
-      "get-items-from-payee"
-    );
+    let listOfItems = await PushSomething(props.payee, "get-items-from-payee");
     let finalItemsList = await listOfItems.json();
     let finalShowing = await setItemsList(finalItemsList);
-
-   
   };
 
   const itemsToShow = itemsList.map((item) => (
-    <div key={Math.random()}>{item.name}</div>
+    <div key={Math.random()} style={{display:"flex"}}>
+      <div classname={classes.smallItemDiv} style={{marginRight:'5rem'}}>{item.name}</div>
+      <div style={{marginRight:'3rem'}}>{DateFormatter(item.date)}</div>
+      <div>{item.community}</div>
+    </div>
   ));
- 
 
   return (
     <Fragment>
