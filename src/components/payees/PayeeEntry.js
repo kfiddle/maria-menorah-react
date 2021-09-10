@@ -71,8 +71,6 @@ const PayeeEntry = (props) => {
       w9ed: w9Ref.current.checked,
     };
 
-    console.log(payeeToSubmit);
-
     const sendPayeeOff = async () => {
       let response = await PushSomething(payeeToSubmit, "/add-payee");
       if (response.ok) {

@@ -34,7 +34,10 @@
 
 .newFormDiv {
   display: flex;
+  justify-content: center;
+  align-items: center;
   width: fit-content;
+  white-space: nowrap;
   margin-left: 0;
   border:rgb(9, 8, 63) solid 3px;
   border-radius: 3px;

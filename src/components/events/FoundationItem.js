@@ -83,12 +83,14 @@ const FoundationItem = (props) => {
       }
     };
 
+    let printPurpose = purpose ? purpose.title: "";
+
     return (
       <Fragment>
         <div className={styles.item} onClick={clickedForFoundations}>
           <div className={styles.titleDiv}>{name}</div>
           <div className={styles.dateDiv}>{date}</div>
-          <div className={styles.purposeDiv}>{purpose.title}</div>
+          <div className={styles.purposeDiv}>{printPurpose}</div>
           <div
             className={styles.costDiv}
           >{`${money.dollars}.${money.cents}`}</div>
