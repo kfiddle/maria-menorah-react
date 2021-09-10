@@ -46,7 +46,7 @@ const MasterBudget = (props) => {
   return (
     <Fragment>
       <MonthHeader whichMonth={chosenMonth} />
-      <div>{displayableItems}</div>
+      <div className={styles.itemsDiv}>{displayableItems}</div>
       <div className={styles.addItemButtonDiv}>
         <button onClick={openAddItemModal}>+Item</button>
       </div>

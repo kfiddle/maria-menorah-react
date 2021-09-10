@@ -4,14 +4,14 @@
   display: flex;
   position: fixed;
   top: 0;
-  padding: 0 3%;
+  padding: 2% 3%;
   justify-content: space-between;
   align-items: center;
   background: rgb(121, 149, 189);
   /* background-color: #008080; */
 }
 
-.logo h1{
+.logo h1 {
   font-size: 2.3rem;
   color: rgb(51, 51, 179);
   font-weight: 900;
@@ -39,7 +39,7 @@
   width: fit-content;
   white-space: nowrap;
   margin-left: 0;
-  border:rgb(9, 8, 63) solid 3px;
+  border: rgb(9, 8, 63) solid 3px;
   border-radius: 3px;
 }
 
@@ -47,21 +47,23 @@
   font-size: 10px;
 }
 
-
 .nav a,
 .navItem {
   text-decoration: none;
   color: rgb(9, 8, 63);
 }
 
+.navItem:hover,
 .nav a:hover,
 .nav a:active,
-.nav a.active,
-.navItem:hover {
+.nav a.active {
   color: #e2f53a;
+}
 
+.active {
+  color: #e2f53a;
 }
 
 .navItem {
-    cursor: pointer;
+  cursor: pointer;
 }

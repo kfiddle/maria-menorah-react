@@ -8,7 +8,8 @@
   align-items: flex-end;
   box-shadow: 0 2px 4px rgba(223, 156, 156, 0.2);
   border-radius: 6px;
-  background-color: #c2e7f0;
+  /* background-color: #c2e7f0; */
+  background: rgb(181, 199, 212);
   font-weight: 900;
 }
 

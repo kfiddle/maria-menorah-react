@@ -23,23 +23,23 @@ const MainNavigation = (props) => {
           </div>
 
           <li className={classes.navItem}>
-            <NavLink to={"/foundation-items"}>FOUNDATION ITEMS</NavLink>
+            <NavLink to={"/foundation-items"} activeClassName={classes.active}>FOUNDATION ITEMS</NavLink>
           </li>
           <li className={classes.navItem}>
-            <NavLink to={"/foundations"}>FOUNDATIONS</NavLink>
+            <NavLink to={"/foundations"} activeClassName={classes.active}> FOUNDATIONS</NavLink>
           </li>
           <li className={classes.navItem}>
-            <NavLink to={"/purposes"}>PURPOSES</NavLink>
+            <NavLink to={"/purposes"} activeClassName={classes.active}> PURPOSES</NavLink>
           </li>
           <li className={classes.navItem}>
-            <NavLink to={"/payees"}>ROLODEX</NavLink>
+            <NavLink to={"/payees"} activeClassName={classes.active}> ROLODEX</NavLink>
           </li>
 
           <li className={classes.navItem}>
-            <NavLink to={"/helen-master"}>Helen's Master</NavLink>
+            <NavLink to={"/helen-master"} activeClassName={classes.active}> Helen's Master</NavLink>
           </li>
           <li className={classes.navItem}>
-            <NavLink to={"/stone-garden-master"}>SG Master</NavLink>
+            <NavLink to={"/stone-garden-master"} activeClassName={classes.active}>SG Master</NavLink>
           </li>
         </ul>
       </nav>
