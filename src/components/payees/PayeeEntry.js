@@ -53,7 +53,8 @@ const PayeeEntry = (props) => {
     event.preventDefault();
 
     const names = fullNameRef.current.value.split(" ");
-    const inputtedFirstName = names[0];
+    const tempFirstNameArea = names.slice(0, -1);
+    const inputtedFirstName = tempFirstNameArea.join(" ");
     const inputtedLastName = names[names.length - 1];
 
     const payeeToSubmit = {

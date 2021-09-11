@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import GetAList from "../components/helperFunctions/GetAList";
 
 import Purposes from "../components/purposes/Purposes";
-// import Modal from "../components/UI/Modal/Modal";
-// import AddFoundation from "../components/addFoundation/AddFoundation";
 
 import styles from "./AllPurposes.module.css";
 

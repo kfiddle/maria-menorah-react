@@ -14,8 +14,6 @@ import HelenMaster from "./pages/HelenMaster";
 function App() {
   const [editPayeeClicked, setEditPayeeClicked] = useState(false);
 
-  
-
   return (
     <Layout>
       <Switch>
