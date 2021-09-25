@@ -3,8 +3,8 @@ import { Fragment, useState } from "react";
 import PushSomething from "../helperFunctions/PushSomething";
 import DateFormatter from "../helperFunctions/DateFormatter";
 
-import greenCheck from "../../assets/greenCheck1.jpg";
-import redCheck from "../../assets/redCheck1.jpg";
+import { FaCheck } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
 
 import classes from "./PayeeItem.module.css";
 import PayeeEntry from "./PayeeEntry";
@@ -34,9 +34,11 @@ const PayeeItem = (props) => {
   };
 
   const itemsToShow = itemsList.map((item) => (
-    <div key={Math.random()} style={{display:"flex"}}>
-      <div classname={classes.smallItemDiv} style={{marginRight:'5rem'}}>{item.name}</div>
-      <div style={{marginRight:'3rem'}}>{DateFormatter(item.date)}</div>
+    <div key={Math.random()} style={{ display: "flex" }}>
+      <div classname={classes.smallItemDiv} style={{ marginRight: "5rem" }}>
+        {item.name}
+      </div>
+      <div style={{ marginRight: "3rem" }}>{DateFormatter(item.date)}</div>
       <div>{item.community}</div>
     </div>
   ));
@@ -51,8 +53,7 @@ const PayeeItem = (props) => {
         <div className={classes.emailDiv}>{email}</div>
         <div className={classes.phoneDiv}>{phoneNumber}</div>
         <div className={classes.checkMarkDiv}>
-          {w9ed && <img className={classes.checkMark} src={greenCheck}></img>}{" "}
-          {!w9ed && <h2 className={classes.redEx}>X</h2>}
+          {w9ed && <FaCheck style={{color: 'green'}}/>} {!w9ed && <ImCross style={{color: 'darkRed'}} />}
         </div>
         <div className={classes.editButtonDiv}>
           <button onClick={openEditingModal}>View or Edit</button>

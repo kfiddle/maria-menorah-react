@@ -39,12 +39,28 @@
   width: fit-content;
   white-space: nowrap;
   margin-left: 0;
-  border: rgb(9, 8, 63) solid 3px;
-  border-radius: 3px;
 }
 
 .newFormDiv li {
   font-size: 10px;
+}
+
+.bankIcon {
+  color: green; 
+  font-size: 2.5rem;
+}
+
+.payeeIcon {
+  color: midnightBlue; 
+  font-size: 2.5rem;
+}
+
+.bankIcon:hover {
+  color: chartreuse;
+}
+
+.payeeIcon:hover {
+  color: chartreuse;
 }
 
 .nav a,

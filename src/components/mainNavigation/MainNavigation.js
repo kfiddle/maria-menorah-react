@@ -1,4 +1,8 @@
 import { NavLink } from "react-router-dom";
+
+import { GiBank } from 'react-icons/gi';
+import { BsPersonPlusFill } from 'react-icons/bs';
+
 import classes from "./MainNavigation.module.css";
 
 const MainNavigation = (props) => {
@@ -11,14 +15,14 @@ const MainNavigation = (props) => {
         <ul>
           <div className={classes.newFormDiv}>
             <li className={classes.navItem} onClick={props.entryClicked}>
-              + FOUNDATION ITEM
+              <GiBank className={classes.bankIcon} />
             </li>
             <li
               className={classes.navItem}
               onClick={props.payeeEntryClicked}
               style={{ marginRight: "7rem" }}
             >
-              + PAYEE
+              <BsPersonPlusFill className={classes.payeeIcon} />
             </li>
           </div>
 
